@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
+import ChakraUIProvider from "@/providers/ChakraUIProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        <NextAuthSessionProvider>
+          <ChakraUIProvider>{children}</ChakraUIProvider>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
