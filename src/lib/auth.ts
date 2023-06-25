@@ -1,9 +1,7 @@
 import { AuthOptions } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "./db";
 
 export const authOptions: AuthOptions = {
   // @ts-ignore
@@ -12,7 +10,7 @@ export const authOptions: AuthOptions = {
     Auth0Provider({
       clientId: process.env.AUTH0_CLIENT_ID ?? "",
       clientSecret: process.env.AUTH0_CLIENT_SECRET ?? "",
-      issuer: process.env.AUTH0_ISSUER,
+      issuer: process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL,
     }),
   ],
 };
