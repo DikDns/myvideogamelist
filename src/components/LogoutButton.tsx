@@ -7,9 +7,7 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const handleClick = async () => {
-    const authUrl = encodeURI(
-      process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL ?? ""
-    );
+    const authUrl = process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL;
     await signOut({ redirect: false });
     router.push(`${authUrl}/v2/logout`);
   };
