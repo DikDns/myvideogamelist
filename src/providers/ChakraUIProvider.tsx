@@ -13,7 +13,11 @@ const colors = {
 
 export const theme = extendTheme({ colors });
 
-export function ChakraUIProvider({ children }: { children: React.ReactNode }) {
+export default function ChakraUIProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <CacheProvider>
       <ChakraProvider theme={theme}>{children}</ChakraProvider>
