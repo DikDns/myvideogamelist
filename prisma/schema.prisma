@@ -40,12 +40,25 @@ model Session {
   @@map("sessions")
 }
 
+model Follows {
+  follower    User   @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId  String @map("follower_id")
+  following   User   @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String @map("following_id")
+
+  @@id([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+  followers     Follows[] @relation("following")
+  following     Follows[] @relation("follower")
   accounts      Account[]
   sessions      Session[]
 
