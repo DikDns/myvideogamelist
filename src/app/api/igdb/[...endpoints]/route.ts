@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { textFetch } from "@/lib/fetch";
 import { prisma } from "@/lib/db";
-import getIGDBToken from "@/controllers/getIGDBToken";
 import { fetchIGDBToken } from "@/lib/igdb";
+import { IGDBToken } from "@prisma/client";
+import getIGDBToken from "@/controllers/getIGDBToken";
+import createIGDBToken from "@/controllers/createIGDBToken";
+import updateIGDBToken from "@/controllers/updateIGDBToken";
 
 interface Context {
   params: {
@@ -10,35 +13,26 @@ interface Context {
   };
 }
 
-async function getAccessToken(): Promise<string> {
-  const tokens = await getIGDBToken();
-
-  if (tokens.length < 1) {
-    const { accessToken, expiredAt } = await fetchIGDBToken();
-    const res = await prisma.iGDBToken.create({
-      data: { accessToken, expiredAt },
-    });
-    if (!res) throw new Error(res);
-    return accessToken;
-  }
-
-  const currentToken = tokens[0];
-
+function isTokenExpired(token: IGDBToken): boolean {
   const currentDate = new Date();
-  const expiredDate = new Date(currentToken.expiredAt);
+  const expiredDate = new Date(token.expiredAt);
+  return currentDate > expiredDate;
+}
 
-  // Token Expired
-  if (currentDate > expiredDate) {
+async function getAccessToken(): Promise<string> {
+  const tokens: IGDBToken[] = await getIGDBToken();
+
+  if (tokens.length === 0 || isTokenExpired(tokens[0])) {
     const { accessToken, expiredAt } = await fetchIGDBToken();
-    const res = await prisma.iGDBToken.update({
-      data: { accessToken, expiredAt },
-      where: { accessToken: currentToken.accessToken },
-    });
-    if (!res) throw new Error(res);
+    if (tokens.length === 0) {
+      await createIGDBToken(accessToken, expiredAt);
+    } else {
+      await updateIGDBToken(tokens[0].accessToken, accessToken, expiredAt);
+    }
     return accessToken;
   }
 
-  return currentToken.accessToken;
+  return tokens[0].accessToken;
 }
 
 export async function POST(request: Request, { params }: Context) {
@@ -52,7 +46,7 @@ export async function POST(request: Request, { params }: Context) {
   if (!clientId) throw new Error("TWITCH_CLIENT_ID is not specified in .env");
 
   const accessToken = await getAccessToken();
-  if (!accessToken) throw new Error("ACCESS_TOKEN Not Found");
+  if (!accessToken) throw new Error("Access token not found or expired.");
 
   const body = await request.text();
   const headers = {
