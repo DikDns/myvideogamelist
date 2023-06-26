@@ -1,19 +1,16 @@
-export async function postFetch(
+export async function textFetch(
   url: RequestInfo | URL,
-  { body, headers }: RequestInit
+  { body, headers, ...options }: RequestInit
 ) {
   return await fetch(url, {
+    headers: { "Content-Type": "text/plain", ...headers },
     cache: "force-cache",
-    method: "POST",
     body,
-    headers,
+    ...options,
   })
     .then((res: Response) => {
-      if (!res.ok) return Promise.reject(res.status);
-      return res.json();
+      if (res.ok) return res.json();
+      return Promise.reject(res);
     })
-    .then((data) => data)
-    .catch((error) => {
-      console.error(error);
-    });
+    .then((data) => data);
 }
