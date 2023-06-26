@@ -1,8 +1,7 @@
+import type { IGDBToken } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { textFetch } from "@/lib/fetch";
-import { prisma } from "@/lib/db";
 import { fetchIGDBToken } from "@/lib/igdb";
-import { IGDBToken } from "@prisma/client";
 import getIGDBToken from "@/controllers/getIGDBToken";
 import createIGDBToken from "@/controllers/createIGDBToken";
 import updateIGDBToken from "@/controllers/updateIGDBToken";
@@ -13,12 +12,22 @@ interface Context {
   };
 }
 
+/**
+ * Checks if the provided access token is expired.
+ * @param token - The IGDBToken object representing the access token.
+ * @returns A boolean indicating whether the access token is expired.
+ */
 function isTokenExpired(token: IGDBToken): boolean {
   const currentDate = new Date();
   const expiredDate = new Date(token.expiredAt);
   return currentDate > expiredDate;
 }
 
+/**
+ * Retrieves the access token required for making the API call.
+ * If the token is expired or not available, it fetches a new token and updates it in the database.
+ * @returns The access token.
+ */
 async function getAccessToken(): Promise<string> {
   const tokens: IGDBToken[] = await getIGDBToken();
 
@@ -35,11 +44,17 @@ async function getAccessToken(): Promise<string> {
   return tokens[0].accessToken;
 }
 
+/**
+ * Handles the HTTP POST request.
+ * @param request - The incoming request object.
+ * @param params - The context object containing parameters.
+ * @returns The NextResponse object.
+ */
 export async function POST(request: Request, { params }: Context) {
   const baseUrl = process.env.IGDB_BASE_URL;
   const endpoints = params.endpoints.join("/");
 
-  // url: IGDB_BASE_URL/API_ENDPOINTS
+  // Construct the URL: IGDB_BASE_URL/API_ENDPOINTS
   const url = `${baseUrl}/${endpoints}`;
 
   const clientId = process.env.TWITCH_CLIENT_ID;
