@@ -76,8 +76,7 @@ model VerificationToken {
 }
 
 model IGDBToken {
-  id          Int      @id @default(autoincrement())
-  accessToken String   @unique @map("access_token")
+  accessToken String   @id @unique @map("access_token")
   expiredAt   DateTime @map("expires_at")
 
   @@map("igdb_token")
