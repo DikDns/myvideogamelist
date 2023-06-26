@@ -2,7 +2,12 @@ export async function postFetch(
   url: RequestInfo | URL,
   { body, headers }: RequestInit
 ) {
-  return await fetch(url, { method: "POST", body, headers })
+  return await fetch(url, {
+    cache: "force-cache",
+    method: "POST",
+    body,
+    headers,
+  })
     .then((res: Response) => {
       if (!res.ok) return Promise.reject(res.status);
       return res.json();
