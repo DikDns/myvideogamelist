@@ -1,4 +1,7 @@
-export async function postFetch(url: URL, { body, headers }: RequestInit) {
+export async function postFetch(
+  url: RequestInfo | URL,
+  { body, headers }: RequestInit
+) {
   return await fetch(url, { method: "POST", body, headers })
     .then((res: Response) => {
       if (!res.ok) return Promise.reject(res.status);
