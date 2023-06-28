@@ -5,7 +5,7 @@
  * @returns An array of smaller arrays, where each subarray has a length of chunkSize.
  */
 
-function splitArray<T>(array: T[], chunkSize: number): T[][] {
+export default function splitArray<T>(array: T[], chunkSize: number): T[][] {
   const splitArrays: T[][] = [];
 
   for (let i = 0; i < array.length; i += chunkSize) {
