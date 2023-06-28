@@ -4,6 +4,9 @@ import { createTheme } from "@mui/material/styles";
 import GoogleInterFont from "@/app/fonts/fonts";
 
 const defaultTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
   typography: {
     fontFamily: GoogleInterFont.style.fontFamily,
     body1: { fontFamily: GoogleInterFont.style.fontFamily },
