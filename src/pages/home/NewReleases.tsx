@@ -15,6 +15,7 @@ export interface NewReleaseData {
 }
 
 export default function NewReleases({ data }: { data: NewReleaseData[] }) {
+  console.log(data);
   return (
     <Container style={{ overflow: "hidden" }}>
       <Typography variant="h3">{`New Release Video Games`}</Typography>
