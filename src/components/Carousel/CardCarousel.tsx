@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, ReactNode } from "react";
+import { useState, useEffect, useCallback, ReactNode } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import KeyboardArrowLeftRounded from "@mui/icons-material/KeyboardArrowLeftRounded";
 import KeyboardArrowRightRounded from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -26,6 +26,26 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    if (!matches) {
+      return emblaApi.reInit({
+        align: "start",
+        loop: true,
+        dragFree: true,
+        slidesToScroll: 4,
+      });
+    }
+
+    return emblaApi.reInit({
+      align: "start",
+      loop: true,
+      dragFree: false,
+      slidesToScroll: 1,
+    });
+  }, [matches]);
 
   return (
     <Paper
