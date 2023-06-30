@@ -7,7 +7,6 @@ const cardStyle = {
   flex: "0 0 auto",
   minWidth: "0",
   maxWidth: "100%",
-  height: "100%",
 };
 
 export default function TopFranchisesItem({

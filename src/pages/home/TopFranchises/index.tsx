@@ -20,7 +20,9 @@ export default function TopFranchises({ data }: { data: TopFranchisesData[] }) {
       <Typography sx={h2Style} variant="h2" mb={2}>
         {`Top Franchises`}
       </Typography>
-      <CardCarousel>{/* <CardList data={data} /> */}</CardCarousel>
+      <CardCarousel>
+        <TopFranchisesList data={data} />
+      </CardCarousel>
     </Container>
   );
 }
