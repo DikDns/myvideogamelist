@@ -36,15 +36,19 @@ const subtitleStyle = {
   transform: "translateY(100%)",
   transition:
     "visibility 0.5s, opacity 0.5s linear, transform 0.5s ease-in-out",
-  bgcolor: "rgba(30, 30, 30, 0.75)",
+  bgcolor: "rgba(30, 30, 30, 0.9)",
   boxShadow: 1,
   borderTopLeftRadius: "5px",
   borderTopRightRadius: "5px",
   px: { xs: "4px", md: "8px" },
-  py: { xs: "2px", md: "4px" },
+  py: "8px",
   fontSize: {
     xs: "1rem",
     md: "1.25rem",
+  },
+  lineHeight: {
+    xs: "1.5rem",
+    md: "1.75rem",
   },
 };
 
