@@ -8,15 +8,27 @@ import Fab from "@mui/material/Fab";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import useEmblaCarousel from "embla-carousel-react";
+import { OptionsType } from "embla-carousel-autoplay/components/Options";
+
+const emblaOptionsDefault: Partial<OptionsType> = {
+  // @ts-ignore
+  align: "start",
+  dragFree: true,
+  slidesToScroll: 4,
+  loop: true,
+};
+
+const emblaOptionsMobile: Partial<OptionsType> = {
+  // @ts-ignore
+  align: "start",
+  loop: true,
+  dragFree: false,
+  slidesToScroll: 1,
+};
 
 export default function CardCarousel({ children }: { children: ReactNode }) {
   const matches = useMediaQuery("(max-width:600px)");
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    dragFree: true,
-    slidesToScroll: 4,
-    loop: true,
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptionsDefault);
   const [isHovered, setIsHovered] = useState(false);
 
   const scrollPrev = useCallback(() => {
@@ -31,20 +43,10 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
     if (!emblaApi) return;
 
     if (!matches) {
-      return emblaApi.reInit({
-        align: "start",
-        loop: true,
-        dragFree: true,
-        slidesToScroll: 4,
-      });
+      return emblaApi.reInit(emblaOptionsDefault);
     }
 
-    return emblaApi.reInit({
-      align: "start",
-      loop: true,
-      dragFree: false,
-      slidesToScroll: 1,
-    });
+    return emblaApi.reInit(emblaOptionsMobile);
   }, [matches]);
 
   return (
@@ -64,7 +66,7 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
               xs: "175px",
               md: "25%",
             },
-            height: { xs: "250px", md: "374px" },
+            height: { xs: "216px", md: "374px" },
           }}
         >
           {children}
@@ -79,7 +81,7 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
               onClick={scrollPrev}
               sx={{ position: "absolute", left: "10px", top: "42%" }}
             >
-              <KeyboardArrowLeftRounded fontSize="large" />
+              <KeyboardArrowLeftRounded fontSize="medium" />
             </Fab>
           </Grow>
           <Grow in={isHovered}>
@@ -88,7 +90,7 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
               onClick={scrollNext}
               sx={{ position: "absolute", right: "10px", top: "42%" }}
             >
-              <KeyboardArrowRightRounded fontSize="large" />
+              <KeyboardArrowRightRounded fontSize="medium" />
             </Fab>
           </Grow>
         </>
