@@ -10,6 +10,11 @@ import Paper from "@mui/material/Paper";
 import useEmblaCarousel from "embla-carousel-react";
 import { OptionsType } from "embla-carousel-autoplay/components/Options";
 
+interface CardCarousel {
+  children: ReactNode;
+  size?: "md" | "lg";
+}
+
 const emblaOptionsDefault: Partial<OptionsType> = {
   // @ts-ignore
   align: "center",
@@ -26,7 +31,27 @@ const emblaOptionsMobile: Partial<OptionsType> = {
   slidesToScroll: 1,
 };
 
-export default function CardCarousel({ children }: { children: ReactNode }) {
+const lgStyle = {
+  display: "grid",
+  gridAutoFlow: "column",
+  gridAutoColumns: {
+    xs: "176px",
+    md: 1 / 4,
+  },
+  height: { xs: "248px", md: "374px" },
+};
+
+const mdStyle = {
+  display: "grid",
+  gridAutoFlow: "column",
+  gridAutoColumns: {
+    xs: "115px",
+    md: 1 / 8,
+  },
+  height: { xs: "165px", md: "216px" },
+};
+
+export default function CardCarousel({ children, size = "md" }: CardCarousel) {
   const matches = useMediaQuery("(max-width:600px)");
   const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptionsDefault);
   const [isHovered, setIsHovered] = useState(false);
@@ -57,18 +82,7 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div style={{ overflow: "hidden" }} ref={emblaRef}>
-        <Paper
-          elevation={0}
-          sx={{
-            display: "grid",
-            gridAutoFlow: "column",
-            gridAutoColumns: {
-              xs: "175px",
-              md: "25%",
-            },
-            height: { xs: "216px", md: "374px" },
-          }}
-        >
+        <Paper elevation={0} sx={size === "lg" ? lgStyle : mdStyle}>
           {children}
         </Paper>
       </div>
