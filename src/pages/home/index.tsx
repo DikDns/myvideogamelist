@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import getData from "./getData";
 import NewReleaseGames from "./NewReleaseGames";
+import TopFranchises from "./TopFranchises";
 
 export default async function Home() {
   const data = await getData();
@@ -11,7 +12,9 @@ export default async function Home() {
         <NewReleaseGames data={data.newReleaseGames} />
       </Suspense>
 
-      <Suspense fallback={<p>Loading...</p>}></Suspense>
+      <Suspense fallback={<p>Loading...</p>}>
+        <TopFranchises data={data.topFranchises} />
+      </Suspense>
     </>
   );
 }
