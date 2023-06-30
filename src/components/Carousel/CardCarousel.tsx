@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, ReactNode } from "react";
+import { useState, useCallback, ReactNode } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import KeyboardArrowLeftRounded from "@mui/icons-material/KeyboardArrowLeftRounded";
 import KeyboardArrowRightRounded from "@mui/icons-material/KeyboardArrowRightRounded";
@@ -8,28 +8,11 @@ import Fab from "@mui/material/Fab";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import useEmblaCarousel from "embla-carousel-react";
-import { OptionsType } from "embla-carousel-autoplay/components/Options";
 
 interface CardCarousel {
   children: ReactNode;
   size?: "md" | "lg";
 }
-
-const emblaOptionsDefault: Partial<OptionsType> = {
-  // @ts-ignore
-  align: "center",
-  dragFree: true,
-  slidesToScroll: 4,
-  loop: true,
-};
-
-const emblaOptionsMobile: Partial<OptionsType> = {
-  // @ts-ignore
-  align: "start",
-  loop: true,
-  dragFree: false,
-  slidesToScroll: 1,
-};
 
 const lgStyle = {
   display: "grid",
@@ -46,16 +29,24 @@ const mdStyle = {
   gridAutoFlow: "column",
   gridAutoColumns: {
     xs: "115px",
-    md: "10%",
+    md: "15%",
   },
-  height: { xs: "165px", md: "216px" },
 };
 
 export default function CardCarousel({ children, size = "md" }: CardCarousel) {
   const matches = useMediaQuery("(max-width:600px)");
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    matches ? emblaOptionsMobile : emblaOptionsDefault
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    breakpoints: {
+      "(min-width: 600px)": {
+        align: "center",
+        dragFree: true,
+        slidesToScroll: 4,
+      },
+    },
+  });
   const [isHovered, setIsHovered] = useState(false);
 
   const scrollPrev = useCallback(() => {
@@ -65,16 +56,6 @@ export default function CardCarousel({ children, size = "md" }: CardCarousel) {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    if (!matches) {
-      return emblaApi.reInit(emblaOptionsDefault);
-    }
-
-    return emblaApi.reInit(emblaOptionsMobile);
-  }, [matches]);
 
   return (
     <Paper
