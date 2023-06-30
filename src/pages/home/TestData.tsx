@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export default function TestData(data: any) {
+export default function TestData({ data }: { data: any }) {
   useEffect(() => {
     console.log(data);
   }, []);
