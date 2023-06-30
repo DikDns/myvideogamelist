@@ -26,7 +26,7 @@ const boxStyle = {
   },
 };
 
-const h2Style = {
+const subtitleStyle = {
   position: "absolute",
   bottom: 0,
   left: 0,
@@ -60,7 +60,7 @@ export default function NewReleaseGamesList({
           fill={true}
           sizes="(max-width: 768px) 264px, 200px"
         />
-        <Typography sx={h2Style} variant="subtitle1" component="h2">
+        <Typography sx={subtitleStyle} variant="subtitle1" component="p">
           {dt.name}
         </Typography>
       </Box>
