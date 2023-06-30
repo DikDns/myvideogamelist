@@ -53,7 +53,10 @@ const mdStyle = {
 
 export default function CardCarousel({ children, size = "md" }: CardCarousel) {
   const matches = useMediaQuery("(max-width:600px)");
-  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptionsDefault);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    matches ? emblaOptionsMobile : emblaOptionsDefault
+  );
+
   const [isHovered, setIsHovered] = useState(false);
 
   const scrollPrev = useCallback(() => {
@@ -63,16 +66,6 @@ export default function CardCarousel({ children, size = "md" }: CardCarousel) {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    if (!matches) {
-      return emblaApi.reInit(emblaOptionsDefault);
-    }
-
-    return emblaApi.reInit(emblaOptionsMobile);
-  }, [matches]);
 
   return (
     <Paper
