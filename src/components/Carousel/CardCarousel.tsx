@@ -36,7 +36,7 @@ const lgStyle = {
   gridAutoFlow: "column",
   gridAutoColumns: {
     xs: "176px",
-    md: 1 / 4,
+    md: "25%",
   },
   height: { xs: "248px", md: "374px" },
 };
@@ -46,7 +46,7 @@ const mdStyle = {
   gridAutoFlow: "column",
   gridAutoColumns: {
     xs: "115px",
-    md: 1 / 8,
+    md: "10%",
   },
   height: { xs: "165px", md: "216px" },
 };
