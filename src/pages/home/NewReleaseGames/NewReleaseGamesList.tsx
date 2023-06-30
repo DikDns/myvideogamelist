@@ -4,6 +4,7 @@ import Image from "next/image";
 import NewReleaseGamesItem from "./NewReleaseGamesItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import truncStr from "@/utils/truncStr";
 import { NewReleaseGamesData } from "./NewReleaseGamesInterface";
 
 const boxStyle = {
@@ -75,7 +76,7 @@ export default function NewReleaseGamesList({
           variant="subtitle1"
           component="p"
         >
-          {dt.name}
+          {truncStr(dt.name, 15)}
         </Typography>
       </Box>
     </NewReleaseGamesItem>
