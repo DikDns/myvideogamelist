@@ -6,7 +6,7 @@ import CardCarousel from "@/components/Carousel/CardCarousel";
 import CardList from "./CardList";
 import { NewReleaseGamesData } from "./NewReleaseGamesInterface";
 
-const h3Style = {
+const h1Style = {
   fontSize: {
     xs: "2rem",
     sm: "3rem",
@@ -21,7 +21,7 @@ export default function NewReleaseGames({
 }) {
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
-      <Typography sx={h3Style} variant="h3" mb={2}>
+      <Typography sx={h1Style} variant="h1" mb={2}>
         {`New Release Games`}
       </Typography>
       <CardCarousel>
