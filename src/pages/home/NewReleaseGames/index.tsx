@@ -24,7 +24,7 @@ export default function NewReleaseGames({
       <Typography sx={h1Style} variant="h1" mb={2}>
         {`New Release Games`}
       </Typography>
-      <CardCarousel>
+      <CardCarousel size="lg">
         <NewReleaseGamesList data={data} />
       </CardCarousel>
     </Container>
