@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import CardList from "./CardList";
-import { NewReleaseGames } from "./NewReleaseGamesInterface";
+import { NewReleaseGamesData } from "./NewReleaseGamesInterface";
 
 const h3Style = {
   fontSize: {
@@ -14,7 +14,11 @@ const h3Style = {
   },
 };
 
-export default function NewReleaseGames({ data }: { data: NewReleaseGames[] }) {
+export default function NewReleaseGames({
+  data,
+}: {
+  data: NewReleaseGamesData[];
+}) {
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
       <Typography sx={h3Style} variant="h3" mb={2}>

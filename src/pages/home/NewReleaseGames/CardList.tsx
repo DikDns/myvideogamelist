@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { NewReleaseGames } from "./NewReleaseGamesInterface";
 import CardItem from "./CardItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { NewReleaseGamesData } from "./NewReleaseGamesInterface";
 
 const boxStyle = {
   position: "relative",
@@ -44,7 +44,7 @@ const h2Style = {
   px: "4px",
 };
 
-export default function CardList({ data }: { data: NewReleaseGames[] }) {
+export default function CardList({ data }: { data: NewReleaseGamesData[] }) {
   return data.map((dt) => (
     <CardItem key={dt.id}>
       <Box sx={boxStyle}>
