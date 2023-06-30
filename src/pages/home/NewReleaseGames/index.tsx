@@ -3,7 +3,7 @@
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
-import CardList from "./CardList";
+import NewReleaseGamesList from "./NewReleaseGamesList";
 import { NewReleaseGamesData } from "./NewReleaseGamesInterface";
 
 const h1Style = {
@@ -25,7 +25,7 @@ export default function NewReleaseGames({
         {`New Release Games`}
       </Typography>
       <CardCarousel>
-        <CardList data={data} />
+        <NewReleaseGamesList data={data} />
       </CardCarousel>
     </Container>
   );

@@ -10,7 +10,11 @@ const cardStyle = {
   height: "100%",
 };
 
-export default function CardItem({ children }: { children: React.ReactNode }) {
+export default function NewReleaseGamesItem({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <Card variant="outlined" sx={cardStyle}>
       {children}
