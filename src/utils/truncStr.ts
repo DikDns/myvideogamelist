@@ -4,7 +4,7 @@
  * @param maxLength - The maximum length of the returned string.
  * @returns The truncated string.
  */
-function truncateString(str: string, maxLength: number): string {
+export default function truncStr(str: string, maxLength: number): string {
   if (str.length > maxLength) {
     return str.slice(0, maxLength) + "...";
   }
