@@ -76,7 +76,7 @@ export default function NewReleaseGamesList({
           variant="subtitle1"
           component="p"
         >
-          {truncStr(dt.name, 15)}
+          {truncStr(dt.name, 30)}
         </Typography>
       </Box>
     </NewReleaseGamesItem>

@@ -34,7 +34,7 @@ export default function TopFranchisesList({ data }: { data: TopData[] }) {
         title={`${dt.name} cover`}
       />
       <Typography variant="subtitle1" component="p" sx={subtitleStyle}>
-        {truncStr(dt.name, 15)}
+        {truncStr(dt.name, 20)}
       </Typography>
     </TopItem>
   ));
