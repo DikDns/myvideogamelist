@@ -4,30 +4,20 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import CardList from "./CardList";
+import { NewReleaseGames } from "./NewReleaseGamesInterface";
 
-export interface NewReleaseData {
-  id: number;
-  name: string;
-  cover: {
-    id: number;
-    image_id: string;
-  };
-}
+const h3Style = {
+  fontSize: {
+    xs: "2rem",
+    sm: "3rem",
+    md: "3.5rem",
+  },
+};
 
-export default function NewReleases({ data }: { data: NewReleaseData[] }) {
+export default function NewReleaseGames({ data }: { data: NewReleaseGames[] }) {
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
-      <Typography
-        sx={{
-          fontSize: {
-            xs: "2rem",
-            sm: "3rem",
-            md: "3.5rem",
-          },
-        }}
-        variant="h3"
-        mb={2}
-      >
+      <Typography sx={h3Style} variant="h3" mb={2}>
         {`New Release Games`}
       </Typography>
       <CardCarousel>
