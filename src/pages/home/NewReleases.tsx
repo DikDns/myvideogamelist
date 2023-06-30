@@ -15,10 +15,21 @@ export interface NewReleaseData {
 }
 
 export default function NewReleases({ data }: { data: NewReleaseData[] }) {
-  console.log(data);
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
-      <Typography variant="h3" mb={2}>{`New Release Video Games`}</Typography>
+      <Typography
+        sx={{
+          fontSize: {
+            xs: "2rem",
+            sm: "3rem",
+            md: "3.5rem",
+          },
+        }}
+        variant="h3"
+        mb={2}
+      >
+        {`New Release Games`}
+      </Typography>
       <CardCarousel>
         <CardList data={data} />
       </CardCarousel>
