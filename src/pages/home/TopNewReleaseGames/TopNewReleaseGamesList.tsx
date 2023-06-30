@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import NewReleaseGamesItem from "./NewReleaseGamesItem";
+import TopNewReleaseGamesItem from "./TopNewReleaseGamesItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
-import { NewReleaseGamesData } from "./NewReleaseGamesInterface";
+import { TopNewReleaseGamesData } from "./TopNewReleaseGamesInterface";
 
 const boxStyle = {
   position: "relative",
@@ -56,10 +56,10 @@ const subtitleStyle = {
 export default function NewReleaseGamesList({
   data,
 }: {
-  data: NewReleaseGamesData[];
+  data: TopNewReleaseGamesData[];
 }) {
   return data.map((dt) => (
-    <NewReleaseGamesItem key={dt.id}>
+    <TopNewReleaseGamesItem key={dt.id}>
       <Box sx={boxStyle}>
         <Image
           style={{ objectFit: "cover", objectPosition: "center" }}
@@ -79,6 +79,6 @@ export default function NewReleaseGamesList({
           {truncStr(dt.name, 30)}
         </Typography>
       </Box>
-    </NewReleaseGamesItem>
+    </TopNewReleaseGamesItem>
   ));
 }

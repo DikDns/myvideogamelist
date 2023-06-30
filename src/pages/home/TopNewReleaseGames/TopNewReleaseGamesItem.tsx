@@ -10,7 +10,7 @@ const cardStyle = {
   height: "100%",
 };
 
-export default function NewReleaseGamesItem({
+export default function TopNewReleaseGamesItem({
   children,
 }: {
   children: React.ReactNode;

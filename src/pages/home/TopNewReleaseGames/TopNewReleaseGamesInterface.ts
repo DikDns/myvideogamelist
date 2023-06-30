@@ -1,4 +1,4 @@
-export interface NewReleaseGamesData {
+export interface TopNewReleaseGamesData {
   id: number;
   name: string;
   cover: {

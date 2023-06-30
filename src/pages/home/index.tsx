@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import getData from "./getData";
-import NewReleaseGames from "./NewReleaseGames";
+import TopNewReleaseGames from "./TopNewReleaseGames";
 import TopSection from "./components/TopSection";
 import TestData from "./TestData";
 
@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <>
       <Suspense fallback={<p>Loading...</p>}>
-        <NewReleaseGames data={data.newReleaseGames} />
+        <TopNewReleaseGames data={data.topNewReleaseGames} />
       </Suspense>
 
       <Suspense fallback={<p>Loading...</p>}>

@@ -13,12 +13,22 @@ function lastMonthDate() {
   return unixTimestamp;
 }
 
+async function getTopNewReleaseGames() {
+  const body = `
+    f name, cover.image_id;
+    w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n;
+    s hypes desc;
+    l 20;
+  `;
+  return await getGames(body);
+}
+
 async function getNewReleaseGames() {
   const body = `
     f name, genres.name, cover.image_id;
     w first_release_date < ${currentDate()} & cover != n & genres != n;
     s first_release_date desc;
-    l 20;
+    l 5;
   `;
   return await getGames(body);
 }
@@ -51,16 +61,6 @@ async function getNewTrailers() {
     l 10;
   `;
   return await getGameVideos(body);
-}
-
-async function getTopNewReleaseGames() {
-  const body = `
-    f name;
-    w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n;
-    s hypes desc;
-    l 5;
-  `;
-  return await getGames(body);
 }
 
 async function getTopUpComingGames() {
