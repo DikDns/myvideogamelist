@@ -14,7 +14,7 @@ export default function CardList({ data }: { data: NewReleaseData[] }) {
           alt={`${dt.name} cover`}
           loading="eager"
           fill={true}
-          sizes="(max-width: 768px) 50vw, 25vw"
+          sizes="(max-width: 768px) 264px, 200px"
         />
       </div>
     </CardItem>
