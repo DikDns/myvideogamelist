@@ -12,7 +12,7 @@ import { OptionsType } from "embla-carousel-autoplay/components/Options";
 
 const emblaOptionsDefault: Partial<OptionsType> = {
   // @ts-ignore
-  align: "start",
+  align: "center",
   dragFree: true,
   slidesToScroll: 4,
   loop: true,
@@ -79,7 +79,7 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
             <Fab
               variant="extended"
               onClick={scrollPrev}
-              sx={{ position: "absolute", left: "10px", top: "42%" }}
+              sx={{ position: "absolute", left: "2%", top: "43%" }}
             >
               <KeyboardArrowLeftRounded fontSize="medium" />
             </Fab>
@@ -88,7 +88,7 @@ export default function CardCarousel({ children }: { children: ReactNode }) {
             <Fab
               variant="extended"
               onClick={scrollNext}
-              sx={{ position: "absolute", right: "10px", top: "42%" }}
+              sx={{ position: "absolute", right: "2%", top: "43%" }}
             >
               <KeyboardArrowRightRounded fontSize="medium" />
             </Fab>
