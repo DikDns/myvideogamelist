@@ -1,3 +1,5 @@
+import { textFetch } from "./fetch";
+
 export async function fetchIGDBToken() {
   const baseUrl = process.env.TWITCH_TOKEN_URL ?? "";
   const clientId = process.env.TWITCH_CLIENT_ID ?? "";
@@ -18,4 +20,27 @@ export async function fetchIGDBToken() {
     accessToken: access_token,
     expiredAt,
   };
+}
+
+async function get(path: string, body: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const url = `${baseUrl}/api/igdb/v4/${path}`;
+  const data = await textFetch(url, { method: "POST", body });
+  return data;
+}
+
+export async function getGames(body: string) {
+  return await get("games", body);
+}
+
+export async function getFranchises(body: string) {
+  return await get("franchises", body);
+}
+
+export async function getSeries(body: string) {
+  return await get("collections", body);
+}
+
+export async function getGameVideos(body: string) {
+  return await get("game_videos", body);
 }
