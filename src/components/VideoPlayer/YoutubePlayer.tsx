@@ -1,25 +1,25 @@
-import ReactPlayer from "react-player/youtube";
+"use client";
 
-interface YoutubePlayer {
+import dynamic from "next/dynamic";
+import { BaseReactPlayerProps } from "react-player/base";
+const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
+
+interface YoutubePlayer extends BaseReactPlayerProps {
   videoId: string;
-  className?: string;
-  id?: string;
   isLight?: boolean;
   isControlable?: boolean;
-  styles?: object;
-  width?: string | number;
-  height?: string | number;
 }
 
 export default function YoutubePlayer({
   videoId,
-  className = "",
-  id = "",
+  className = undefined,
+  id = undefined,
   isLight = true,
   isControlable = true,
   styles,
   width,
   height,
+  fallback = undefined,
 }: YoutubePlayer) {
   return (
     <ReactPlayer
@@ -31,6 +31,7 @@ export default function YoutubePlayer({
       id={id}
       width={width}
       height={height}
+      fallback={fallback}
     />
   );
 }
