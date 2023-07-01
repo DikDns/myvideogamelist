@@ -1,5 +1,6 @@
-import { Inter } from "next/font/google";
+import { Raleway, Open_Sans } from "next/font/google";
 
-const GoogleInterFont = Inter({ subsets: ["latin"] });
+const GoogleRalewayFont = Raleway({ subsets: ["latin"] });
+const GoogleOpenSansFont = Open_Sans({ subsets: ["latin"] });
 
-export default GoogleInterFont;
+export default { GoogleRalewayFont, GoogleOpenSansFont };
