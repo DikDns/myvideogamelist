@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import getData from "./getData";
 import TopNewReleaseGames from "./TopNewReleaseGames";
 import TopSection from "./components/TopSection";
+import NewTrailers from "./NewTrailers";
 import TestData from "./TestData";
-
 export default async function Home() {
   const data = await getData();
 
@@ -20,6 +20,8 @@ export default async function Home() {
       <Suspense fallback={<p>Loading...</p>}>
         <TopSection text={`Top Series`} data={data.topSeries} />
       </Suspense>
+
+      <NewTrailers data={data.newTrailers} />
 
       <TestData data={data} />
     </>
