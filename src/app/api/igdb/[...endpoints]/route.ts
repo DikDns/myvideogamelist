@@ -2,9 +2,9 @@ import type { IGDBToken } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { textFetch } from "@/lib/fetch";
 import { fetchIGDBToken } from "@/lib/igdb";
-import getIGDBToken from "@/controllers/getIGDBToken";
-import createIGDBToken from "@/controllers/createIGDBToken";
-import updateIGDBToken from "@/controllers/updateIGDBToken";
+import getIGDBToken from "@/db/getIGDBToken";
+import createIGDBToken from "@/db/createIGDBToken";
+import updateIGDBToken from "@/db/updateIGDBToken";
 
 interface Context {
   params: {
