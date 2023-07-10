@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import getData from "./getData";
 import TopNewReleaseGames from "./TopNewReleaseGames";
 import TopSection from "./TopSection";
