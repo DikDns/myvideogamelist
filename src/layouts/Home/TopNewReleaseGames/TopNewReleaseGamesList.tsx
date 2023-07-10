@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import TopNewReleaseGamesItem from "./TopNewReleaseGamesItem";
+import Link from "next/link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
+import TopNewReleaseGamesItem from "./TopNewReleaseGamesItem";
 import { TopNewReleaseGamesData } from "./TopNewReleaseGamesInterface";
 
 const boxStyle = {
@@ -28,6 +29,7 @@ const boxStyle = {
 };
 
 const subtitleStyle = {
+  color: "white",
   position: "absolute",
   bottom: 0,
   left: 0,
@@ -60,25 +62,27 @@ export default function NewReleaseGamesList({
 }) {
   return data.map((dt) => (
     <TopNewReleaseGamesItem key={dt.id}>
-      <Box sx={boxStyle}>
-        <Image
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${dt.cover.image_id}.jpg`}
-          alt={`${dt.name} cover`}
-          loading="eager"
-          fill={true}
-          sizes="(max-width: 768px) 264px, 200px"
-          className="cover"
-        />
-        <Typography
-          className="name"
-          sx={subtitleStyle}
-          variant="subtitle1"
-          component="p"
-        >
-          {truncStr(dt.name, 30)}
-        </Typography>
-      </Box>
+      <Link href={`/games/${dt.slug}`}>
+        <Box sx={boxStyle}>
+          <Image
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${dt.cover.image_id}.jpg`}
+            alt={`${dt.name} cover`}
+            loading="eager"
+            fill={true}
+            sizes="(max-width: 768px) 264px, 200px"
+            className="cover"
+          />
+          <Typography
+            className="name"
+            sx={subtitleStyle}
+            variant="subtitle1"
+            component="p"
+          >
+            {truncStr(dt.name, 30)}
+          </Typography>
+        </Box>
+      </Link>
     </TopNewReleaseGamesItem>
   ));
 }
