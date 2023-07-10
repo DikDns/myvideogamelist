@@ -74,18 +74,22 @@ export default function CardCarousel({ children, size = "md" }: CardCarousel) {
         <>
           <Grow in={isHovered}>
             <Fab
-              variant="extended"
+              aria-label="previous"
+              variant="circular"
+              color="default"
               onClick={scrollPrev}
-              sx={{ position: "absolute", left: "2%", top: "43%" }}
+              sx={{ position: "absolute", left: "2%", top: "42%" }}
             >
               <KeyboardArrowLeftRounded fontSize="medium" />
             </Fab>
           </Grow>
           <Grow in={isHovered}>
             <Fab
-              variant="extended"
+              aria-label="next"
+              variant="circular"
+              color="default"
               onClick={scrollNext}
-              sx={{ position: "absolute", right: "2%", top: "43%" }}
+              sx={{ position: "absolute", right: "2%", top: "42%" }}
             >
               <KeyboardArrowRightRounded fontSize="medium" />
             </Fab>
