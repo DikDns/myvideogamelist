@@ -19,7 +19,7 @@ const boxStyle = {
 
 const cardMediaStyle = {
   height: { xs: 124, md: 152, lg: 200 },
-  filter: "brightness(50%)",
+  filter: "brightness(75%)",
   objectFit: "cover",
   objectPosition: "center",
   transition: "all 250ms ease-in-out",
