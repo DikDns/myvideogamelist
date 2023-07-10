@@ -15,7 +15,7 @@ function lastMonthDate() {
 
 async function getTopNewReleaseGames() {
   const body = `
-    f name, cover.image_id;
+    f name, cover.image_id, slug;
     w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n;
     s hypes desc;
     l 20;
@@ -25,7 +25,7 @@ async function getTopNewReleaseGames() {
 
 async function getNewReleaseGames() {
   const body = `
-    f name, genres.name, cover.image_id;
+    f name, genres.name, cover.image_id, slug;
     w first_release_date < ${currentDate()} & cover != n & genres != n;
     s first_release_date desc;
     l 5;
@@ -35,7 +35,7 @@ async function getNewReleaseGames() {
 
 async function getTopFranchises() {
   const body = `
-    f name, games.cover.image_id;
+    f name, games.cover.image_id, slug;
     w games.total_rating_count > 1000;
     s games desc;
     l 20;
@@ -45,7 +45,7 @@ async function getTopFranchises() {
 
 async function getTopSeries() {
   const body = `
-    f name, games.cover.image_id;
+    f name, games.cover.image_id, slug;
     w games.total_rating_count > 1000;
     s games desc;
     l 20;
@@ -65,7 +65,7 @@ async function getNewTrailers() {
 
 async function getTopUpComingGames() {
   const body = `
-    f name, first_release_date, hypes, themes.name;
+    f name, first_release_date, hypes, themes.name, slug;
     w first_release_date > ${currentDate()} & hypes != n;
     s hypes desc;
     l 5;
@@ -75,7 +75,7 @@ async function getTopUpComingGames() {
 
 async function getTopRatedGames() {
   const body = `
-    f name, aggregated_rating, aggregated_rating_count;
+    f name, aggregated_rating, aggregated_rating_count, slug;
     w aggregated_rating != n & aggregated_rating_count > 7;
     s aggregated_rating desc;
     l 5;
