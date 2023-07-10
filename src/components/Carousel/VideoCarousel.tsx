@@ -2,12 +2,9 @@
 
 import { useState, useCallback, ReactNode } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import KeyboardArrowLeftRounded from "@mui/icons-material/KeyboardArrowLeftRounded";
-import KeyboardArrowRightRounded from "@mui/icons-material/KeyboardArrowRightRounded";
-import Fab from "@mui/material/Fab";
-import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import useEmblaCarousel from "embla-carousel-react";
+import VideoCarouselFAB from "./VideoCarouselFAB";
 
 interface VideoCarousel {
   children: ReactNode;
@@ -21,7 +18,8 @@ const style = {
 };
 
 export default function VideoCarousel({ children }: VideoCarousel) {
-  const matches = useMediaQuery("(max-width:600px)");
+  const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useMediaQuery("(max-width:600px)");
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
@@ -34,15 +32,6 @@ export default function VideoCarousel({ children }: VideoCarousel) {
       },
     },
   });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
 
   return (
     <Paper
@@ -57,30 +46,11 @@ export default function VideoCarousel({ children }: VideoCarousel) {
         </Paper>
       </div>
 
-      {!matches ? (
-        <>
-          <Grow in={isHovered}>
-            <Fab
-              variant="extended"
-              onClick={scrollPrev}
-              sx={{ position: "absolute", left: "2%", top: "43%" }}
-            >
-              <KeyboardArrowLeftRounded fontSize="medium" />
-            </Fab>
-          </Grow>
-          <Grow in={isHovered}>
-            <Fab
-              variant="extended"
-              onClick={scrollNext}
-              sx={{ position: "absolute", right: "2%", top: "43%" }}
-            >
-              <KeyboardArrowRightRounded fontSize="medium" />
-            </Fab>
-          </Grow>
-        </>
-      ) : (
-        ""
-      )}
+      <VideoCarouselFAB
+        emblaApi={emblaApi}
+        isHovered={isHovered}
+        isMobile={isMobile}
+      />
     </Paper>
   );
 }
