@@ -28,7 +28,7 @@ export default function VideoCarousel({ children }: VideoCarousel) {
       "(min-width: 600px)": {
         align: "center",
         dragFree: true,
-        slidesToScroll: 4,
+        slidesToScroll: 2,
       },
     },
   });
