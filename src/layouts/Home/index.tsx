@@ -8,26 +8,20 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <>
-      <Suspense fallback={<p>Loading...</p>}>
-        <TopNewReleaseGames data={data.topNewReleaseGames} />
-      </Suspense>
+    <main>
+      <TopNewReleaseGames data={data.topNewReleaseGames} />
 
-      <Suspense fallback={<p>Loading...</p>}>
-        <TopSection
-          type="franchises"
-          text={`Top Franchises`}
-          data={data.topFranchises}
-        />
-      </Suspense>
+      <TopSection
+        type="franchises"
+        text={`Top Franchises`}
+        data={data.topFranchises}
+      />
 
-      <Suspense fallback={<p>Loading...</p>}>
-        <TopSection type="series" text={`Top Series`} data={data.topSeries} />
-      </Suspense>
+      <TopSection type="series" text={`Top Series`} data={data.topSeries} />
 
       <NewTrailers data={data.newTrailers} />
 
       <TestData data={data} />
-    </>
+    </main>
   );
 }
