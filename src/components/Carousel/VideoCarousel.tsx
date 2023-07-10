@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, ReactNode } from "react";
+import { useState, ReactNode } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Paper from "@mui/material/Paper";
 import useEmblaCarousel from "embla-carousel-react";
