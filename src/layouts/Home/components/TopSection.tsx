@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import TopList from "./TopList";
-import { List, TopData } from "./TopSectionTypes";
+import { List, TopData } from "./TopSection";
 
 const h2Style = {
   fontSize: {

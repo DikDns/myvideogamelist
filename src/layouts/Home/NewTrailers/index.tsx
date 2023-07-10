@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import VideoCarousel from "@/components/Carousel/VideoCarousel";
 import NewTrailersList from "./NewTrailersList";
-import { NewTrailersData } from "./NewTrailersInterface";
+import { NewTrailersData } from "./NewTrailers";
 
 const h3Style = {
   fontSize: {
