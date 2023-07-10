@@ -9,5 +9,6 @@ interface GamesData {
 export interface TopData {
   id: number;
   name: string;
+  slug: string;
   games: GamesData[];
 }
