@@ -13,7 +13,7 @@ const boxStyle = {
   width: "100%",
   height: "100%",
   cursor: "pointer",
-  "&:hover .name": {
+  "&:hover .name, &:focus-within .name": {
     visibility: "visible",
     opacity: 1,
     transform: "translateY(0)",
@@ -22,7 +22,7 @@ const boxStyle = {
     transition: "all 250ms ease-in-out",
     filter: "brightness(75%)",
   },
-  "&:hover .cover": {
+  "&:hover .cover, &:focus-within .cover": {
     transform: "scale(1.05)",
     filter: "brightness(100%)",
   },
@@ -62,8 +62,8 @@ export default function NewReleaseGamesList({
 }) {
   return data.map((dt) => (
     <TopNewReleaseGamesItem key={dt.id}>
-      <Link href={`/games/${dt.slug}`}>
-        <Box sx={boxStyle}>
+      <Box sx={boxStyle}>
+        <Link href={`/games/${dt.slug}`}>
           <Image
             style={{ objectFit: "cover", objectPosition: "center" }}
             src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${dt.cover.image_id}.jpg`}
@@ -81,8 +81,8 @@ export default function NewReleaseGamesList({
           >
             {truncStr(dt.name, 30)}
           </Typography>
-        </Box>
-      </Link>
+        </Link>
+      </Box>
     </TopNewReleaseGamesItem>
   ));
 }
