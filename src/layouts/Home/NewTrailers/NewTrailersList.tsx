@@ -13,6 +13,13 @@ const newTrailerItemStyle = {
   overflow: "hidden",
   boxShadow: 2,
   borderRadius: "5px",
+  ".react-player__preview": {
+    filter: "brightness(75%)",
+    transition: "filter 250ms ease-in-out",
+  },
+  ".react-player__preview:hover, .react-player__preview:focus": {
+    filter: "brightness(100%)",
+  },
 };
 
 export default function NewTrailersList({ data }: { data: NewTrailersData[] }) {
