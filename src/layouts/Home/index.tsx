@@ -14,11 +14,15 @@ export default async function Home() {
       </Suspense>
 
       <Suspense fallback={<p>Loading...</p>}>
-        <TopSection text={`Top Franchises`} data={data.topFranchises} />
+        <TopSection
+          type="franchises"
+          text={`Top Franchises`}
+          data={data.topFranchises}
+        />
       </Suspense>
 
       <Suspense fallback={<p>Loading...</p>}>
-        <TopSection text={`Top Series`} data={data.topSeries} />
+        <TopSection type="series" text={`Top Series`} data={data.topSeries} />
       </Suspense>
 
       <NewTrailers data={data.newTrailers} />

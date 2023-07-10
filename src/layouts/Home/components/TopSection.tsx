@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import TopList from "./TopList";
-import { TopData } from "./TopInterface";
+import { List, TopData } from "./TopSectionTypes";
 
 const h2Style = {
   fontSize: {
@@ -17,9 +17,11 @@ const h2Style = {
 export default function TopSection({
   data,
   text,
+  type,
 }: {
   data: TopData[];
   text: React.ReactNode;
+  type: List;
 }) {
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
@@ -27,7 +29,7 @@ export default function TopSection({
         {text}
       </Typography>
       <CardCarousel>
-        <TopList data={data} />
+        <TopList data={data} type={type} />
       </CardCarousel>
     </Container>
   );
