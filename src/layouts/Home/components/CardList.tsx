@@ -5,8 +5,9 @@ import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
-import TopItem from "./TopItem";
-import { List, TopData } from "./TopSectionType";
+import CardCarouselItem from "@/components/Carousel/CardCarouselItem";
+import { Franchise } from "@/types/FranchiseType";
+import { Series } from "@/types/SeriesType";
 
 const boxStyle = {
   "&:hover .cover, &:focus-within .cover": {
@@ -40,15 +41,15 @@ const subtitleStyle = {
   transition: "all 250ms ease-in-out",
 };
 
-export default function TopList({
-  data,
+export default function CardList({
   type,
+  data,
 }: {
-  data: TopData[];
-  type: List;
+  type: "franchises" | "series";
+  data: Franchise[] | Series[];
 }) {
   return data.map((dt) => (
-    <TopItem key={dt.id}>
+    <CardCarouselItem key={dt.id}>
       <Box sx={boxStyle}>
         <Link
           href={`/${type}/${dt.slug}`}
@@ -61,6 +62,7 @@ export default function TopList({
             component="img"
             className="cover"
             sx={cardMediaStyle}
+            //@ts-ignore
             image={`https://images.igdb.com/igdb/image/upload/t_cover_big/${dt.games[0].cover.image_id}.jpg`}
             title={`${dt.name} cover`}
             alt={`${dt.name} cover`}
@@ -71,10 +73,10 @@ export default function TopList({
             component="p"
             sx={subtitleStyle}
           >
-            {truncStr(dt.name, 20)}
+            {truncStr(dt.name || "", 20)}
           </Typography>
         </Link>
       </Box>
-    </TopItem>
+    </CardCarouselItem>
   ));
 }
