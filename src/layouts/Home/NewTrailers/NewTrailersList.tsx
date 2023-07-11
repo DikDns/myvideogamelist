@@ -3,7 +3,7 @@
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import YoutubePlayer from "@/components/VideoPlayer/YoutubePlayer";
-import { NewTrailersData } from "./NewTrailersTypes";
+import { Trailer } from "@/types/TrailerType";
 
 const newTrailerItemStyle = {
   mx: "8px",
@@ -22,7 +22,7 @@ const newTrailerItemStyle = {
   },
 };
 
-export default function NewTrailersList({ data }: { data: NewTrailersData[] }) {
+export default function NewTrailersList({ data }: { data: Trailer[] }) {
   return data.map((dt) => (
     <Box sx={newTrailerItemStyle} key={dt.id}>
       <YoutubePlayer
