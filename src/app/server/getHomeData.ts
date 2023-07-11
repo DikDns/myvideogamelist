@@ -108,19 +108,19 @@ export default async function getHomeData() {
     popularUpcomingGames,
     newReleaseGames,
     newTrailers,
-    topFranchises,
-    topSeries,
     topNewReleaseGames,
     topRatedGames,
+    topFranchises,
+    topSeries,
   ] = await Promise.all(promises);
 
   return {
     popularUpcomingGames,
     newReleaseGames,
     newTrailers,
-    topFranchises,
-    topSeries,
     topNewReleaseGames,
     topRatedGames,
+    topFranchises,
+    topSeries,
   };
 }
