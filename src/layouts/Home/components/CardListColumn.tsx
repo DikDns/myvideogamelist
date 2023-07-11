@@ -33,12 +33,18 @@ export default function CardListColumn({ data }: { data: VideoGame[] }) {
             </Typography>
 
             <Typography variant="body1" sx={{ fontSize: "0.75rem" }}>
-              {/* {dt} */}
+              {dt.genres?.map((genre) => genre.name).join(" | ")}
             </Typography>
 
             <Typography variant="caption">
-              Release in
-              {new Date(1703980800 * 1000).getFullYear()}
+              {`Release in ${new Date(
+                // @ts-ignore
+                dt.first_release_date * 1000
+              ).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}`}
             </Typography>
           </CardContent>
         </Card>

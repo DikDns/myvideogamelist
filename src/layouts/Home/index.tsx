@@ -8,6 +8,7 @@ import VideoCarousel from "@/components/Carousel/VideoCarousel";
 import NewTrailersList from "./components/NewTrailersList";
 import TopNewReleaseGamesList from "./components/TopNewReleaseGamesList";
 import CardList from "./components/CardList";
+import CardListColumn from "./components/CardListColumn";
 import { h1, h2, h3, h4 } from "./styles";
 import { HomeData } from "@/types/HomeDataType";
 
@@ -56,6 +57,8 @@ export default async function Home({ data }: { data: HomeData }) {
         <Typography sx={h4} variant="h4" mb={2}>
           {`Popular Upcoming`}
         </Typography>
+
+        <CardListColumn data={data.popularUpcomingGames} />
       </Box>
 
       <TestData data={data} />
