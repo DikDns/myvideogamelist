@@ -7,7 +7,7 @@ import CardCarousel from "@/components/Carousel/CardCarousel";
 import VideoCarousel from "@/components/Carousel/VideoCarousel";
 import NewTrailersList from "./components/NewTrailersList";
 import TopNewReleaseGamesList from "./components/TopNewReleaseGamesList";
-import CardList from "./components/CardList";
+import CardListRow from "./components/CardListRow";
 import CardListColumn from "./components/CardListColumn";
 import { h1, h2, h3, h4 } from "./styles";
 import { HomeData } from "@/types/HomeDataType";
@@ -31,7 +31,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top Franchises`}
         </Typography>
         <CardCarousel>
-          <CardList type="franchises" data={data.topFranchises} />
+          <CardListRow type="franchises" data={data.topFranchises} />
         </CardCarousel>
       </Box>
 
@@ -40,7 +40,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top Series`}
         </Typography>
         <CardCarousel>
-          <CardList type="series" data={data.topSeries} />
+          <CardListRow type="series" data={data.topSeries} />
         </CardCarousel>
       </Box>
 

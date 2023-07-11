@@ -41,7 +41,7 @@ const subtitleStyle = {
   transition: "all 250ms ease-in-out",
 };
 
-export default function CardList({
+export default function CardListRow({
   type,
   data,
 }: {
