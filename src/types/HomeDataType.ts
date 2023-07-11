@@ -9,6 +9,6 @@ export type HomeData = {
   topSeries: Series[];
   newTrailers: Trailer[];
   topNewReleaseGames: VideoGame[];
-  topUpcomingGames: VideoGame[];
+  popularUpcomingGames: VideoGame[];
   topRatedGames: VideoGame[];
 };
