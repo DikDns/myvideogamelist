@@ -74,7 +74,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top Rated`}
         </Typography>
 
-        <CardListColumn data={data.topRatedGames} />
+        <CardListColumn type="rated" data={data.topRatedGames} />
       </Box>
 
       <TestData data={data} />

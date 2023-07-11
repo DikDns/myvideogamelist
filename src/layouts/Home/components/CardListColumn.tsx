@@ -1,13 +1,20 @@
 import NextLink from "next/link";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
+import Chip from "@mui/material/Chip";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { VideoGame } from "@/types/VideoGameType";
 
-export default function CardListColumn({ data }: { data: VideoGame[] }) {
+export default function CardListColumn({
+  type = "default",
+  data,
+}: {
+  type?: "default" | "rated";
+  data: VideoGame[];
+}) {
   return (
     <Stack gap={1}>
       {data.map((dt) => (
@@ -24,6 +31,7 @@ export default function CardListColumn({ data }: { data: VideoGame[] }) {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              gap: 1,
             }}
           >
             <Typography variant="subtitle1" sx={{ color: "primary." }}>
@@ -36,16 +44,28 @@ export default function CardListColumn({ data }: { data: VideoGame[] }) {
               {dt.genres?.map((genre) => genre.name).join(" | ")}
             </Typography>
 
-            <Typography variant="caption">
-              {`Release in ${new Date(
-                // @ts-ignore
-                dt.first_release_date * 1000
-              ).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}`}
-            </Typography>
+            {type === "rated" ? (
+              <Typography variant="caption">
+                <Chip
+                  label={`${dt.aggregated_rating}`.substring(0, 4)}
+                  variant="filled"
+                  color="secondary"
+                  sx={{ mr: 1 }}
+                />
+                {`based on ${dt.aggregated_rating_count} Critic Reviews`}
+              </Typography>
+            ) : (
+              <Typography variant="caption">
+                {`Release in ${new Date(
+                  // @ts-ignore
+                  dt.first_release_date * 1000
+                ).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}`}
+              </Typography>
+            )}
           </CardContent>
         </Card>
       ))}
