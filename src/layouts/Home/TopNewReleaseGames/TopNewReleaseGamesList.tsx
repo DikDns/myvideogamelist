@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import TopNewReleaseGamesItem from "./TopNewReleaseGamesItem";
-import { TopNewReleaseGamesData } from "./TopNewReleaseGamesInterface";
+import { TopNewReleaseGamesData } from "./TopNewReleaseGamesTypes";
 
 const boxStyle = {
   position: "relative",

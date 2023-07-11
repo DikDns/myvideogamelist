@@ -1,4 +1,4 @@
-export interface NewTrailersData {
+export type NewTrailersData = {
   id: number;
   name: string;
   video_id: string;
@@ -6,4 +6,4 @@ export interface NewTrailersData {
     id: number;
     name: string;
   };
-}
+};

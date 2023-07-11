@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import TopItem from "./TopItem";
-import { List, TopData } from "./TopSection";
+import { List, TopData } from "./TopSectionType";
 
 const boxStyle = {
   "&:hover .cover, &:focus-within .cover": {

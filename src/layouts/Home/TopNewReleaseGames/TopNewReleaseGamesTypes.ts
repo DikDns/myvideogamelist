@@ -1,4 +1,4 @@
-export interface TopNewReleaseGamesData {
+export type TopNewReleaseGamesData = {
   id: number;
   name: string;
   slug: string;
@@ -6,4 +6,4 @@ export interface TopNewReleaseGamesData {
     id: number;
     image_id: string;
   };
-}
+};

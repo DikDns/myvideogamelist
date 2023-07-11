@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import TopNewReleaseGamesList from "./TopNewReleaseGamesList";
-import { TopNewReleaseGamesData } from "./TopNewReleaseGamesInterface";
+import { TopNewReleaseGamesData } from "./TopNewReleaseGamesTypes";
 
 const h1Style = {
   fontSize: {

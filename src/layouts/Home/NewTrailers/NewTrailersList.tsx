@@ -3,7 +3,7 @@
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import YoutubePlayer from "@/components/VideoPlayer/YoutubePlayer";
-import { NewTrailersData } from "./NewTrailers";
+import { NewTrailersData } from "./NewTrailersTypes";
 
 const newTrailerItemStyle = {
   mx: "8px",
