@@ -58,10 +58,12 @@ export default function TopList({
           }}
         >
           <CardMedia
+            component="img"
             className="cover"
             sx={cardMediaStyle}
             image={`https://images.igdb.com/igdb/image/upload/t_cover_big/${dt.games[0].cover.image_id}.jpg`}
             title={`${dt.name} cover`}
+            alt={`${dt.name} cover`}
           />
           <Typography
             className="name"
