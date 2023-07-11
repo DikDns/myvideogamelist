@@ -34,7 +34,7 @@ export const h4: SxProps = {
 
 export const h5: SxProps = {
   fontSize: {
-    xs: "1rem",
+    xs: "1.25rem",
     sm: "1.5rem",
     md: "2rem",
   },
