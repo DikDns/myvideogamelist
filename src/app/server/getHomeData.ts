@@ -23,16 +23,6 @@ async function getTopNewReleaseGames() {
   return await getGames(body);
 }
 
-async function getNewReleaseGames() {
-  const body = `
-    f name, genres.name, cover.image_id, slug;
-    w first_release_date < ${currentDate()} & cover != n & genres != n;
-    s first_release_date desc;
-    l 5;
-  `;
-  return await getGames(body);
-}
-
 async function getTopFranchises() {
   const body = `
     f name, games.cover.image_id, slug;
@@ -63,11 +53,21 @@ async function getNewTrailers() {
   return await getGameVideos(body);
 }
 
-async function getTopUpcomingGames() {
+async function getPopularUpcomingGames() {
   const body = `
-    f name, first_release_date, hypes, themes.name, slug;
-    w first_release_date > ${currentDate()} & hypes != n;
+    f name, slug, first_release_date, cover.image_id, genres.name;
+    w first_release_date > ${currentDate()} & hypes != n & cover != n;
     s hypes desc;
+    l 5;
+  `;
+  return await getGames(body);
+}
+
+async function getNewReleaseGames() {
+  const body = `
+    f name, slug, first_release_date, cover.image_id, genres.name;
+    w first_release_date < ${currentDate()} & cover != n & genres != n;
+    s first_release_date desc;
     l 5;
   `;
   return await getGames(body);
@@ -75,7 +75,7 @@ async function getTopUpcomingGames() {
 
 async function getTopRatedGames() {
   const body = `
-    f name, aggregated_rating, aggregated_rating_count, slug;
+    f name, slug, cover.image_id, aggregated_rating, aggregated_rating_count, genres.name;
     w aggregated_rating != n & aggregated_rating_count > 7;
     s aggregated_rating desc;
     l 5;
@@ -90,37 +90,37 @@ export default async function getHomeData() {
   const topSeriesData = getTopSeries();
   const newTrailersData = getNewTrailers();
   const topNewReleaseGamesData = getTopNewReleaseGames();
-  const topUpcomingGamesData = getTopUpcomingGames();
+  const popularUpcomingGamesData = getPopularUpcomingGames();
   const topRatedGamesData = getTopRatedGames();
 
   const promises = [
+    popularUpcomingGamesData,
     newReleaseGamesData,
-    topFranchisesData,
-    topSeriesData,
     newTrailersData,
     topNewReleaseGamesData,
-    topUpcomingGamesData,
     topRatedGamesData,
+    topFranchisesData,
+    topSeriesData,
   ];
 
   // Wait for the promises to resolve
   const [
+    popularUpcomingGames,
     newReleaseGames,
+    newTrailers,
     topFranchises,
     topSeries,
-    newTrailers,
     topNewReleaseGames,
-    topUpcomingGames,
     topRatedGames,
   ] = await Promise.all(promises);
 
   return {
+    popularUpcomingGames,
     newReleaseGames,
+    newTrailers,
     topFranchises,
     topSeries,
-    newTrailers,
     topNewReleaseGames,
-    topUpcomingGames,
     topRatedGames,
   };
 }
