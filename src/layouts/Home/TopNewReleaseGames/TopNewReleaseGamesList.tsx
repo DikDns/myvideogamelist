@@ -5,7 +5,7 @@ import Link from "next/link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
-import TopNewReleaseGamesItem from "./TopNewReleaseGamesItem";
+import CardCarouselItemLarge from "@/components/Carousel/CardCarouselItemLarge";
 import { VideoGame } from "@/types/VideoGameType";
 
 const boxStyle = {
@@ -57,11 +57,12 @@ const subtitleStyle = {
 
 export default function NewReleaseGamesList({ data }: { data: VideoGame[] }) {
   return data.map((dt) => (
-    <TopNewReleaseGamesItem key={dt.id}>
+    <CardCarouselItemLarge key={dt.id}>
       <Box sx={boxStyle}>
         <Link href={`/games/${dt.slug}`}>
           <Image
             style={{ objectFit: "cover", objectPosition: "center" }}
+            //@ts-ignore
             src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${dt.cover.image_id}.jpg`}
             alt={`${dt.name} cover`}
             loading="eager"
@@ -75,10 +76,10 @@ export default function NewReleaseGamesList({ data }: { data: VideoGame[] }) {
             variant="subtitle1"
             component="p"
           >
-            {truncStr(dt.name, 30)}
+            {truncStr(dt.name || "", 30)}
           </Typography>
         </Link>
       </Box>
-    </TopNewReleaseGamesItem>
+    </CardCarouselItemLarge>
   ));
 }
