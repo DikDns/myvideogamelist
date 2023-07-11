@@ -18,7 +18,7 @@ export default function TopNewReleaseGames({ data }: { data: VideoGame[] }) {
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
       <Typography sx={h1Style} variant="h1" mb={2}>
-        {`Top New Release Games`}
+        {`Popular New Release`}
       </Typography>
       <CardCarousel size="lg">
         <TopNewReleaseGamesList data={data} />
