@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import TopNewReleaseGamesList from "./TopNewReleaseGamesList";
-import { TopNewReleaseGamesData } from "./TopNewReleaseGamesTypes";
+import { VideoGame } from "@/types/VideoGameType";
 
 const h1Style = {
   fontSize: {
@@ -14,11 +14,7 @@ const h1Style = {
   },
 };
 
-export default function TopNewReleaseGames({
-  data,
-}: {
-  data: TopNewReleaseGamesData[];
-}) {
+export default function TopNewReleaseGames({ data }: { data: VideoGame[] }) {
   return (
     <Container sx={{ overflow: "hidden", my: 10 }}>
       <Typography sx={h1Style} variant="h1" mb={2}>

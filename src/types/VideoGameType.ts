@@ -1,4 +1,4 @@
-export type TopNewReleaseGamesData = {
+export type VideoGame = {
   id: number;
   name: string;
   slug: string;

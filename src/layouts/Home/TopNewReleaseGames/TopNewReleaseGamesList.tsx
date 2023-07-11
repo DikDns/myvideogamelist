@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import TopNewReleaseGamesItem from "./TopNewReleaseGamesItem";
-import { TopNewReleaseGamesData } from "./TopNewReleaseGamesTypes";
+import { VideoGame } from "@/types/VideoGameType";
 
 const boxStyle = {
   position: "relative",
@@ -55,11 +55,7 @@ const subtitleStyle = {
   },
 };
 
-export default function NewReleaseGamesList({
-  data,
-}: {
-  data: TopNewReleaseGamesData[];
-}) {
+export default function NewReleaseGamesList({ data }: { data: VideoGame[] }) {
   return data.map((dt) => (
     <TopNewReleaseGamesItem key={dt.id}>
       <Box sx={boxStyle}>
