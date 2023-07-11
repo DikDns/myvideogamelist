@@ -27,23 +27,23 @@ export const h3: SxProps = {
 export const h4: SxProps = {
   fontSize: {
     xs: "1.25rem",
-    sm: "2rem",
-    md: "2.5rem",
+    sm: "1.5rem",
+    md: "2rem",
   },
 };
 
 export const h5: SxProps = {
   fontSize: {
     xs: "1rem",
-    sm: "1.75rem",
-    md: "2.25rem",
+    sm: "1.5rem",
+    md: "2rem",
   },
 };
 
 export const h6: SxProps = {
   fontSize: {
     xs: "0.75rem",
-    sm: "1.5rem",
-    md: "2rem",
+    sm: "1.25rem",
+    md: "1.5rem",
   },
 };
