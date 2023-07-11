@@ -1,3 +1,5 @@
+import { Genre } from "./GenreType";
+
 export type VideoGame = {
   id: number;
   name?: string;
@@ -6,4 +8,5 @@ export type VideoGame = {
     id: number;
     image_id?: string;
   };
+  genres?: Genre[];
 };
