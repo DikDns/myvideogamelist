@@ -1,6 +1,9 @@
 import { Genre } from "./GenreType";
+import { Video } from "./VideoType";
 
 export type VideoGame = {
+  aggregated_rating?: number;
+  aggregated_rating_count?: number;
   id: number;
   name?: string;
   slug?: string;
@@ -9,4 +12,5 @@ export type VideoGame = {
     image_id?: string;
   };
   genres?: Genre[];
+  videos?: Video[];
 };

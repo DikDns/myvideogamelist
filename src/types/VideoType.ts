@@ -1,6 +1,6 @@
 import { VideoGame } from "./VideoGameType";
 
-export type Trailer = {
+export type Video = {
   id: number;
   video_id: string;
   name?: string;
