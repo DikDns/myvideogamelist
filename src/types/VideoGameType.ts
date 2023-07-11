@@ -7,6 +7,7 @@ export type VideoGame = {
   id: number;
   name?: string;
   slug?: string;
+  first_release_date?: number;
   cover?: {
     id: number;
     image_id?: string;
