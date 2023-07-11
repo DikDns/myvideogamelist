@@ -61,6 +61,22 @@ export default async function Home({ data }: { data: HomeData }) {
         <CardListColumn data={data.popularUpcomingGames} />
       </Box>
 
+      <Box component="section" mb={5}>
+        <Typography sx={h4} variant="h4" mb={2}>
+          {`New Releases`}
+        </Typography>
+
+        <CardListColumn data={data.newReleaseGames} />
+      </Box>
+
+      <Box component="section" mb={5}>
+        <Typography sx={h4} variant="h4" mb={2}>
+          {`Top Rated`}
+        </Typography>
+
+        <CardListColumn data={data.topRatedGames} />
+      </Box>
+
       <TestData data={data} />
     </Container>
   );
