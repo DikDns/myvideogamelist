@@ -75,7 +75,7 @@ export function getImageUrl(
  * @param rating - The rating enum.
  * @returns The Age Rating Image URL string.
  */
-export function getRatingImageUrl(rating: number) {
+export function getAgeRatingImageUrl(rating: number) {
   const ratingImageUrls = [
     "https://upload.wikimedia.org/wikipedia/commons/2/2c/PEGI_3.svg",
     "https://upload.wikimedia.org/wikipedia/commons/2/29/PEGI_7.svg",
