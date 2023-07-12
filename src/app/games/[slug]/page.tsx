@@ -27,7 +27,7 @@ export async function generateMetadata(
 }
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
-  const data = await getGames(`f *; w slug="${slug}";`);
+  const data = await getGames(`f *, age_ratings.rating; w slug="${slug}";`);
 
   return (
     <div>
