@@ -73,7 +73,7 @@ export default async function Home({ data }: { data: HomeData }) {
         <CardGridColumn rowIndex={2} col={1} data={data.popularUpcomingGames} />
 
         {/* TOP RATED */}
-        <Box sx={{ gridArea: { md: "1 / 3 / 2 / 4" } }}>
+        <Box sx={{ gridArea: { md: "1 / 2 / 2 / 3" } }}>
           <Typography sx={h4} variant="h4" mt={1}>
             {`Top Rated`}
           </Typography>
@@ -87,7 +87,7 @@ export default async function Home({ data }: { data: HomeData }) {
         />
 
         {/* NEW RELEASES */}
-        <Box sx={{ gridArea: { md: "1 / 2 / 2 / 3" } }}>
+        <Box sx={{ gridArea: { md: "1 / 3 / 2 / 4" } }}>
           <Typography sx={h4} variant="h4" mt={1}>
             {`New Releases`}
           </Typography>
