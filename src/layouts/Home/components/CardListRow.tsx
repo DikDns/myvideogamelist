@@ -6,8 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import CardCarouselItem from "@/components/Carousel/CardCarouselItem";
-import { Franchise } from "@/types/FranchiseType";
-import { Series } from "@/types/SeriesType";
+import { Franchise } from "@/types/Franchise";
+import { Series } from "@/types/Series";
 
 const boxStyle = {
   "&:hover .cover, &:focus-within .cover": {

@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { VideoGame } from "@/types/VideoGameType";
+import { Game } from "@/types/Game";
 
 export default function CardListColumn({
   type = "default",
@@ -15,7 +15,7 @@ export default function CardListColumn({
   rowIndex,
 }: {
   type?: "default" | "rated";
-  data: VideoGame[];
+  data: Game[];
   col: number;
   rowIndex: number;
 }) {

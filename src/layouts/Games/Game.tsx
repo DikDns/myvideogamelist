@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { VideoGame } from "@/types/VideoGameType";
+import { Game } from "@/types/Game";
 import Container from "@mui/material/Container";
 import Image from "next/image";
 import AgeRatingImages from "./components/AgeRatingImages";
 import { getImageUrl } from "@/lib/igdb";
 
-export default function Game({ data }: { data: VideoGame }) {
+export default function Game({ data }: { data: Game }) {
   useEffect(() => {
     console.log(data);
   }, []);

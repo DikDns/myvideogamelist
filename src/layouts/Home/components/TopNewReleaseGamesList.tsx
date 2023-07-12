@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import CardCarouselItemLarge from "@/components/Carousel/CardCarouselItemLarge";
-import { VideoGame } from "@/types/VideoGameType";
+import { Game } from "@/types/Game";
 
 const boxStyle = {
   position: "relative",
@@ -55,7 +55,7 @@ const subtitleStyle = {
   },
 };
 
-export default function NewReleaseGamesList({ data }: { data: VideoGame[] }) {
+export default function NewReleaseGamesList({ data }: { data: Game[] }) {
   return data.map((dt) => (
     <CardCarouselItemLarge key={dt.id}>
       <Box sx={boxStyle}>

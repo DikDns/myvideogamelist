@@ -1,8 +1,8 @@
 import { AgeRating } from "./AgeRating";
-import { Genre } from "./GenreType";
-import { Video } from "./VideoType";
+import { Genre } from "./Genre";
+import { Video } from "./Video";
 
-export type VideoGame = {
+export type Game = {
   aggregated_rating?: number;
   aggregated_rating_count?: number;
   id: number;

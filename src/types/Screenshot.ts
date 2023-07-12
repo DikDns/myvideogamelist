@@ -1,10 +1,10 @@
-import { VideoGame } from "./VideoGameType";
+import { Game } from "./Game";
 
 export type Screenshot = {
   alpha_channel?: boolean;
   animated?: boolean;
   checksum?: string;
-  game?: VideoGame;
+  game?: Game;
   height?: number;
   id: number;
   image_id?: string;

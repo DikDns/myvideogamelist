@@ -1,8 +1,8 @@
-import { VideoGame } from "./VideoGameType";
+import { Game } from "./Game";
 
 export type Franchise = {
   id: number;
   name?: string;
   slug?: string;
-  games?: VideoGame[];
+  games?: Game[];
 };

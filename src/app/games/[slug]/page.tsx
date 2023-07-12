@@ -1,10 +1,10 @@
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
-import { PageProps } from "@/types/PagePropsType";
-import { VideoGame } from "@/types/VideoGameType";
+import { PageProps } from "@/types/PageProps";
+import { Game } from "@/types/Game";
 import { getGames } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
-import Game from "@/layouts/Games/Game";
+import GameComponent from "@/layouts/Games/Game";
 
 type GamePageProps = PageProps<{ slug: string }>;
 
@@ -17,7 +17,7 @@ export async function generateMetadata(
 
   // fetch data
   const body = `f name; w slug="${slug}";`;
-  const games: VideoGame[] = await getGames(body);
+  const games: Game[] = await getGames(body);
 
   if (games.length < 1) notFound();
 
@@ -35,7 +35,7 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
 
   return (
     <div>
-      <Game data={data[0]} />
+      <GameComponent data={data[0]} />
     </div>
   );
 }
