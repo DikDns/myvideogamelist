@@ -57,6 +57,12 @@ export async function getGameVideos(body: string) {
   return await get("game_videos", body);
 }
 
+/**
+ * IGDB Image URL Generator
+ * @param imageId - The image id.
+ * @param imageType - The image url type (default: "cover_big" | "cover_small" | "screenshot_med" | "logo_med" | "screenshot_big" | "screenshot_huge" | "thumb" | "micro" | "720p" | "1080p")
+ * @returns The IGDB Image URL string.
+ */
 export function getImageUrl(
   imageId: string,
   imageType: ImageType = "cover_big"
