@@ -19,9 +19,6 @@ export async function generateMetadata(
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
-
-  if (games.length < 1) throw new Error();
-
   const currentImage = getImageUrl(games[0].cover?.image_id || "", "720p");
 
   return {
