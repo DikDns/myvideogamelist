@@ -12,8 +12,6 @@ import CardGridColumn from "./components/CardGridColumn";
 import { h1, h2, h3, h4 } from "./styles";
 import { HomeData } from "@/types/HomeDataType";
 
-import TestData from "./TestData";
-
 export default async function Home({ data }: { data: HomeData }) {
   return (
     <Container component="main" sx={{ overflow: "hidden", my: 8 }}>
@@ -97,8 +95,6 @@ export default async function Home({ data }: { data: HomeData }) {
 
         <CardGridColumn rowIndex={2} col={3} data={data.newReleaseGames} />
       </Box>
-
-      <TestData data={data} />
     </Container>
   );
 }
