@@ -1,5 +1,17 @@
 import { textFetch } from "./fetch";
 
+type ImageType =
+  | "cover_small"
+  | "cover_big"
+  | "screenshot_med"
+  | "logo_med"
+  | "screenshot_big"
+  | "screenshot_huge"
+  | "thumb"
+  | "micro"
+  | "720p"
+  | "1080p";
+
 export async function fetchIGDBToken() {
   const baseUrl = process.env.TWITCH_TOKEN_URL ?? "";
   const clientId = process.env.TWITCH_CLIENT_ID ?? "";
@@ -43,4 +55,8 @@ export async function getSeries(body: string) {
 
 export async function getGameVideos(body: string) {
   return await get("game_videos", body);
+}
+
+export function getImage(imageId: string, imageType: ImageType = "cover_big") {
+  return `https://images.igdb.com/igdb/image/upload/t_${imageType}/${imageId}.jpg`;
 }
