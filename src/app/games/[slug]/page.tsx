@@ -1,4 +1,5 @@
 import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 import { PageProps } from "@/types/PagePropsType";
 import { VideoGame } from "@/types/VideoGameType";
 import { getGames, getImageUrl } from "@/lib/igdb";
@@ -14,8 +15,10 @@ export async function generateMetadata(
   const slug = params.slug;
 
   // fetch data
-  const body = `f *; w slug="${slug}";`;
+  const body = `f name, cover.image_id; w slug="${slug}";`;
   const games: VideoGame[] = await getGames(body);
+
+  if (games.length < 1) notFound();
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
