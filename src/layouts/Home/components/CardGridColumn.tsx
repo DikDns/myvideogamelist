@@ -12,15 +12,20 @@ export default function CardListColumn({
   type = "default",
   data,
   col,
+  rowIndex,
 }: {
   type?: "default" | "rated";
   data: VideoGame[];
   col: number;
+  rowIndex: number;
 }) {
   return data.map((dt, i) => (
     <Box
+      key={dt.id}
       sx={{
-        gridArea: { md: `${i + 2} / ${col} / ${i + 3} / ${col + 1}` },
+        gridArea: {
+          md: `${i + rowIndex} / ${col} / ${i + rowIndex + 1} / ${col + 1}`,
+        },
       }}
     >
       <Card
@@ -28,7 +33,6 @@ export default function CardListColumn({
           height: "100%",
           display: "flex",
         }}
-        key={dt.id}
       >
         <CardMedia
           component="img"

@@ -72,16 +72,7 @@ export default async function Home({ data }: { data: HomeData }) {
           </Typography>
         </Box>
 
-        <CardGridColumn col={1} data={data.popularUpcomingGames} />
-
-        {/* NEW RELEASES */}
-        <Box sx={{ gridArea: { md: "1 / 2 / 2 / 3" } }}>
-          <Typography sx={h4} variant="h4" mt={1}>
-            {`New Releases`}
-          </Typography>
-        </Box>
-
-        <CardGridColumn col={2} data={data.newReleaseGames} />
+        <CardGridColumn rowIndex={2} col={1} data={data.popularUpcomingGames} />
 
         {/* TOP RATED */}
         <Box sx={{ gridArea: { md: "1 / 3 / 2 / 4" } }}>
@@ -90,7 +81,21 @@ export default async function Home({ data }: { data: HomeData }) {
           </Typography>
         </Box>
 
-        <CardGridColumn col={3} type="rated" data={data.topRatedGames} />
+        <CardGridColumn
+          type="rated"
+          rowIndex={2}
+          col={2}
+          data={data.topRatedGames}
+        />
+
+        {/* NEW RELEASES */}
+        <Box sx={{ gridArea: { md: "1 / 2 / 2 / 3" } }}>
+          <Typography sx={h4} variant="h4" mt={1}>
+            {`New Releases`}
+          </Typography>
+        </Box>
+
+        <CardGridColumn rowIndex={2} col={3} data={data.newReleaseGames} />
       </Box>
 
       <TestData data={data} />
