@@ -2,8 +2,9 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { PageProps } from "@/types/PagePropsType";
 import { VideoGame } from "@/types/VideoGameType";
-import { getGames, getImageUrl } from "@/lib/igdb";
+import { getGames } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
+import Game from "@/layouts/Games/Game";
 
 type GamePageProps = PageProps<{ slug: string }>;
 
@@ -25,6 +26,12 @@ export async function generateMetadata(
   };
 }
 
-export default function GamePage({ params }: GamePageProps) {
-  return <div>My Post: {params.slug}</div>;
+export default async function GamePage({ params: { slug } }: GamePageProps) {
+  const data = await getGames(`f *; w slug="${slug}";`);
+
+  return (
+    <div>
+      <Game data={data} />
+    </div>
+  );
 }
