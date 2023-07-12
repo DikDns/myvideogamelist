@@ -57,6 +57,9 @@ export async function getGameVideos(body: string) {
   return await get("game_videos", body);
 }
 
-export function getImage(imageId: string, imageType: ImageType = "cover_big") {
+export function getImageUrl(
+  imageId: string,
+  imageType: ImageType = "cover_big"
+) {
   return `https://images.igdb.com/igdb/image/upload/t_${imageType}/${imageId}.jpg`;
 }
