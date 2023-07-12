@@ -3,6 +3,9 @@ import Home from "@/layouts/Home";
 
 export default async function IndexPage() {
   const data = await getHomeData();
-
-  return <Home data={data} />;
+  return (
+    <div>
+      <Home data={data} />
+    </div>
+  );
 }
