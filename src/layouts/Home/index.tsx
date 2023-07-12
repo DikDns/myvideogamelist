@@ -9,7 +9,7 @@ import NewTrailersList from "./components/NewTrailersList";
 import TopNewReleaseGamesList from "./components/TopNewReleaseGamesList";
 import CardListRow from "./components/CardListRow";
 import CardGridColumn from "./components/CardGridColumn";
-import { h1, h2, h3, h4 } from "./styles";
+import { h1, h2, h3, h4 } from "../styles";
 import { HomeData } from "@/types/HomeData";
 
 export default async function Home({ data }: { data: HomeData }) {
