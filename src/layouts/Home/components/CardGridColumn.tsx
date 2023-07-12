@@ -7,6 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Game } from "@/types/Game";
+import formatUnix from "@/utils/formatUnix";
 
 export default function CardListColumn({
   type = "default",
@@ -71,14 +72,7 @@ export default function CardListColumn({
             </Typography>
           ) : (
             <Typography variant="caption">
-              {`Release in ${new Date(
-                // @ts-ignore
-                dt.first_release_date * 1000
-              ).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}`}
+              {`Release in ${formatUnix(dt.first_release_date || 0)}`}
             </Typography>
           )}
         </CardContent>
