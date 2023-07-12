@@ -28,14 +28,14 @@ export async function generateMetadata(
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
   const body = `
-    f *, age_ratings.rating, cover.image_id; 
+    f *, age_ratings.rating, cover.image_id, screenshots.image_id; 
     w slug="${slug}";
   `;
   const data = await getGames(body);
 
   return (
     <div>
-      <Game data={data} />
+      <Game data={data[0]} />
     </div>
   );
 }
