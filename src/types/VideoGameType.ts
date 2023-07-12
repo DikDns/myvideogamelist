@@ -1,3 +1,4 @@
+import { AgeRating } from "./AgeRating";
 import { Genre } from "./GenreType";
 import { Video } from "./VideoType";
 
@@ -12,6 +13,7 @@ export type VideoGame = {
     id: number;
     image_id?: string;
   };
+  age_ratings?: AgeRating[];
   genres?: Genre[];
   videos?: Video[];
 };
