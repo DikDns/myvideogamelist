@@ -1,5 +1,6 @@
-import { VideoGame } from "@/types/VideoGameType";
+"use client";
 
+import { VideoGame } from "@/types/VideoGameType";
 import Container from "@mui/material/Container";
 import { useEffect } from "react";
 
