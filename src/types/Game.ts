@@ -1,5 +1,6 @@
 import { AgeRating } from "./AgeRating";
 import { Genre } from "./Genre";
+import { Platform } from "./Platform";
 import { Screenshot } from "./Screenshot";
 import { Video } from "./Video";
 
@@ -16,6 +17,7 @@ export type Game = {
   };
   age_ratings?: AgeRating[];
   genres?: Genre[];
+  platforms?: Platform[];
   screenshots?: Screenshot[];
   videos?: Video[];
 };
