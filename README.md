@@ -22,3 +22,23 @@ A website similar to MyAnimeList, but for tracking video games.
 - [ ] Display the Game Data Information.
 - [ ] Display the Game Trailers and Screenshot with Carousel.
 - [ ] Display the company who developed the game.
+
+`/franchises`
+
+- [ ] Simple Search Franchises List
+- [ ] Default Franchises List
+
+`/franchises/[slug]`
+
+- [ ] Display the Franchise Data.
+- [ ] Display the List of Games in the Franchise.
+
+`/series`
+
+- [ ] Simple Search Series List
+- [ ] Default Series List
+
+`/series/[slug]`
+
+- [ ] Display the Series Data.
+- [ ] Display the List of Games in the Series.
