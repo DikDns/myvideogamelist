@@ -6,6 +6,7 @@ export const h1: SxProps = {
     sm: "3rem",
     md: "3.5rem",
   },
+  fontWeight: "700",
 };
 
 export const h2: SxProps = {
@@ -14,6 +15,7 @@ export const h2: SxProps = {
     sm: "2.5rem",
     md: "3rem",
   },
+  fontWeight: "600",
 };
 
 export const h3: SxProps = {
@@ -22,6 +24,7 @@ export const h3: SxProps = {
     sm: "2rem",
     md: "2.5rem",
   },
+  fontWeight: "500",
 };
 
 export const h4: SxProps = {
@@ -30,6 +33,7 @@ export const h4: SxProps = {
     sm: "1.5rem",
     md: "2rem",
   },
+  fontWeight: "500",
 };
 
 export const h5: SxProps = {
@@ -38,6 +42,7 @@ export const h5: SxProps = {
     sm: "1.5rem",
     md: "2rem",
   },
+  fontWeight: "400",
 };
 
 export const h6: SxProps = {
@@ -46,4 +51,5 @@ export const h6: SxProps = {
     sm: "1.25rem",
     md: "1.5rem",
   },
+  fontWeight: "300",
 };
