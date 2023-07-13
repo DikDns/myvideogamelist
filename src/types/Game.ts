@@ -10,6 +10,7 @@ export type Game = {
   id: number;
   name?: string;
   slug?: string;
+  summary?: string;
   first_release_date?: number;
   cover?: {
     id: number;
