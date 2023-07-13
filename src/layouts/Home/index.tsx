@@ -46,7 +46,7 @@ export default async function Home({ data }: { data: HomeData }) {
       </Box>
 
       {/* NEW VIDEO TRAILERS */}
-      <Box component="section" mb={5}>
+      <Box component="section">
         <Typography sx={h3} variant="h3" mb={2}>
           {`New Trailers`}
         </Typography>
@@ -65,7 +65,7 @@ export default async function Home({ data }: { data: HomeData }) {
       >
         {/* POPULAR UPCOMING */}
         <Box>
-          <Typography sx={h4} variant="h4" mt={1}>
+          <Typography sx={h4} variant="h4" mt={5}>
             {`Popular Upcoming`}
           </Typography>
         </Box>
@@ -74,7 +74,7 @@ export default async function Home({ data }: { data: HomeData }) {
 
         {/* TOP RATED */}
         <Box sx={{ gridArea: { md: "1 / 2 / 2 / 3" } }}>
-          <Typography sx={h4} variant="h4" mt={1}>
+          <Typography sx={h4} variant="h4" mt={5}>
             {`Top Rated`}
           </Typography>
         </Box>
@@ -88,7 +88,7 @@ export default async function Home({ data }: { data: HomeData }) {
 
         {/* NEW RELEASES */}
         <Box sx={{ gridArea: { md: "1 / 3 / 2 / 4" } }}>
-          <Typography sx={h4} variant="h4" mt={1}>
+          <Typography sx={h4} variant="h4" mt={5}>
             {`New Releases`}
           </Typography>
         </Box>
