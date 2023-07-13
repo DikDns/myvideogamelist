@@ -10,6 +10,8 @@ A website similar to MyAnimeList, but for tracking video games.
 - [ ] My Video Game List Logic
 - [ ] Following/Follower User Logic
 - [ ] MVGL User Rating Logic
+- [ ] User Auth0 Settings Logic
+- [ ] User Steam/Epic Games/Google Connection Auth0 Logic
 
 `/games`
 
@@ -42,3 +44,9 @@ A website similar to MyAnimeList, but for tracking video games.
 
 - [ ] Display the Series Data.
 - [ ] Display the List of Games in the Series.
+
+`/profile/[username]`
+
+- [ ] Display User About
+- [ ] Display User Video Game List
+- [ ] Steam and Epic Games User Profile Link
