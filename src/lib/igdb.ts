@@ -57,6 +57,10 @@ export async function getGameVideos(body: string) {
   return await get("game_videos", body);
 }
 
+export async function getCompanies(body: string) {
+  return await get("companies", body);
+}
+
 /**
  * IGDB Image URL Generator
  * @param imageId - The image id.
