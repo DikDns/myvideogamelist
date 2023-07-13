@@ -2,7 +2,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { PageProps } from "@/types/PageProps";
 import { Game } from "@/types/Game";
-import { getGames } from "@/lib/igdb";
+import { getCompanies, getGames } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
 import GameComponent from "@/layouts/Games/Game";
 
@@ -28,14 +28,14 @@ export async function generateMetadata(
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
   const body = `
-    f *, age_ratings.rating, cover.image_id, screenshots.image_id; 
+    f *, age_ratings.rating, cover.image_id, screenshots.image_id;
     w slug="${slug}";
   `;
-  const data = await getGames(body);
+  const games: Game[] = await getGames(body);
 
   return (
     <div>
-      <GameComponent data={data[0]} />
+      <GameComponent game={games[0]} />
     </div>
   );
 }

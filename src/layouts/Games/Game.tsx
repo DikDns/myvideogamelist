@@ -12,9 +12,9 @@ import AgeRatingImages from "./components/AgeRatingImages";
 import { h1, h2, h3 } from "../styles";
 import formatUnix from "@/utils/formatUnix";
 
-export default function Game({ data }: { data: Game }) {
+export default function Game({ game }: { game: Game }) {
   useEffect(() => {
-    console.log(data);
+    console.log(game);
   }, []);
 
   return (
@@ -24,7 +24,7 @@ export default function Game({ data }: { data: Game }) {
         sx={{
           backgroundImage: `url(${getImageUrl(
             // @ts-ignore
-            data.screenshots[0].image_id || "",
+            game.screenshots[0].image_id || "",
             "screenshot_med"
           )});`,
         }}
@@ -41,19 +41,19 @@ export default function Game({ data }: { data: Game }) {
         >
           <Grid item xs="auto">
             <Image
-              src={getImageUrl(data.cover?.image_id || "", "cover_small")}
-              alt={`${data.name} Cover`}
+              src={getImageUrl(game.cover?.image_id || "", "cover_small")}
+              alt={`${game.name} Cover`}
               width={90}
               height={128}
             />
           </Grid>
           <Grid container item direction="column" xs="auto" gap={1}>
             <Grid item>
-              <Typography sx={h2}>{data.name}</Typography>
+              <Typography sx={h2}>{game.name}</Typography>
             </Grid>
             <Grid item>
               <Typography sx={h3}>
-                {`${formatUnix(data.first_release_date || 0)}`}
+                {`${formatUnix(game.first_release_date || 0)}`}
               </Typography>
             </Grid>
           </Grid>
@@ -61,7 +61,7 @@ export default function Game({ data }: { data: Game }) {
       </Box>
 
       <Container component="main" sx={{ overflow: "hidden", my: 8 }}>
-        <AgeRatingImages ageRatings={data.age_ratings || []} />
+        <AgeRatingImages ageRatings={game.age_ratings || []} />
       </Container>
     </>
   );
