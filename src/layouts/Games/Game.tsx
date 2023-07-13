@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import AgeRatingImages from "./components/AgeRatingImages";
-import { h1, h2, h3 } from "../styles";
+import { h2, h3 } from "../styles";
 import formatUnix from "@/utils/formatUnix";
 
 export default function Game({ game }: { game: Game }) {
@@ -22,6 +22,8 @@ export default function Game({ game }: { game: Game }) {
       <Box
         pt={8}
         sx={{
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           backgroundImage: `url(${getImageUrl(
             // @ts-ignore
             game.screenshots[0].image_id || "",
@@ -30,8 +32,11 @@ export default function Game({ game }: { game: Game }) {
         }}
       >
         <Grid
+          alignItems="center"
+          flexWrap="nowrap"
           container
           pt={2}
+          pb={1}
           px={2}
           gap={2}
           sx={{
@@ -39,7 +44,7 @@ export default function Game({ game }: { game: Game }) {
             backdropFilter: "blur(4px)",
           }}
         >
-          <Grid item xs="auto">
+          <Grid item sx={{ borderRadius: "2px", overflow: "hidden" }} xs="auto">
             <Image
               src={getImageUrl(game.cover?.image_id || "", "cover_small")}
               alt={`${game.name} Cover`}
@@ -47,12 +52,14 @@ export default function Game({ game }: { game: Game }) {
               height={128}
             />
           </Grid>
-          <Grid container item direction="column" xs="auto" gap={1}>
+          <Grid container item direction="column" xs={10} gap={1}>
             <Grid item>
-              <Typography sx={h2}>{game.name}</Typography>
+              <Typography sx={h2} variant="h2">
+                {game.name}
+              </Typography>
             </Grid>
             <Grid item>
-              <Typography sx={h3}>
+              <Typography sx={h3} variant="h3">
                 {`${formatUnix(game.first_release_date || 0)}`}
               </Typography>
             </Grid>

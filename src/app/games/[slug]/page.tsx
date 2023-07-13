@@ -28,7 +28,8 @@ export async function generateMetadata(
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
   const body = `
-    f *, age_ratings.rating, cover.image_id, screenshots.image_id;
+    f *, age_ratings.rating, cover.image_id, screenshots.image_id,
+    genres.*, themes.*, platforms.*;
     w slug="${slug}";
   `;
   const games: Game[] = await getGames(body);
