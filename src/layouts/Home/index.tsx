@@ -8,7 +8,7 @@ import VideoCarousel from "@/components/Carousel/VideoCarousel";
 import NewTrailersList from "./components/NewTrailersList";
 import CardListRow from "./components/CardListRow";
 import CardGridColumn from "./components/CardGridColumn";
-import HeadlineCarousel from "./components/HeadlineCarousel";
+import HomeCarousel from "./components/HomeCarousel";
 import HeadlineSlide from "./components/HeadlineSlide";
 import { h1, h2, h3, h4 } from "../styles";
 import { HomeData } from "@/types/HomeData";
@@ -23,7 +23,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top New Releases`}
         </Typography>
 
-        <HeadlineCarousel
+        <HomeCarousel
           slides={data.topNewReleaseGames.map((game) => (
             <HeadlineSlide game={game} />
           ))}
