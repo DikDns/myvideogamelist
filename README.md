@@ -12,6 +12,7 @@ A website similar to MyAnimeList, but for tracking video games.
 - [ ] MVGL User Rating Logic
 - [ ] User Auth0 Settings Logic
 - [ ] User Steam/Epic Games/Google Connection Auth0 Logic
+- [ ] Optimize Performance
 
 `/games`
 
