@@ -105,7 +105,12 @@ export default async function Home({ data }: { data: HomeData }) {
           </Typography>
         </Box>
 
-        <CardGridColumn rowIndex={2} col={3} data={data.newReleaseGames} />
+        <CardGridColumn
+          type="upcoming"
+          rowIndex={2}
+          col={3}
+          data={data.newReleaseGames}
+        />
       </Box>
     </Container>
   );

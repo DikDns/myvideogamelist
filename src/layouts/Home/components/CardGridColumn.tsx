@@ -10,14 +10,15 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Game } from "@/types/Game";
 import formatUnix from "@/utils/formatUnix";
+import timeAgo from "@/utils/timeAgo";
 
-export default function CardListColumn({
+export default function CardGridColumn({
   type = "default",
   data,
   col,
   rowIndex,
 }: {
-  type?: "default" | "rated";
+  type?: "default" | "rated" | "upcoming";
   data: Game[];
   col: number;
   rowIndex: number;
@@ -71,6 +72,10 @@ export default function CardListColumn({
                 sx={{ mr: 1 }}
               />
               {`${dt.aggregated_rating_count} Critic Reviews`}
+            </Typography>
+          ) : type === "upcoming" ? (
+            <Typography variant="caption">
+              {`${timeAgo(new Date((dt.first_release_date || 0) * 1000))}`}
             </Typography>
           ) : (
             <Typography variant="caption">
