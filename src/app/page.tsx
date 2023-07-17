@@ -1,5 +1,5 @@
 import getHomeData from "./server/getHomeData";
-import Home from "@/layouts/Home/hahaha";
+import Home from "@/layouts/Home/Home";
 
 export default async function IndexPage() {
   const data = await getHomeData();
