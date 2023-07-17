@@ -5,8 +5,8 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardSlide from "@/components/Carousel/CardSlide";
 import CardCarousel from "@/components/Carousel/CardCarousel";
+import MediaCarousel from "@/components/Carousel/MediaCarousel";
 import HeadlineSlide from "./components/HeadlineSlide";
-import VideoHomeCarousel from "./components/VideoHomeCarousel";
 import VideoSlide from "./components/VideoSlide";
 import CardGridColumn from "./components/CardGridColumn";
 import { h1, h2, h3, h4 } from "../styles";
@@ -60,7 +60,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`New Trailers`}
         </Typography>
 
-        <VideoHomeCarousel
+        <MediaCarousel
           slides={data.newTrailers.map((trailer) => (
             <VideoSlide key={trailer.id} video={trailer} />
           ))}
