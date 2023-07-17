@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import Carousel, { CarouselOptions } from "@/components/Carousel/Carousel";
+import { slideMargin } from "@/layouts/styles";
 
 const homeCarouselOptions: CarouselOptions = {
   loop: true,
@@ -16,16 +17,12 @@ const homeCarouselOptions: CarouselOptions = {
   },
 };
 
-const headlineSlideStyle = {
-  mx: "8px",
-};
-
 export default function HomeCarousel({ slides }: { slides: ReactNode[] }) {
   return (
     <Carousel
       options={homeCarouselOptions}
       slides={slides}
-      sxSlide={headlineSlideStyle}
+      sxSlide={slideMargin}
     />
   );
 }
