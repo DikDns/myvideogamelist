@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import VideoCarousel from "@/components/Carousel/VideoCarousel";
+import CardSlide from "@/components/Carousel/CardSlide";
 import NewTrailersList from "./components/NewTrailersList";
 import CardListRow from "./components/CardListRow";
 import CardGridColumn from "./components/CardGridColumn";
@@ -34,9 +35,12 @@ export default async function Home({ data }: { data: HomeData }) {
         <Typography sx={h2} variant="h2" mb={2}>
           {`Top Franchises`}
         </Typography>
-        <CardCarousel>
-          <CardListRow type="franchises" data={data.topFranchises} />
-        </CardCarousel>
+
+        <HomeCarousel
+          slides={data.topFranchises.map((franchise) => (
+            <CardSlide type="franchises" data={franchise} />
+          ))}
+        />
       </Box>
 
       {/* TOP SERIES */}
@@ -44,9 +48,12 @@ export default async function Home({ data }: { data: HomeData }) {
         <Typography sx={h2} variant="h2" mb={2}>
           {`Top Series`}
         </Typography>
-        <CardCarousel>
-          <CardListRow type="series" data={data.topSeries} />
-        </CardCarousel>
+
+        <HomeCarousel
+          slides={data.topSeries.map((series) => (
+            <CardSlide type="series" data={series} />
+          ))}
+        />
       </Box>
 
       {/* NEW VIDEO TRAILERS */}
