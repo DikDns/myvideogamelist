@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import AgeRatingImages from "./components/AgeRatingImages";
 import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
+import GameMedia from "./components/GameMedia";
 
 export default function Game({ game }: { game: Game }) {
   useEffect(() => {
@@ -21,6 +22,8 @@ export default function Game({ game }: { game: Game }) {
       <Container component="main" sx={{ overflow: "hidden" }}>
         {/* Summary */}
         <GameSummary game={game} />
+
+        <GameMedia game={game} />
 
         <AgeRatingImages ageRatings={game.age_ratings || []} />
       </Container>

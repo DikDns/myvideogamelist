@@ -2,8 +2,10 @@
 
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
-import { Screenshot } from "@/types/Screenshot";
+import { videoSlide } from "@/layouts/styles";
+
 import { getImageUrl } from "@/lib/igdb";
+import { Screenshot } from "@/types/Screenshot";
 
 export default function ScreenshotSlide({
   screenshot,
@@ -14,7 +16,7 @@ export default function ScreenshotSlide({
     <Box key={screenshot.id}>
       <CardMedia
         component="img"
-        sx={{ width: 569, height: 320 }}
+        sx={videoSlide}
         image={getImageUrl(screenshot.image_id || "", "screenshot_med")}
         alt={`${screenshot.game ? screenshot.game.name : "unidentified"} cover`}
         title={`${
