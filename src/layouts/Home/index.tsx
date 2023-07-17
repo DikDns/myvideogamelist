@@ -6,11 +6,13 @@ import Typography from "@mui/material/Typography";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import VideoCarousel from "@/components/Carousel/VideoCarousel";
 import NewTrailersList from "./components/NewTrailersList";
-import TopNewReleaseGamesList from "./components/TopNewReleaseGamesList";
 import CardListRow from "./components/CardListRow";
 import CardGridColumn from "./components/CardGridColumn";
+import HeadlineCarousel from "./components/HeadlineCarousel";
+import HeadlineSlide from "./components/HeadlineSlide";
 import { h1, h2, h3, h4 } from "../styles";
 import { HomeData } from "@/types/HomeData";
+import { useEffect } from "react";
 
 export default async function Home({ data }: { data: HomeData }) {
   return (
@@ -18,11 +20,14 @@ export default async function Home({ data }: { data: HomeData }) {
       {/* TOP NEW RELEASE */}
       <Box component="section" mb={5}>
         <Typography sx={h1} variant="h1" mb={2}>
-          {`Top New Release`}
+          {`Top New Releases`}
         </Typography>
-        <CardCarousel size="lg">
-          <TopNewReleaseGamesList data={data.topNewReleaseGames} />
-        </CardCarousel>
+
+        <HeadlineCarousel
+          slides={data.topNewReleaseGames.map((game) => (
+            <HeadlineSlide game={game} />
+          ))}
+        />
       </Box>
 
       {/* TOP FRANCHISES */}
