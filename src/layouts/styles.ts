@@ -58,3 +58,5 @@ export const h6: SxProps = {
   },
   fontWeight: "300",
 };
+
+export const slideMargin: SxProps = { mx: "8px" };
