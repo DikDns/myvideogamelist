@@ -78,3 +78,18 @@ export const videoSlide: SxProps = {
     filter: "brightness(100%)",
   },
 };
+
+export const subtitleSlide: SxProps = {
+  opacity: 0.75,
+  fontSize: {
+    xs: "0.75rem",
+    md: "1rem",
+  },
+  lineHeight: {
+    xs: "1rem",
+    md: "1.25rem",
+  },
+  px: { xs: "8px", md: "16px" },
+  py: "8px",
+  transition: "all 250ms ease-in-out",
+};
