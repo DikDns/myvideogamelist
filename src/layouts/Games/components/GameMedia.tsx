@@ -13,7 +13,11 @@ export default function GameMedia({ game }: { game: Game }) {
           <VideoSlide video={video} key={video.id} />
         )),
         ...game.screenshots.map((screenshot) => (
-          <ScreenshotSlide screenshot={screenshot} key={screenshot.id} />
+          <ScreenshotSlide
+            game={game}
+            screenshot={screenshot}
+            key={screenshot.id}
+          />
         )),
       ]}
     />

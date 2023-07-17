@@ -5,11 +5,14 @@ import CardMedia from "@mui/material/CardMedia";
 import { videoSlide } from "@/layouts/styles";
 import { getImageUrl } from "@/lib/igdb";
 import { Screenshot } from "@/types/Screenshot";
+import { Game } from "@/types/Game";
 
 export default function ScreenshotSlide({
   screenshot,
+  game,
 }: {
   screenshot: Screenshot;
+  game: Game;
 }) {
   return (
     <Box key={screenshot.id}>
@@ -17,10 +20,8 @@ export default function ScreenshotSlide({
         component="img"
         sx={videoSlide}
         image={getImageUrl(screenshot.image_id || "", "screenshot_med")}
-        alt={`${screenshot.game ? screenshot.game.name : "unidentified"} cover`}
-        title={`${
-          screenshot.game ? screenshot.game.name : "unidentified"
-        } cover`}
+        alt={`${game.name} Screenshot`}
+        title={`${game.name} Screenshot`}
       />
     </Box>
   );
