@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { getAgeRating } from "@/lib/igdb";
 import { AgeRating } from "@/types/AgeRating";

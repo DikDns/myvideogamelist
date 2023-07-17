@@ -3,7 +3,6 @@
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import { videoSlide } from "@/layouts/styles";
-
 import { getImageUrl } from "@/lib/igdb";
 import { Screenshot } from "@/types/Screenshot";
 

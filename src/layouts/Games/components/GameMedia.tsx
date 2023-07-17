@@ -1,4 +1,5 @@
 "use client";
+
 import MediaCarousel from "@/components/Carousel/MediaCarousel";
 import ScreenshotSlide from "./ScreenshotSlide";
 import { Game } from "@/types/Game";
