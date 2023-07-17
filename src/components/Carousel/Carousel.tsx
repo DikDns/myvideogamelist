@@ -2,6 +2,7 @@
 
 import { useState, ReactNode } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import { SxProps } from "@mui/material/styles";
 import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
@@ -15,19 +16,11 @@ export type Carousel = {
   options?: CarouselOptions;
 };
 
-const mdStyle = {
-  display: "grid",
-  gridAutoFlow: "column",
-  gridAutoColumns: {
-    xs: "115px",
-    md: "15%",
-  },
-};
-
 function setCarouselSlides(slides: ReactNode[], sx?: SxProps) {
   return slides.map((slide, i) => (
-    <Box
+    <Card
       key={i}
+      variant="outlined"
       sx={{
         flex: "0 0 auto",
         minWidth: "0",
@@ -36,7 +29,7 @@ function setCarouselSlides(slides: ReactNode[], sx?: SxProps) {
       }}
     >
       {slide}
-    </Box>
+    </Card>
   ));
 }
 
