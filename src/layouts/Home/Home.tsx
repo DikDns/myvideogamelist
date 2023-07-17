@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardSlide from "@/components/Carousel/CardSlide";
-import HomeCarousel from "./components/HomeCarousel";
+import CardCarousel from "@/components/Carousel/CardCarousel";
 import HeadlineSlide from "./components/HeadlineSlide";
 import VideoHomeCarousel from "./components/VideoHomeCarousel";
 import VideoSlide from "./components/VideoSlide";
@@ -21,7 +21,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top New Releases`}
         </Typography>
 
-        <HomeCarousel
+        <CardCarousel
           slides={data.topNewReleaseGames.map((game) => (
             <HeadlineSlide key={game.id} game={game} />
           ))}
@@ -34,7 +34,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top Franchises`}
         </Typography>
 
-        <HomeCarousel
+        <CardCarousel
           slides={data.topFranchises.map((franchise) => (
             <CardSlide key={franchise.id} type="franchises" data={franchise} />
           ))}
@@ -47,7 +47,7 @@ export default async function Home({ data }: { data: HomeData }) {
           {`Top Series`}
         </Typography>
 
-        <HomeCarousel
+        <CardCarousel
           slides={data.topSeries.map((series) => (
             <CardSlide key={series.id} type="series" data={series} />
           ))}

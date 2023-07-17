@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import Carousel, { CarouselOptions } from "@/components/Carousel/Carousel";
 import { slideMargin } from "@/layouts/styles";
 
-const homeCarouselOptions: CarouselOptions = {
+const cardCarouselOptions: CarouselOptions = {
   loop: true,
   align: "start",
   slidesToScroll: 1,
@@ -17,10 +17,10 @@ const homeCarouselOptions: CarouselOptions = {
   },
 };
 
-export default function HomeCarousel({ slides }: { slides: ReactNode[] }) {
+export default function CardCarousel({ slides }: { slides: ReactNode[] }) {
   return (
     <Carousel
-      options={homeCarouselOptions}
+      options={cardCarouselOptions}
       slides={slides}
       sxSlide={slideMargin}
     />
