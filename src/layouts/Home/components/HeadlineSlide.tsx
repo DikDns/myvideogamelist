@@ -7,11 +7,15 @@ import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import { Game } from "@/types/Game";
 
-const boxStyle = {
-  position: "relative",
-  width: "100%",
-  height: "100%",
+const headlineSlideStyle = {
   cursor: "pointer",
+  overflow: "hidden",
+  position: "relative",
+  width: {
+    xs: "176px",
+    md: "20vw",
+  },
+  height: { xs: "248px", md: "374px" },
   "&:hover .name, &:focus-within .name": {
     visibility: "visible",
     opacity: 1,
@@ -27,7 +31,7 @@ const boxStyle = {
   },
 };
 
-const subtitleStyle = {
+const headlineSubtitleStyle = {
   color: "white",
   position: "absolute",
   bottom: 0,
@@ -56,7 +60,7 @@ const subtitleStyle = {
 
 export default function HeadlineSlide({ game }: { game: Game }) {
   return (
-    <Box sx={boxStyle}>
+    <Box sx={headlineSlideStyle}>
       <Link href={`/games/${game.slug}`}>
         <Image
           style={{ objectFit: "cover", objectPosition: "center" }}
@@ -70,7 +74,7 @@ export default function HeadlineSlide({ game }: { game: Game }) {
         />
         <Typography
           className="name"
-          sx={subtitleStyle}
+          sx={headlineSubtitleStyle}
           variant="subtitle1"
           component="p"
         >
