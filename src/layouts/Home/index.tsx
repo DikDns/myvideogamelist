@@ -12,7 +12,6 @@ import HomeCarousel from "./components/HomeCarousel";
 import HeadlineSlide from "./components/HeadlineSlide";
 import { h1, h2, h3, h4 } from "../styles";
 import { HomeData } from "@/types/HomeData";
-import { useEffect } from "react";
 
 export default async function Home({ data }: { data: HomeData }) {
   return (
