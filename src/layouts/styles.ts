@@ -60,3 +60,21 @@ export const h6: SxProps = {
 };
 
 export const slideMargin: SxProps = { mx: "8px" };
+
+export const videoSlide: SxProps = {
+  width: "256px",
+  minHeight: "144px",
+  overflow: "hidden",
+  boxShadow: 2,
+  borderRadius: "5px",
+  "&:hover p": {
+    opacity: 1,
+  },
+  ".react-player__preview": {
+    filter: "brightness(75%)",
+    transition: "filter 250ms ease-in-out",
+  },
+  ".react-player__preview:hover, .react-player__preview:focus": {
+    filter: "brightness(100%)",
+  },
+};
