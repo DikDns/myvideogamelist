@@ -3,12 +3,12 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import VideoCarousel from "@/components/Carousel/VideoCarousel";
 import CardSlide from "@/components/Carousel/CardSlide";
-import NewTrailersList from "./components/NewTrailersList";
-import CardGridColumn from "./components/CardGridColumn";
 import HomeCarousel from "./components/HomeCarousel";
 import HeadlineSlide from "./components/HeadlineSlide";
+import VideoHomeCarousel from "./components/VideoHomeCarousel";
+import VideoSlide from "./components/VideoSlide";
+import CardGridColumn from "./components/CardGridColumn";
 import { h1, h2, h3, h4 } from "../styles";
 import { HomeData } from "@/types/HomeData";
 
@@ -23,7 +23,7 @@ export default async function Home({ data }: { data: HomeData }) {
 
         <HomeCarousel
           slides={data.topNewReleaseGames.map((game) => (
-            <HeadlineSlide game={game} />
+            <HeadlineSlide key={game.id} game={game} />
           ))}
         />
       </Box>
@@ -36,7 +36,7 @@ export default async function Home({ data }: { data: HomeData }) {
 
         <HomeCarousel
           slides={data.topFranchises.map((franchise) => (
-            <CardSlide type="franchises" data={franchise} />
+            <CardSlide key={franchise.id} type="franchises" data={franchise} />
           ))}
         />
       </Box>
@@ -49,7 +49,7 @@ export default async function Home({ data }: { data: HomeData }) {
 
         <HomeCarousel
           slides={data.topSeries.map((series) => (
-            <CardSlide type="series" data={series} />
+            <CardSlide key={series.id} type="series" data={series} />
           ))}
         />
       </Box>
@@ -59,9 +59,12 @@ export default async function Home({ data }: { data: HomeData }) {
         <Typography sx={h3} variant="h3" mb={2}>
           {`New Trailers`}
         </Typography>
-        <VideoCarousel>
-          <NewTrailersList data={data.newTrailers} />
-        </VideoCarousel>
+
+        <VideoHomeCarousel
+          slides={data.newTrailers.map((trailer) => (
+            <VideoSlide key={trailer.id} video={trailer} />
+          ))}
+        />
       </Box>
 
       <Box
