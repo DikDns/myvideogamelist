@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Carousel, { CarouselOptions } from "@/components/Carousel/Carousel";
 
-const headlineCarouselOptions: CarouselOptions = {
+const homeCarouselOptions: CarouselOptions = {
   loop: true,
   align: "start",
   slidesToScroll: 1,
@@ -20,10 +20,10 @@ const headlineSlideStyle = {
   mx: "8px",
 };
 
-export default function HeadlineCarousel({ slides }: { slides: ReactNode[] }) {
+export default function HomeCarousel({ slides }: { slides: ReactNode[] }) {
   return (
     <Carousel
-      options={headlineCarouselOptions}
+      options={homeCarouselOptions}
       slides={slides}
       sxSlide={headlineSlideStyle}
     />
