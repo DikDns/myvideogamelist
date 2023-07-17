@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
