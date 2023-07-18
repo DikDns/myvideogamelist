@@ -7,6 +7,7 @@ import { Franchise } from "./Franchise";
 import { Series } from "./Series";
 import { Website } from "./Website";
 import { AlternativeName } from "./AlternativeName";
+import { InvolvedCompany } from "./InvolvedCompany";
 
 export type Game = {
   aggregated_rating?: number;
@@ -21,6 +22,7 @@ export type Game = {
     image_id?: string;
   };
   alternative_names: AlternativeName[];
+  involved_companies: InvolvedCompany[];
   age_ratings?: AgeRating[];
   genres?: Genre[];
   platforms?: Platform[];
