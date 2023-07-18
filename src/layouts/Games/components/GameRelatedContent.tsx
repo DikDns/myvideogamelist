@@ -9,6 +9,7 @@ import BoxGrid from "./BoxGrid";
 import { Game } from "@/types/Game";
 import { Franchise } from "@/types/Franchise";
 import { Series } from "@/types/Series";
+import { h2, h3 } from "@/layouts/styles";
 
 type Data = Game | Franchise | Series;
 type Type = "games" | "franchises" | "series";
@@ -56,9 +57,11 @@ function BoxGridColumn({
   );
 }
 
-export default function RelatedContent({ game }: { game: Game }) {
+export default function GameRelatedContent({ game }: { game: Game }) {
   return (
-    <Stack gap={2} my={5}>
+    <Stack gap={1} my={5}>
+      <Typography mb={2} variant="h3" sx={h3}>{`Related Content`}</Typography>
+
       {game.parent_game ? (
         <BoxGridColumn
           label="Parent Game"

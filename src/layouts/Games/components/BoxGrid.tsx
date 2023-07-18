@@ -17,14 +17,18 @@ export default function BoxGrid({
   direction?: "column" | "row";
 }) {
   return direction === "row" ? (
-    <Stack sx={{ gap: 1, ...sx }}>
+    <Stack sx={{ ...sx }}>
       <Typography variant="body1">
-        <strong
-          style={{ display: "flex", justifyContent: "flex-start", gap: 2 }}
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            gap: 2,
+          }}
         >
           <span>{label}</span>
           <span>:</span>
-        </strong>
+        </span>
       </Typography>
       <Stack>{children}</Stack>
     </Stack>
@@ -39,10 +43,10 @@ export default function BoxGrid({
       }}
     >
       <Typography variant="body1">
-        <strong style={{ display: "flex", justifyContent: "space-between" }}>
+        <span style={{ display: "flex", justifyContent: "space-between" }}>
           <span>{label}</span>
           <span>:</span>
-        </strong>
+        </span>
       </Typography>
       <Typography variant="body1">{children}</Typography>
     </Box>
