@@ -2,6 +2,8 @@
 
 import { Game } from "@/types/Game";
 import MediaCarousel from "@/components/Carousel/MediaCarousel";
+import Box from "@mui/material/Box";
+import CardMedia from "@mui/material/CardMedia";
 import ImageSlide from "./ImageSlide";
 import VideoSlide from "./VideoSlide";
 
@@ -38,6 +40,10 @@ function setMediaSlides(game: Game) {
         />
       ))
     );
+  }
+
+  if (slides.length < 1) {
+    slides.push(<ImageSlide isNotFound />);
   }
 
   return slides;
