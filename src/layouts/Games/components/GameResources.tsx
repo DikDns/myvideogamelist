@@ -20,7 +20,12 @@ export default function GameResources({ game }: { game: Game }) {
           if (!website.category) return;
           const { title, url } = getWebsiteIconUrl(website.category);
           return (
-            <Link href={website.url} component={NextLink} width="fit-content">
+            <Link
+              target="_blank"
+              href={website.url}
+              component={NextLink}
+              width="fit-content"
+            >
               <Stack
                 key={website.id}
                 direction="row"
@@ -40,7 +45,6 @@ export default function GameResources({ game }: { game: Game }) {
           );
         })}
       </Stack>
-      )
     </Stack>
   ) : (
     ""
