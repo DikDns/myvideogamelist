@@ -26,7 +26,7 @@ export type Game = {
   videos?: Video[];
   parent_game?: Game;
   franchises?: Franchise[];
-  collection?: Series[];
+  collection?: Series;
   remakes?: Game[];
   remasters?: Game[];
   expanded_games?: Game[];
