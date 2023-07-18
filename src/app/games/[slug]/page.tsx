@@ -28,7 +28,13 @@ export async function generateMetadata(
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
   const body = `
-    f *, age_ratings.rating, cover.image_id, screenshots.image_id, videos.video_id,
+    f *, cover.image_id, 
+    screenshots.image_id, artworks.image_id, videos.video_id, 
+    age_ratings.rating,
+    parent_game.name, parent_game.slug,
+    collection.name, collection.slug,
+    franchises.name, franchises.slug,
+    game_modes.name, game_modes.slug,
     genres.*, themes.*, platforms.*;
     w slug="${slug}";
   `;
