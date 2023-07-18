@@ -21,17 +21,13 @@ export default function GameResources({ game }: { game: Game }) {
           const { title, url } = getWebsiteIconUrl(website.category);
           return (
             <Link
+              key={website.id}
               target="_blank"
               href={website.url}
               component={NextLink}
               width="fit-content"
             >
-              <Stack
-                key={website.id}
-                direction="row"
-                alignItems="center"
-                gap={1}
-              >
+              <Stack direction="row" alignItems="center" gap={1}>
                 <Image
                   src={url}
                   alt={title}
