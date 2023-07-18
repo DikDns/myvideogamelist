@@ -17,8 +17,7 @@ export default function GameHeading({ game }: { game: Game }) {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundImage: `url(${getImageUrl(
-          // @ts-ignore
-          game.screenshots[0].image_id || "",
+          game.screenshots ? game.screenshots[0].image_id || "" : "",
           "screenshot_med"
         )});`,
       }}
