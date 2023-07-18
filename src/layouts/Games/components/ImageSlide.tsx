@@ -7,21 +7,23 @@ import { getImageUrl } from "@/lib/igdb";
 import { Image } from "@/types/Image";
 import { Game } from "@/types/Game";
 
-export default function ScreenshotSlide({
-  screenshot,
+export default function ImageSlide({
+  image,
   game,
+  imageType = "screenshot",
 }: {
-  screenshot: Image;
+  image: Image;
   game: Game;
+  imageType?: "screenshot" | "artwork";
 }) {
   return (
-    <Box key={screenshot.id}>
+    <Box key={image.id}>
       <CardMedia
         component="img"
         sx={videoSlide}
-        image={getImageUrl(screenshot.image_id || "", "screenshot_med")}
-        alt={`${game.name} Screenshot`}
-        title={`${game.name} Screenshot`}
+        image={getImageUrl(image.image_id || "", "screenshot_med")}
+        alt={`${game.name} ${imageType}`}
+        title={`${game.name} ${imageType}`}
       />
     </Box>
   );
