@@ -31,28 +31,11 @@ function BoxGridRow({
           key={dataChild.id}
           href={`/${type}/${dataChild.slug}`}
           component={NextLink}
+          width="fit-content"
         >
-          {`- ${dataChild.name}`}
+          {`${dataChild.name}`}
         </Link>
       ))}
-    </BoxGrid>
-  );
-}
-
-function BoxGridColumn({
-  type,
-  label,
-  data,
-}: {
-  type: Type;
-  label: string;
-  data: Data;
-}) {
-  return (
-    <BoxGrid label={label}>
-      <Link href={`/${type}/${data.slug}`} component={NextLink}>
-        {`${data.name}`}
-      </Link>
     </BoxGrid>
   );
 }
@@ -63,17 +46,17 @@ export default function GameRelatedContent({ game }: { game: Game }) {
       <Typography mb={1} variant="h3" sx={h3}>{`Related Content`}</Typography>
 
       {game.parent_game ? (
-        <BoxGridColumn
+        <BoxGridRow
           label="Parent Game"
           type="games"
-          data={game.parent_game}
+          data={[game.parent_game]}
         />
       ) : (
         ""
       )}
 
       {game.collection ? (
-        <BoxGridColumn label="Series" type="series" data={game.collection} />
+        <BoxGridRow label="Series" type="series" data={[game.collection]} />
       ) : (
         ""
       )}
