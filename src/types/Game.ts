@@ -24,6 +24,7 @@ export type Game = {
   screenshots?: Image[];
   artworks?: Image[];
   videos?: Video[];
+  parent_game?: Game;
   franchises?: Franchise[];
   collection?: Series[];
   remakes?: Game[];
