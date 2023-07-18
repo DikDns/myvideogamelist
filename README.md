@@ -23,7 +23,7 @@ A website similar to MyAnimeList, but for tracking video games.
 
 - [x] Display Age Rating Images.
 - [ ] Display the Game Data Information.
-- [ ] Display the Game Trailers and Screenshot with Carousel.
+- [x] Display the Game Trailers and Screenshot with Carousel.
 - [ ] Display the company who developed the game.
 
 `/franchises`
