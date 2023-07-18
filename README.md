@@ -24,6 +24,7 @@ A website similar to MyAnimeList, but for tracking video games.
 - [x] Display Age Rating Images.
 - [ ] Display the Game Data Information.
 - [x] Display the Game Trailers and Screenshot with Carousel.
+- [ ] Create Game Gallery Logic with Embla Carousel
 - [ ] Display the company who developed the game.
 
 `/franchises`
