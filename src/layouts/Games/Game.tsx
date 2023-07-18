@@ -7,6 +7,7 @@ import AgeRatingImages from "./components/AgeRatingImages";
 import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
 import GameMedia from "./components/GameMedia";
+import GameRelatedContent from "./components/GameRelatedContent";
 
 export default function Game({ game }: { game: Game }) {
   useEffect(() => {
@@ -25,6 +26,8 @@ export default function Game({ game }: { game: Game }) {
         <GameSummary game={game} />
 
         <GameMedia game={game} />
+
+        <GameRelatedContent game={game} />
 
         <AgeRatingImages ageRatings={game.age_ratings || []} />
       </Container>
