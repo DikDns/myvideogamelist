@@ -60,7 +60,7 @@ function BoxGridColumn({
 export default function GameRelatedContent({ game }: { game: Game }) {
   return (
     <Stack gap={1} my={5}>
-      <Typography mb={2} variant="h3" sx={h3}>{`Related Content`}</Typography>
+      <Typography mb={1} variant="h3" sx={h3}>{`Related Content`}</Typography>
 
       {game.parent_game ? (
         <BoxGridColumn
