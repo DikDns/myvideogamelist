@@ -5,6 +5,7 @@ import { Image } from "./Image";
 import { Video } from "./Video";
 import { Franchise } from "./Franchise";
 import { Series } from "./Series";
+import { Website } from "./Website";
 
 export type Game = {
   aggregated_rating?: number;
@@ -32,4 +33,5 @@ export type Game = {
   expanded_games?: Game[];
   standalone_expansions?: Game[];
   expansions?: Game[];
+  websites?: Website[];
 };
