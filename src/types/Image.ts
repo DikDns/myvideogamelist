@@ -1,6 +1,6 @@
 import { Game } from "./Game";
 
-export type Screenshot = {
+export type Image = {
   alpha_channel?: boolean;
   animated?: boolean;
   checksum?: string;
