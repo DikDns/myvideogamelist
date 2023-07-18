@@ -16,6 +16,7 @@ export default function Game({ game }: { game: Game }) {
   return (
     <>
       {/* Heading: Game Cover and Name */}
+      {/*// TODO add aggregated rating display */}
       <GameHeading game={game} />
 
       {/* Game Information: Genres, Platforms, Summary */}
