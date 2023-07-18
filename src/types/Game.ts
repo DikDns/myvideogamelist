@@ -19,11 +19,16 @@ export type Game = {
     image_id?: string;
   };
   age_ratings?: AgeRating[];
-  franchises?: Franchise[];
-  collection?: Series[];
   genres?: Genre[];
   platforms?: Platform[];
   screenshots?: Image[];
   artworks?: Image[];
   videos?: Video[];
+  franchises?: Franchise[];
+  collection?: Series[];
+  remakes?: Game[];
+  remasters?: Game[];
+  expanded_games?: Game[];
+  standalone_expansions?: Game[];
+  expansions?: Game[];
 };
