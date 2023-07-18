@@ -8,6 +8,7 @@ import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
 import GameMedia from "./components/GameMedia";
 import GameRelatedContent from "./components/GameRelatedContent";
+import GameResources from "./components/GameResources";
 
 export default function Game({ game }: { game: Game }) {
   useEffect(() => {
@@ -24,11 +25,11 @@ export default function Game({ game }: { game: Game }) {
       <Container component="main" sx={{ overflow: "hidden" }}>
         {/* Summary */}
         <GameSummary game={game} />
-
         <GameMedia game={game} />
-
         <GameRelatedContent game={game} />
+        <GameResources game={game} />
 
+        {/*// Todo Similar Games */}
         <AgeRatingImages ageRatings={game.age_ratings || []} />
       </Container>
     </>
