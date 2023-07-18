@@ -114,6 +114,7 @@ export function getWebsiteIconUrl(category: number) {
       title: "Twitch Icon",
       url: "https://www.igdb.com/icons/twitch.svg",
     },
+    { title: "", url: "" },
     {
       title: "Instagram Icon",
       url: "https://www.igdb.com/icons/instagram.svg",
