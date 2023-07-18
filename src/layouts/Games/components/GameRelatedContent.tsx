@@ -4,12 +4,11 @@ import NextLink from "next/link";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import BoxGrid from "./BoxGrid";
-
 import { Game } from "@/types/Game";
 import { Franchise } from "@/types/Franchise";
 import { Series } from "@/types/Series";
-import { h2, h3 } from "@/layouts/styles";
+import { h3 } from "@/layouts/styles";
+import BoxGrid from "./BoxGrid";
 
 type Data = Game | Franchise | Series;
 type Type = "games" | "franchises" | "series";
