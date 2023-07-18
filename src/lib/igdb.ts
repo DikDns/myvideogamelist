@@ -1,5 +1,10 @@
 import { textFetch } from "./fetch";
 
+type ExternalImage = {
+  title: string;
+  url: string;
+};
+
 type ImageType =
   | "cover_small"
   | "cover_big"
@@ -77,10 +82,85 @@ export function getImageUrl(
   return `https://images.igdb.com/igdb/image/upload/t_${imageType}/${imageId}.jpg`;
 }
 
-type AgeRating = {
-  title: string;
-  url: string;
-};
+/**
+ * IGDB Website Icon URL Generator
+ * @param category - The website category enum.
+ * @returns The Website Icon URL string.
+ */
+
+export function getWebsiteIconUrl(category: number) {
+  const websiteIcons: ExternalImage[] = [
+    {
+      title: "Official Site Icon",
+      url: "https://www.igdb.com/icons/official-site.svg",
+    },
+    {
+      title: "Wikia Icon",
+      url: "https://www.igdb.com/icons/wikia.svg",
+    },
+    {
+      title: "Wikipedia Icon",
+      url: "https://www.igdb.com/icons/wikipedia.svg",
+    },
+    {
+      title: "Facebook Icon",
+      url: "https://www.igdb.com/icons/facebook.svg",
+    },
+    {
+      title: "Twitter Icon",
+      url: "https://www.igdb.com/icons/twitter.svg",
+    },
+    {
+      title: "Twitch Icon",
+      url: "https://www.igdb.com/icons/twitch.svg",
+    },
+    {
+      title: "Instagram Icon",
+      url: "https://www.igdb.com/icons/instagram.svg",
+    },
+    {
+      title: "Youtube Icon",
+      url: "https://www.igdb.com/icons/youtube.svg",
+    },
+    {
+      title: "Iphone Icon",
+      url: "https://www.igdb.com/icons/ios.svg",
+    },
+    {
+      title: "Ipad Icon",
+      url: "https://www.igdb.com/icons/ios.svg",
+    },
+    {
+      title: "Android Icon",
+      url: "https://www.igdb.com/icons/android.svg",
+    },
+    {
+      title: "Steam Icon",
+      url: "https://www.igdb.com/icons/steam.svg",
+    },
+    {
+      title: "Reddit Icon",
+      url: "https://www.igdb.com/icons/reddit.svg",
+    },
+    {
+      title: "Itch Icon",
+      url: "https://www.igdb.com/icons/itch.svg",
+    },
+    {
+      title: "Epic Games Icon",
+      url: "https://www.igdb.com/icons/epic.svg",
+    },
+    {
+      title: "GOG Icon",
+      url: "https://www.igdb.com/icons/gog.svg",
+    },
+    {
+      title: "Discord Icon",
+      url: "https://www.igdb.com/icons/discord.svg",
+    },
+  ];
+  return websiteIcons[category - 1];
+}
 
 /**
  * get IGDB Age Rating Object
@@ -89,7 +169,7 @@ type AgeRating = {
  */
 
 export function getAgeRating(rating: number) {
-  const ageRatings: AgeRating[] = [
+  const ageRatings: ExternalImage[] = [
     {
       title: "PEGI - 3",
       url: "https://upload.wikimedia.org/wikipedia/commons/2/2c/PEGI_3.svg",
