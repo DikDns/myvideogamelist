@@ -18,28 +18,19 @@ export default function ImageSlide({
   game?: Game;
   imageType?: "screenshot" | "artwork";
 }) {
-  return isNotFound ? (
+  return (
     <Box>
       <CardMedia
         component="img"
         sx={videoSlide}
-        image={getImageUrl("", "screenshot_med")}
-        alt={`Screenshot Not Found`}
-        title={`Screenshot Not Found`}
-        height={144}
+        image={getImageUrl(
+          isNotFound ? "" : image?.image_id || "",
+          "screenshot_med",
+          "2x"
+        )}
+        alt={game && image ? `${game.name} ${imageType}` : "Image Not Found"}
+        title={game && image ? `${game.name} ${imageType}` : "Image Not Found"}
       />
     </Box>
-  ) : image && game ? (
-    <Box>
-      <CardMedia
-        component="img"
-        sx={videoSlide}
-        image={getImageUrl(image.image_id || "", "screenshot_med")}
-        alt={`${game.name} ${imageType}`}
-        title={`${game.name} ${imageType}`}
-      />
-    </Box>
-  ) : (
-    ""
   );
 }
