@@ -8,6 +8,7 @@ import { Series } from "./Series";
 import { Website } from "./Website";
 import { AlternativeName } from "./AlternativeName";
 import { InvolvedCompany } from "./InvolvedCompany";
+import { GameMode } from "./GameMode";
 
 export type Game = {
   aggregated_rating?: number;
@@ -17,10 +18,8 @@ export type Game = {
   slug?: string;
   summary?: string;
   first_release_date?: number;
-  cover?: {
-    id: number;
-    image_id?: string;
-  };
+  cover?: Image;
+  game_modes: GameMode[];
   alternative_names: AlternativeName[];
   involved_companies: InvolvedCompany[];
   age_ratings?: AgeRating[];
