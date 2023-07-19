@@ -71,11 +71,10 @@ export const videoSlide: SxProps = {
     opacity: 1,
   },
   ".react-player__preview": {
-    filter: "brightness(75%)",
     transition: "filter 250ms ease-in-out",
   },
   ".react-player__preview:hover, .react-player__preview:focus": {
-    filter: "brightness(100%)",
+    filter: "brightness(125%)",
   },
 };
 
