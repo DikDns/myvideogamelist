@@ -23,11 +23,11 @@ const headlineSlideStyle = {
   },
   "& .cover": {
     transition: "all 250ms ease-in-out",
-    filter: "brightness(75%)",
+    filter: "brightness(100%)",
   },
   "&:hover .cover, &:focus-within .cover": {
-    transform: "scale(1.05)",
-    filter: "brightness(100%)",
+    transform: "scale(1.025)",
+    filter: "brightness(125%)",
   },
 };
 
