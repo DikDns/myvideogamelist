@@ -42,7 +42,7 @@ export default function GameHeading({ game }: { game: Game }) {
       >
         <Grid item sx={{ borderRadius: "2px", overflow: "hidden" }} xs="auto">
           <Image
-            src={getImageUrl(game.cover?.image_id || "", "cover_small")}
+            src={getImageUrl(game.cover?.image_id || "", "cover_big", "2x")}
             alt={`${game.name} Cover`}
             width={90}
             height={128}
