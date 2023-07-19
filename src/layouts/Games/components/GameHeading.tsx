@@ -56,7 +56,9 @@ export default function GameHeading({ game }: { game: Game }) {
           </Grid>
           <Grid item>
             <Typography sx={h3} variant="h3">
-              {`${formatUnix(game.first_release_date || 0)}`}
+              {game.first_release_date
+                ? `${formatUnix(game.first_release_date || 0)}`
+                : ""}
             </Typography>
           </Grid>
         </Grid>
