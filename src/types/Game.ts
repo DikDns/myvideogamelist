@@ -9,19 +9,21 @@ import { Website } from "./Website";
 import { AlternativeName } from "./AlternativeName";
 import { InvolvedCompany } from "./InvolvedCompany";
 import { GameMode } from "./GameMode";
+import { PlayerPerspective } from "./PlayerPerspective";
 
 export type Game = {
+  id: number;
   aggregated_rating?: number;
   aggregated_rating_count?: number;
-  id: number;
   name?: string;
   slug?: string;
   summary?: string;
   first_release_date?: number;
   cover?: Image;
-  game_modes: GameMode[];
-  alternative_names: AlternativeName[];
-  involved_companies: InvolvedCompany[];
+  player_perspective?: PlayerPerspective[];
+  game_modes?: GameMode[];
+  alternative_names?: AlternativeName[];
+  involved_companies?: InvolvedCompany[];
   age_ratings?: AgeRating[];
   genres?: GenreTheme[];
   themes?: GenreTheme[];
