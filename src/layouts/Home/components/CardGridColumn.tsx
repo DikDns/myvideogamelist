@@ -8,6 +8,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { getImageUrl } from "@/lib/igdb";
 import { Game } from "@/types/Game";
 import formatUnix from "@/utils/formatUnix";
 import timeAgo from "@/utils/timeAgo";
@@ -40,8 +41,8 @@ export default function CardGridColumn({
       >
         <CardMedia
           component="img"
-          sx={{ width: 90 }}
-          image={`https://images.igdb.com/igdb/image/upload/t_cover_small/${dt.cover?.image_id}.jpg`}
+          sx={{ width: 100 }}
+          image={getImageUrl(dt.cover?.image_id || "", "cover_small", "2x")}
           alt={`${dt.name} cover`}
           title={`${dt.name} cover`}
         />
