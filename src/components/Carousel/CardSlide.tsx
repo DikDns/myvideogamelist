@@ -24,9 +24,6 @@ const cardSlideStyle = {
   "&:hover .cover, &:focus-within .cover": {
     filter: "brightness(125%)",
   },
-  "&:hover .name, &:focus-within .name": {
-    opacity: 1,
-  },
 };
 
 const cardSlideMediaStyle = {
@@ -38,7 +35,7 @@ const cardSlideMediaStyle = {
 };
 
 const cardSlideSubtitleStyle = {
-  opacity: 0.75,
+  opacity: 1,
   fontSize: {
     xs: "0.75rem",
     md: "1rem",
