@@ -72,7 +72,8 @@ export default function CardSlide({
                 data.cover.image_id
               : //@ts-ignore
                 data.games[0].cover.image_id,
-            "cover_small"
+            "cover_small",
+            "2x"
           )}
           title={`${data.name} Cover`}
           alt={`${data.name} Cover`}
