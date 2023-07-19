@@ -16,11 +16,6 @@ const headlineSlideStyle = {
     md: "20vw",
   },
   height: { xs: "248px", md: "374px" },
-  "&:hover .name, &:focus-within .name": {
-    visibility: "visible",
-    opacity: 1,
-    transform: "translateY(0)",
-  },
   "& .cover": {
     transition: "all 250ms ease-in-out",
     filter: "brightness(100%)",
@@ -37,17 +32,12 @@ const headlineSubtitleStyle = {
   bottom: 0,
   left: 0,
   right: 0,
-  visibility: "hidden",
-  opacity: 0,
-  transform: "translateY(100%)",
-  transition:
-    "visibility 0.5s, opacity 0.5s linear, transform 0.5s ease-in-out",
-  bgcolor: "rgba(30, 30, 30, 0.9)",
+  background:
+    "linear-gradient(to bottom, #12121200 0%, #121212b2 50%, #121212 100%)",
+  backdropFilter: "blur(3px)",
   boxShadow: 1,
-  borderTopLeftRadius: "5px",
-  borderTopRightRadius: "5px",
-  px: { xs: "4px", md: "8px" },
-  py: "8px",
+  px: { xs: "8px", md: "16px" },
+  py: "16px",
   fontSize: {
     xs: "1rem",
     md: "1.25rem",
