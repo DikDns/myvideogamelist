@@ -3,6 +3,7 @@
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import GameCompany from "./GameCompany";
+import GameAgeRatings from "./GameAgeRatings";
 import { h4 } from "@/layouts/styles";
 import { Game } from "@/types/Game";
 import { ReactNode } from "react";
@@ -56,6 +57,50 @@ export default function GameInformation({ game }: { game: Game }) {
       ) : (
         ""
       )}
+
+      {game.genres ? (
+        <InformationStack label="Genres">
+          {game.genres.map((genre) => (
+            <InformationStackItem key={genre.id}>
+              {genre.name}
+            </InformationStackItem>
+          ))}
+        </InformationStack>
+      ) : (
+        ""
+      )}
+
+      {game.themes ? (
+        <InformationStack label="Themes">
+          {game.themes.map((theme) => (
+            <InformationStackItem key={theme.id}>
+              {theme.name}
+            </InformationStackItem>
+          ))}
+        </InformationStack>
+      ) : (
+        ""
+      )}
+
+      {game.player_perspectives ? (
+        <InformationStack label="Player Perspectives">
+          {game.player_perspectives.map((playerPerspective) => (
+            <InformationStackItem key={playerPerspective.id}>
+              {playerPerspective.name}
+            </InformationStackItem>
+          ))}
+        </InformationStack>
+      ) : (
+        ""
+      )}
+
+      {game.age_ratings ? (
+        <InformationStack label="Age Ratings" direction="row" gap={1}>
+          <GameAgeRatings ageRatings={game.age_ratings} />
+        </InformationStack>
+      ) : (
+        ""
+      )}
     </Stack>
   );
 }
@@ -63,17 +108,23 @@ export default function GameInformation({ game }: { game: Game }) {
 function InformationStack({
   label,
   children,
+  direction = "column",
+  gap,
 }: {
   label: string;
   children: ReactNode;
+  direction?: "column" | "row";
+  gap?: string | number;
 }) {
   return (
-    <Stack>
+    <div>
       <Typography variant="body1" fontWeight={500}>
         {label}
       </Typography>
-      {children}
-    </Stack>
+      <Stack direction={direction} gap={gap} flexWrap="wrap">
+        {children}
+      </Stack>
+    </div>
   );
 }
 

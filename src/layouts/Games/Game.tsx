@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { Game } from "@/types/Game";
 import Container from "@mui/material/Container";
-import AgeRatingImages from "./components/AgeRatingImages";
 import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
 import GameMedia from "./components/GameMedia";
@@ -28,17 +27,8 @@ export default function Game({ game }: { game: Game }) {
         <GameMedia game={game} />
         <GameRelatedContent game={game} />
         <GameResources game={game} />
-        {/*
-        // Todo
-           Genres 
-           Themes 
-           Player Perspectives 
-        */}
         <GameInformation game={game} />
         {/*// Todo Similar Games */}
-
-        {/*// Todo Age Ratings */}
-        <AgeRatingImages ageRatings={game.age_ratings || []} />
       </Container>
     </>
   );

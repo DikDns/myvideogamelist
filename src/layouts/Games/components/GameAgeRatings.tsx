@@ -5,10 +5,10 @@ import { getAgeRating } from "@/lib/igdb";
 import { AgeRating } from "@/types/AgeRating";
 
 function AgeRatingImage({ url, title }: { url: string; title: string }) {
-  return <Image src={url} alt={title} width={100} height={100} />;
+  return <Image src={url} alt={title} width={48} height={48} />;
 }
 
-export default function AgeRatingImages({
+export default function GameAgeRatings({
   ageRatings,
 }: {
   ageRatings: AgeRating[];
