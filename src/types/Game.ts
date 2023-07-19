@@ -39,5 +39,6 @@ export type Game = {
   expanded_games?: Game[];
   standalone_expansions?: Game[];
   expansions?: Game[];
+  similar_games?: Game[];
   websites?: Website[];
 };
