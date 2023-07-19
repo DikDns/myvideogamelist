@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
 import { Game } from "@/types/Game";
+import { getImageUrl } from "@/lib/igdb";
 
 const headlineSlideStyle = {
   cursor: "pointer",
@@ -55,7 +56,7 @@ export default function HeadlineSlide({ game }: { game: Game }) {
         <Image
           style={{ objectFit: "cover", objectPosition: "center" }}
           //@ts-ignore
-          src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`}
+          src={getImageUrl(game.cover.image_id || "", "cover_big", "2x")}
           alt={`${game.name} cover`}
           loading="eager"
           fill={true}
