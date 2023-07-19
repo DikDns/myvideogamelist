@@ -13,32 +13,6 @@ import BoxGrid from "./BoxGrid";
 type Data = Game | Franchise | Series;
 type Type = "games" | "franchises" | "series";
 
-function BoxGridRow({
-  type,
-  label,
-  data,
-}: {
-  type: Type;
-  label: string;
-  data: Data[];
-}) {
-  return (
-    <BoxGrid direction="row" label={label}>
-      {/* @ts-ignore */}
-      {data.map((dataChild) => (
-        <Link
-          key={dataChild.id}
-          href={`/${type}/${dataChild.slug}`}
-          component={NextLink}
-          width="fit-content"
-        >
-          {`${dataChild.name}`}
-        </Link>
-      ))}
-    </BoxGrid>
-  );
-}
-
 export default function GameRelatedContent({ game }: { game: Game }) {
   return (
     <Stack gap={1} my={5}>
@@ -107,6 +81,49 @@ export default function GameRelatedContent({ game }: { game: Game }) {
       ) : (
         ""
       )}
+
+      <NotRelated game={game} />
     </Stack>
+  );
+}
+
+function BoxGridRow({
+  type,
+  label,
+  data,
+}: {
+  type: Type;
+  label: string;
+  data: Data[];
+}) {
+  return (
+    <BoxGrid direction="row" label={label}>
+      {/* @ts-ignore */}
+      {data.map((dataChild) => (
+        <Link
+          key={dataChild.id}
+          href={`/${type}/${dataChild.slug}`}
+          component={NextLink}
+          width="fit-content"
+        >
+          {`${dataChild.name}`}
+        </Link>
+      ))}
+    </BoxGrid>
+  );
+}
+
+function NotRelated({ game }: { game: Game }) {
+  return !game.parent_game &&
+    !game.collection &&
+    !game.remakes &&
+    !game.remasters &&
+    !game.franchises &&
+    !game.standalone_expansions &&
+    !game.expansions &&
+    !game.expanded_games ? (
+    <Typography variant="body2">{`No Content Related`}</Typography>
+  ) : (
+    ""
   );
 }
