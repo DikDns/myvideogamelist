@@ -18,11 +18,11 @@ export interface CardSlide<TData> {
 const cardSlideStyle = {
   height: "100%",
   width: {
-    xs: 90,
+    xs: 100,
     md: 128,
   },
   "&:hover .cover, &:focus-within .cover": {
-    filter: "brightness(100%)",
+    filter: "brightness(125%)",
   },
   "&:hover .name, &:focus-within .name": {
     opacity: 1,
@@ -30,8 +30,8 @@ const cardSlideStyle = {
 };
 
 const cardSlideMediaStyle = {
-  height: { xs: 128, md: 170 },
-  filter: "brightness(75%)",
+  height: { xs: 138, md: 170 },
+  filter: "brightness(100%)",
   objectFit: "cover",
   objectPosition: "center",
   transition: "all 250ms ease-in-out",
