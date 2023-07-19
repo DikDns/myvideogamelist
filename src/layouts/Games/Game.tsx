@@ -9,6 +9,7 @@ import GameMedia from "./components/GameMedia";
 import GameRelatedContent from "./components/GameRelatedContent";
 import GameResources from "./components/GameResources";
 import GameInformation from "./components/GameInformation";
+import GameRecomendation from "./components/GameRecomendation";
 
 export default function Game({ game }: { game: Game }) {
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function Game({ game }: { game: Game }) {
         <GameRelatedContent game={game} />
         <GameResources game={game} />
         <GameInformation game={game} />
-        {/*// Todo Similar Games */}
+        <GameRecomendation game={game} />
       </Container>
     </>
   );
