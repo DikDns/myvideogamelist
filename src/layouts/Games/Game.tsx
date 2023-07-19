@@ -30,7 +30,6 @@ export default function Game({ game }: { game: Game }) {
         <GameResources game={game} />
         {/*
         // Todo
-           Game Modes 
            Genres 
            Themes 
            Player Perspectives 

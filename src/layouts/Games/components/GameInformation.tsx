@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import GameCompany from "./GameCompany";
 import { h4 } from "@/layouts/styles";
 import { Game } from "@/types/Game";
+import { ReactNode } from "react";
 
 export default function GameInformation({ game }: { game: Game }) {
   return (
@@ -14,21 +15,20 @@ export default function GameInformation({ game }: { game: Game }) {
       </Typography>
 
       {game.alternative_names ? (
-        <Stack>
-          <Typography variant="body1" fontWeight={500}>
-            Alternative Titles
-          </Typography>
+        <InformationStack label="Alternative Titles">
           {game.alternative_names.map((alternative) => (
             <Stack key={alternative.id} direction="row" gap={1}>
-              <Typography variant="body2" color="#cfcfcf">
-                {alternative.comment}:
-              </Typography>
-              <Typography variant="body2" color="#cfcfcf">
-                {alternative.name}
-              </Typography>
+              {alternative.comment ? (
+                <InformationStackItem>
+                  {alternative.comment}:
+                </InformationStackItem>
+              ) : (
+                ""
+              )}
+              <InformationStackItem>{alternative.name}</InformationStackItem>
             </Stack>
           ))}
-        </Stack>
+        </InformationStack>
       ) : (
         ""
       )}
@@ -44,6 +44,43 @@ export default function GameInformation({ game }: { game: Game }) {
       ) : (
         ""
       )}
+
+      {game.game_modes ? (
+        <InformationStack label="Game Modes">
+          {game.game_modes.map((gameMode) => (
+            <InformationStackItem key={gameMode.id}>
+              {gameMode.name}
+            </InformationStackItem>
+          ))}
+        </InformationStack>
+      ) : (
+        ""
+      )}
     </Stack>
+  );
+}
+
+function InformationStack({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
+  return (
+    <Stack>
+      <Typography variant="body1" fontWeight={500}>
+        {label}
+      </Typography>
+      {children}
+    </Stack>
+  );
+}
+
+function InformationStackItem({ children }: { children: ReactNode }) {
+  return (
+    <Typography variant="body2" color="#cfcfcf">
+      {children}
+    </Typography>
   );
 }
