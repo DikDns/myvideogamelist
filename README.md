@@ -22,10 +22,10 @@ A website similar to MyAnimeList, but for tracking video games.
 `/games/[slug]`
 
 - [x] Display Age Rating Images.
-- [ ] Display the Game Data Information.
+- [x] Display the Game Data Information.
 - [x] Display the Game Trailers and Screenshot with Carousel.
+- [x] Display the company who developed the game.
 - [ ] Create Game Gallery Logic with Embla Carousel
-- [ ] Display the company who developed the game.
 
 `/franchises`
 
