@@ -20,7 +20,7 @@ export type Game = {
   summary?: string;
   first_release_date?: number;
   cover?: Image;
-  player_perspective?: PlayerPerspective[];
+  player_perspectives?: PlayerPerspective[];
   game_modes?: GameMode[];
   alternative_names?: AlternativeName[];
   involved_companies?: InvolvedCompany[];
