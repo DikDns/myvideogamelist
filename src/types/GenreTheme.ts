@@ -1,4 +1,4 @@
-export type Genre = {
+export type GenreTheme = {
   id?: string;
   checksum?: string;
   created_at?: number;
