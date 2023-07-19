@@ -35,7 +35,8 @@ export default function GameHeading({ game }: { game: Game }) {
         px={2}
         gap={2}
         sx={{
-          background: "linear-gradient(to bottom, #121212b2 75%, #121212 100%)",
+          background:
+            "linear-gradient(to bottom, #12121200 0%, #121212b2 50%, #121212 100%)",
           backdropFilter: "blur(4px)",
         }}
       >
