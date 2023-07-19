@@ -45,6 +45,7 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
     alternative_names.comment, alternative_names.name,
     involved_companies.developer, involved_companies.publisher,
     involved_companies.company.name,
+    themes.name, player_perspectives.name,
     cover.image_id;
     w slug="${slug}";
   `;
