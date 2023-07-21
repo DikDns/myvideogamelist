@@ -7,6 +7,7 @@ import truncStr from "@/utils/truncStr";
 import GameComponent from "@/layouts/Games/Game";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/db";
 
 type GamePageProps = PageProps<{ slug: string }>;
 
@@ -57,9 +58,15 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
 
   const [session, games] = await Promise.all([sessionPromise, gamesPromise]);
 
+  const userGameList = await prisma.list.findUnique({
+    select: { isFavorited: true, listType: true },
+    // @ts-ignore
+    where: { gameId: games[0].id, AND: { userId: session?.user.id || "" } },
+  });
+
   return (
     <div>
-      <GameComponent session={session} game={games[0]} />
+      <GameComponent game={games[0]} userGameList={userGameList} />
     </div>
   );
 }
