@@ -4,15 +4,16 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
-import { Session } from "next-auth";
 import { signIn } from "next-auth/react";
+import { UserGameList } from "../types/UserGameList";
 
 export default function GameActionButtons({
-  session,
+  userGameList,
 }: {
-  session: Session | null;
+  userGameList: UserGameList | null;
 }) {
-  const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(userGameList?.isFavorited);
+  const [listType, setListType] = useState(userGameList?.listType);
 
   const handleDialog = () => {
     return;
@@ -29,18 +30,26 @@ export default function GameActionButtons({
         color={isFavorited ? "secondary" : "inherit"}
         sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
         onClick={() =>
-          session ? setIsFavorited((prevValue) => !prevValue) : signIn("auth0")
+          userGameList
+            ? setIsFavorited((prevValue) => !prevValue)
+            : signIn("auth0")
         }
       >
         <Favorite fontSize="small" />
         {`Favorite${isFavorited ? "d" : ""}`}
       </Button>
       <Button
-        variant="contained"
-        color="primary"
-        onClick={() => (session ? handleDialog() : signIn("auth0"))}
+        variant={userGameList ? "outlined" : "contained"}
+        color={
+          listType === "DROPPED"
+            ? "error"
+            : listType === "ONHOLD"
+            ? "warning"
+            : "primary"
+        }
+        onClick={() => (userGameList ? handleDialog() : signIn("auth0"))}
       >
-        {`Add to List`}
+        {userGameList ? `${userGameList.listType}` : `Add to List`}
       </Button>
     </Box>
   );
