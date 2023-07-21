@@ -1,14 +1,19 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
-import { List } from "@prisma/client";
 
-export async function upsertGameListUser(data: List) {
-  const res = await prisma.list.upsert({
-    where: { userId: data.userId, gameId: data.gameId },
-    update: data,
-    create: data,
+export async function updateIsFavorited(
+  userId: string,
+  gameId: number,
+  gameSlug: string,
+  isFavorited: boolean
+) {
+  await prisma.list.upsert({
+    where: { userId, gameId },
+    update: { isFavorited },
+    create: { userId, gameId, isFavorited },
   });
 
-  return res;
+  revalidatePath(`/games/${gameSlug}`);
 }
