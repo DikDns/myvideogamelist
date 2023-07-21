@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { ListStatus } from "@prisma/client";
 
@@ -25,6 +26,8 @@ export async function updateStatus(
     update: { status },
     create: { userId, gameId, status },
   });
+
+  revalidatePath(`/games`);
 }
 
 export async function updateScore(
@@ -37,4 +40,6 @@ export async function updateScore(
     update: { score },
     create: { userId, gameId, score },
   });
+
+  revalidatePath(`/games`);
 }
