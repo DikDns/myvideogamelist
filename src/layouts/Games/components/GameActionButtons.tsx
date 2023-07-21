@@ -31,6 +31,9 @@ export default function GameActionButtons({
   session: Session;
   gameListUser: GameListUser | null;
 }) {
+  /**
+   * TODO ADD REMOVE FROM LIST
+   */
   const [favoriteOptimistic, addFavoriteOptimistic] = useOptimistic(
     {
       isFavorited: gameListUser?.isFavorited,
@@ -72,7 +75,7 @@ export default function GameActionButtons({
 
   const handleDialogOpen = () => {
     setOpen(true);
-    setStatus(listOptimistic.status);
+    setStatus(listOptimistic.status || ListStatus.PLAYING);
     setScore(listOptimistic.score);
   };
 
