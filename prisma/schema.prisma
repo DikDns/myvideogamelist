@@ -76,12 +76,12 @@ enum ListStatus {
 }
 
 model List {
-  gameId      Int        @unique
-  isFavorited Boolean    @map("is_favorited")
-  score       Int
-  status      ListStatus
-  user        User       @relation(fields: [userId], references: [id])
-  userId      String     @map("user_id")
+  gameId      Int         @unique
+  isFavorited Boolean?    @map("is_favorited")
+  score       Int?
+  status      ListStatus?
+  user        User        @relation(fields: [userId], references: [id])
+  userId      String      @map("user_id")
 
   @@index([userId])
   @@map("lists")
