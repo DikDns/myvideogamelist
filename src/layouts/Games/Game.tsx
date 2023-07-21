@@ -10,6 +10,7 @@ import GameRelatedContent from "./components/GameRelatedContent";
 import GameResources from "./components/GameResources";
 import GameInformation from "./components/GameInformation";
 import GameRecomendation from "./components/GameRecomendation";
+import GameActionButtons from "./components/GameActionButtons";
 
 export default function Game({ game }: { game: Game }) {
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Game({ game }: { game: Game }) {
 
       {/* Game Information: Genres, Platforms, Summary */}
       <Container component="main" sx={{ overflow: "hidden" }}>
+        <GameActionButtons />
         <GameSummary game={game} />
         <GameMedia game={game} />
         <GameRelatedContent game={game} />
