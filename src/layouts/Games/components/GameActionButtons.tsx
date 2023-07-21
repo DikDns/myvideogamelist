@@ -5,18 +5,18 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
 import { signIn } from "next-auth/react";
-import { UserGameList } from "../types/UserGameList";
+import { GameListUser } from "../types/GameListUser";
 import { Session } from "next-auth";
 
 export default function GameActionButtons({
-  userGameList,
+  gameListUser,
   session,
 }: {
-  userGameList: UserGameList | null;
+  gameListUser: GameListUser | null;
   session: Session | null;
 }) {
-  const [isFavorited, setIsFavorited] = useState(userGameList?.isFavorited);
-  const [status, setStatus] = useState(userGameList?.status);
+  const [isFavorited, setIsFavorited] = useState(gameListUser?.isFavorited);
+  const [status, setStatus] = useState(gameListUser?.status);
 
   const handleDialog = () => {
     return;
@@ -40,7 +40,7 @@ export default function GameActionButtons({
         {`Favorite${isFavorited ? "d" : ""}`}
       </Button>
       <Button
-        variant={userGameList ? "outlined" : "contained"}
+        variant={gameListUser ? "outlined" : "contained"}
         color={
           status === "DROPPED"
             ? "error"
@@ -50,7 +50,7 @@ export default function GameActionButtons({
         }
         onClick={() => (session ? handleDialog() : signIn("auth0"))}
       >
-        {userGameList ? `${userGameList.status}` : `Add to List`}
+        {gameListUser ? `${gameListUser.status}` : `Add to List`}
       </Button>
     </Box>
   );
