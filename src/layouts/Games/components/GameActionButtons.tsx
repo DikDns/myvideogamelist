@@ -6,11 +6,14 @@ import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
 import { signIn } from "next-auth/react";
 import { UserGameList } from "../types/UserGameList";
+import { Session } from "next-auth";
 
 export default function GameActionButtons({
   userGameList,
+  session,
 }: {
   userGameList: UserGameList | null;
+  session: Session | null;
 }) {
   const [isFavorited, setIsFavorited] = useState(userGameList?.isFavorited);
   const [status, setStatus] = useState(userGameList?.status);
@@ -30,9 +33,7 @@ export default function GameActionButtons({
         color={isFavorited ? "secondary" : "inherit"}
         sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
         onClick={() =>
-          userGameList
-            ? setIsFavorited((prevValue) => !prevValue)
-            : signIn("auth0")
+          session ? setIsFavorited((prevValue) => !prevValue) : signIn("auth0")
         }
       >
         <Favorite fontSize="small" />
@@ -47,7 +48,7 @@ export default function GameActionButtons({
             ? "warning"
             : "primary"
         }
-        onClick={() => (userGameList ? handleDialog() : signIn("auth0"))}
+        onClick={() => (session ? handleDialog() : signIn("auth0"))}
       >
         {userGameList ? `${userGameList.status}` : `Add to List`}
       </Button>

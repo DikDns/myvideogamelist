@@ -12,13 +12,16 @@ import GameResources from "./components/GameResources";
 import GameInformation from "./components/GameInformation";
 import GameRecomendation from "./components/GameRecomendation";
 import GameActionButtons from "./components/GameActionButtons";
+import { Session } from "next-auth";
 
 export default function Game({
+  session,
   game,
   userGameList,
 }: {
   game: Game;
   userGameList: UserGameList | null;
+  session: Session | null;
 }) {
   useEffect(() => {
     console.log(game);
@@ -33,7 +36,7 @@ export default function Game({
 
       {/* Game Information: Genres, Platforms, Summary */}
       <Container component="main" sx={{ overflow: "hidden" }}>
-        <GameActionButtons userGameList={userGameList} />
+        <GameActionButtons session={session} userGameList={userGameList} />
         <GameSummary game={game} />
         <GameMedia game={game} />
         <GameRelatedContent game={game} />

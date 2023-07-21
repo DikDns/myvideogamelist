@@ -66,7 +66,11 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
 
   return (
     <div>
-      <GameComponent game={games[0]} userGameList={userGameList} />
+      <GameComponent
+        session={session}
+        game={games[0]}
+        userGameList={userGameList}
+      />
     </div>
   );
 }
