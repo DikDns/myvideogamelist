@@ -2,9 +2,11 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { PageProps } from "@/types/PageProps";
 import { Game } from "@/types/Game";
-import { getCompanies, getGames } from "@/lib/igdb";
+import { getGames } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
 import GameComponent from "@/layouts/Games/Game";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 type GamePageProps = PageProps<{ slug: string }>;
 
@@ -27,6 +29,7 @@ export async function generateMetadata(
 }
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
+  const sessionPromise = getServerSession(authOptions);
   const body = `
     f name, summary, first_release_date,
     genres.name, platforms.abbreviation, 
@@ -50,11 +53,13 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
     cover.image_id;
     w slug="${slug}";
   `;
-  const games: Game[] = await getGames(body);
+  const gamesPromise: Promise<Game[]> = getGames(body);
+
+  const [session, games] = await Promise.all([sessionPromise, gamesPromise]);
 
   return (
     <div>
-      <GameComponent game={games[0]} />
+      <GameComponent session={session} game={games[0]} />
     </div>
   );
 }
