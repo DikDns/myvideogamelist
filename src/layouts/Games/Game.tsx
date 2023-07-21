@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { Game } from "@/types/Game";
+import { UserGameList } from "./types/UserGameList";
 import Container from "@mui/material/Container";
 import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
@@ -12,9 +13,16 @@ import GameInformation from "./components/GameInformation";
 import GameRecomendation from "./components/GameRecomendation";
 import GameActionButtons from "./components/GameActionButtons";
 
-export default function Game({ game }: { game: Game }) {
+export default function Game({
+  game,
+  userGameList,
+}: {
+  game: Game;
+  userGameList: UserGameList | null;
+}) {
   useEffect(() => {
     console.log(game);
+    console.log(userGameList);
   }, []);
 
   return (
@@ -25,7 +33,7 @@ export default function Game({ game }: { game: Game }) {
 
       {/* Game Information: Genres, Platforms, Summary */}
       <Container component="main" sx={{ overflow: "hidden" }}>
-        <GameActionButtons />
+        <GameActionButtons userGameList={userGameList} />
         <GameSummary game={game} />
         <GameMedia game={game} />
         <GameRelatedContent game={game} />
