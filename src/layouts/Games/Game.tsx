@@ -13,6 +13,7 @@ import GameInformation from "./components/GameInformation";
 import GameRecomendation from "./components/GameRecomendation";
 import GameActionButtons from "./components/GameActionButtons";
 import { Session } from "next-auth";
+import LoginButton from "@/components/NextAuth/LoginButton";
 
 export default function Game({
   session,
@@ -36,11 +37,15 @@ export default function Game({
 
       {/* Game Information: Genres, Platforms, Summary */}
       <Container component="main" sx={{ overflow: "hidden" }}>
-        <GameActionButtons
-          game={game}
-          session={session}
-          gameListUser={gameListUser}
-        />
+        {session ? (
+          <GameActionButtons
+            game={game}
+            session={session}
+            gameListUser={gameListUser}
+          />
+        ) : (
+          <LoginButton />
+        )}
         <GameSummary game={game} />
         <GameMedia game={game} />
         <GameRelatedContent game={game} />
