@@ -13,7 +13,7 @@ export default function GameActionButtons({
   userGameList: UserGameList | null;
 }) {
   const [isFavorited, setIsFavorited] = useState(userGameList?.isFavorited);
-  const [listType, setListType] = useState(userGameList?.listType);
+  const [status, setStatus] = useState(userGameList?.status);
 
   const handleDialog = () => {
     return;
@@ -41,15 +41,15 @@ export default function GameActionButtons({
       <Button
         variant={userGameList ? "outlined" : "contained"}
         color={
-          listType === "DROPPED"
+          status === "DROPPED"
             ? "error"
-            : listType === "ONHOLD"
+            : status === "ONHOLD"
             ? "warning"
             : "primary"
         }
         onClick={() => (userGameList ? handleDialog() : signIn("auth0"))}
       >
-        {userGameList ? `${userGameList.listType}` : `Add to List`}
+        {userGameList ? `${userGameList.status}` : `Add to List`}
       </Button>
     </Box>
   );

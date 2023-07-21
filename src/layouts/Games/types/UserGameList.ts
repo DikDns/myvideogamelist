@@ -1,3 +1,3 @@
-import { ListType } from "@prisma/client";
+import { ListStatus } from "@prisma/client";
 
-export type UserGameList = { isFavorited: boolean; listType: ListType };
+export type UserGameList = { isFavorited: boolean; status: ListStatus };
