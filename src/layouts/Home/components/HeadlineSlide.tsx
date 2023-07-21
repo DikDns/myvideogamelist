@@ -37,8 +37,7 @@ const headlineSubtitleStyle = {
     "linear-gradient(to bottom, #12121200 0%, #121212b2 50%, #121212 100%)",
   backdropFilter: "blur(3px)",
   boxShadow: 1,
-  px: { xs: "8px", md: "16px" },
-  py: "16px",
+  p: { xs: "8px", md: "16px" },
   fontSize: {
     xs: "1rem",
     md: "1.25rem",
