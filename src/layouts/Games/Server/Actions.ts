@@ -1,12 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 
 export async function updateIsFavorited(
   userId: string,
   gameId: number,
-  gameSlug: string,
   isFavorited: boolean
 ) {
   await prisma.list.upsert({
@@ -14,6 +12,4 @@ export async function updateIsFavorited(
     update: { isFavorited },
     create: { userId, gameId, isFavorited },
   });
-
-  revalidatePath(`/games/${gameSlug}`);
 }

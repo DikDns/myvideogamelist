@@ -1,7 +1,7 @@
 "use client";
 
 import { GameListUser } from "../types/GameListUser";
-import { useState, useTransition } from "react";
+import { useState, experimental_useOptimistic as useOptimistic } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
@@ -19,20 +19,27 @@ export default function GameActionButtons({
   gameListUser: GameListUser | null;
   session: Session | null;
 }) {
-  const [isPending, startTransition] = useTransition();
+  const [optimistic, addOptimistic] = useOptimistic(
+    { isFavorited: gameListUser?.isFavorited, sending: false },
+    (state, newState: boolean) => ({
+      ...state,
+      isFavorited: newState,
+      sending: true,
+    })
+  );
   const [status, setStatus] = useState(gameListUser?.status);
 
-  const handleFavorite = () => {
+  const handleFavorite = async () => {
     if (session) {
-      return startTransition(() =>
-        updateIsFavorited(
-          session.user.id,
-          game.id,
-          game.slug ? game.slug : "",
-          gameListUser?.isFavorited ? !gameListUser.isFavorited : true
-        )
+      addOptimistic(!optimistic.isFavorited);
+      await updateIsFavorited(
+        session.user.id,
+        game.id,
+        !optimistic.isFavorited
       );
+      return;
     }
+
     return signIn("auth0");
   };
 
@@ -48,12 +55,12 @@ export default function GameActionButtons({
     >
       <Button
         variant="outlined"
-        color={gameListUser?.isFavorited ? "secondary" : "inherit"}
+        color={optimistic.isFavorited ? "secondary" : "inherit"}
         sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
         onClick={() => handleFavorite()}
       >
         <Favorite fontSize="small" />
-        {`Favorite${gameListUser?.isFavorited ? "d" : ""}`}
+        {`Favorite${optimistic.isFavorited ? "d" : ""}`}
       </Button>
       <Button
         variant={gameListUser?.status ? "outlined" : "contained"}
