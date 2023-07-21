@@ -67,7 +67,7 @@ model User {
   @@map("users")
 }
 
-enum ListType {
+enum ListStatus {
   COMPLETED
   PLAYING
   ONHOLD
@@ -76,11 +76,12 @@ enum ListType {
 }
 
 model List {
-  gameId      Int      @unique
-  isFavorited Boolean  @map("is_favorited")
-  listType    ListType @map("list_type")
-  user        User     @relation(fields: [userId], references: [id])
-  userId      String   @map("user_id")
+  gameId      Int        @unique
+  isFavorited Boolean    @map("is_favorited")
+  score       Int
+  status      ListStatus
+  user        User       @relation(fields: [userId], references: [id])
+  userId      String     @map("user_id")
 
   @@index([userId])
   @@map("lists")
