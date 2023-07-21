@@ -13,4 +13,19 @@ export const authOptions: AuthOptions = {
       issuer: process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL,
     }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      return true;
+    },
+    async session({ session, user, token }) {
+      session.user = {
+        // @ts-ignore
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        image: user.image,
+      };
+      return session;
+    },
+  },
 };
