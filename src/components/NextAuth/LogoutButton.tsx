@@ -2,6 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Button from "@mui/material/Button";
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -12,5 +13,9 @@ export default function LogoutButton() {
     router.push(`${authUrl}/v2/logout`);
   };
 
-  return <button onClick={handleClick}>Sign Out</button>;
+  return (
+    <Button variant="outlined" color="error" onClick={handleClick}>
+      Sign Out
+    </Button>
+  );
 }
