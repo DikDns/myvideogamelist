@@ -36,7 +36,11 @@ export default function Game({
 
       {/* Game Information: Genres, Platforms, Summary */}
       <Container component="main" sx={{ overflow: "hidden" }}>
-        <GameActionButtons session={session} gameListUser={gameListUser} />
+        <GameActionButtons
+          game={game}
+          session={session}
+          gameListUser={gameListUser}
+        />
         <GameSummary game={game} />
         <GameMedia game={game} />
         <GameRelatedContent game={game} />

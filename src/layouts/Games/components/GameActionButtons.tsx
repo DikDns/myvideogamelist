@@ -1,22 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { GameListUser } from "../types/GameListUser";
+import { useState, useTransition } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
 import { signIn } from "next-auth/react";
-import { GameListUser } from "../types/GameListUser";
 import { Session } from "next-auth";
+import { updateIsFavorited } from "../Server/Actions";
+import { Game } from "@/types/Game";
 
 export default function GameActionButtons({
+  game,
   gameListUser,
   session,
 }: {
+  game: Game;
   gameListUser: GameListUser | null;
   session: Session | null;
 }) {
-  const [isFavorited, setIsFavorited] = useState(gameListUser?.isFavorited);
+  const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState(gameListUser?.status);
+
+  const handleFavorite = () => {
+    if (session) {
+      return startTransition(() =>
+        updateIsFavorited(
+          session.user.id,
+          game.id,
+          game.slug ? game.slug : "",
+          gameListUser?.isFavorited ? !gameListUser.isFavorited : true
+        )
+      );
+    }
+    return signIn("auth0");
+  };
 
   const handleDialog = () => {
     return;
@@ -30,17 +48,15 @@ export default function GameActionButtons({
     >
       <Button
         variant="outlined"
-        color={isFavorited ? "secondary" : "inherit"}
+        color={gameListUser?.isFavorited ? "secondary" : "inherit"}
         sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
-        onClick={() =>
-          session ? setIsFavorited((prevValue) => !prevValue) : signIn("auth0")
-        }
+        onClick={() => handleFavorite()}
       >
         <Favorite fontSize="small" />
-        {`Favorite${isFavorited ? "d" : ""}`}
+        {`Favorite${gameListUser?.isFavorited ? "d" : ""}`}
       </Button>
       <Button
-        variant={gameListUser ? "outlined" : "contained"}
+        variant={gameListUser?.status ? "outlined" : "contained"}
         color={
           status === "DROPPED"
             ? "error"
@@ -50,7 +66,7 @@ export default function GameActionButtons({
         }
         onClick={() => (session ? handleDialog() : signIn("auth0"))}
       >
-        {gameListUser ? `${gameListUser.status}` : `Add to List`}
+        {gameListUser?.status ? `${gameListUser.status}` : `Add to List`}
       </Button>
     </Box>
   );
