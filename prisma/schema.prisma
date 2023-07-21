@@ -83,7 +83,7 @@ model List {
   userId      String   @map("user_id")
 
   @@index([userId])
-  @@map("user_lists")
+  @@map("lists")
 }
 
 model VerificationToken {
