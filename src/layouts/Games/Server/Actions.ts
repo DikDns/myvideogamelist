@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { ListStatus } from "@prisma/client";
 
@@ -16,30 +15,15 @@ export async function updateIsFavorited(
   });
 }
 
-export async function updateStatus(
+export async function updateList(
   userId: string,
   gameId: number,
-  status: ListStatus
+  status: ListStatus | null | undefined,
+  score: number | null | undefined
 ) {
   await prisma.list.upsert({
     where: { userId, gameId },
-    update: { status },
-    create: { userId, gameId, status },
+    update: { status, score },
+    create: { userId, gameId, score, status },
   });
-
-  revalidatePath(`/games`);
-}
-
-export async function updateScore(
-  userId: string,
-  gameId: number,
-  score: number
-) {
-  await prisma.list.upsert({
-    where: { userId, gameId },
-    update: { score },
-    create: { userId, gameId, score },
-  });
-
-  revalidatePath(`/games`);
 }
