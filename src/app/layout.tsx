@@ -2,6 +2,7 @@ import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
 import SessionProvider from "@/components/NextAuth/SessionProvider";
 import SearchAppBar from "@/components/AppBar/SearchAppBar";
+import ContainerLayout from "@/components/Layout/Container";
 
 export const metadata = {
   referrer: "origin-when-cross-origin",
@@ -29,7 +30,7 @@ export default function RootLayout({
         <SessionProvider>
           <ThemeRegistry>
             <SearchAppBar />
-            {children}
+            <ContainerLayout>{children}</ContainerLayout>
           </ThemeRegistry>
         </SessionProvider>
       </body>
