@@ -78,7 +78,6 @@ enum ListStatus {
 }
 
 model GameList {
-  id          String      @id @default(cuid())
   gameId      Int         @map("game_id")
   isFavorited Boolean?    @map("is_favorited")
   score       Int?
@@ -86,28 +85,29 @@ model GameList {
   user        User        @relation(fields: [userId], references: [id])
   userId      String      @map("user_id")
 
+  @@id([gameId, userId])
   @@index([userId])
   @@map("game_lists")
 }
 
 model SeriesList {
-  id          String   @id @default(cuid())
   seriesId    Int      @map("series_id")
   isFavorited Boolean? @map("is_favorited")
   user        User     @relation(fields: [userId], references: [id])
   userId      String   @map("user_id")
 
+  @@id([seriesId, userId])
   @@index([userId])
   @@map("series_lists")
 }
 
 model FranchiseList {
-  id          String   @id @default(cuid())
-  seriesId    Int      @map("series_id")
+  franchiseId Int      @map("franchise_id")
   isFavorited Boolean? @map("is_favorited")
   user        User     @relation(fields: [userId], references: [id])
   userId      String   @map("user_id")
 
+  @@id([franchiseId, userId])
   @@index([userId])
   @@map("franchise_lists")
 }
