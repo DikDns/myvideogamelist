@@ -59,7 +59,7 @@ export default function GameListButton({
         }
         onClick={() => {
           setOpen(true);
-          setStatus(ListStatus.PLAYING);
+          setStatus(list?.status ? list.status : ListStatus.PLAYING);
         }}
       >
         {list?.status ? `${list?.status}` : `Add to List`}
