@@ -57,7 +57,10 @@ export default function GameListButton({
             ? "warning"
             : "primary"
         }
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          setStatus(ListStatus.PLAYING);
+        }}
       >
         {list?.status ? `${list?.status}` : `Add to List`}
       </Button>
@@ -70,7 +73,7 @@ export default function GameListButton({
               labelId="list-status-label"
               id="list-status-select"
               label="Status"
-              value={status || ListStatus.PLAYING}
+              value={status}
               onChange={(event) => setStatus(event.target.value as ListStatus)}
             >
               <MenuItem value={ListStatus.PLAYING}>PLAYING</MenuItem>
