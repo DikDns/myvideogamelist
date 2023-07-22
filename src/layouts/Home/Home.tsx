@@ -14,7 +14,7 @@ import { HomeData } from "@/types/HomeData";
 
 export default async function Home({ data }: { data: HomeData }) {
   return (
-    <Container component="main" sx={{ overflow: "hidden", my: 8 }}>
+    <Container component="main" sx={{ overflow: "hidden", my: 10 }}>
       {/* TOP NEW RELEASE */}
       <Box component="section" mb={5}>
         <Typography sx={h1} variant="h1" mb={2}>
