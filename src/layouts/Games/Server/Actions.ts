@@ -8,8 +8,13 @@ export async function updateIsFavorited(
   gameId: number,
   isFavorited: boolean
 ) {
-  await prisma.list.upsert({
-    where: { userId, gameId },
+  await prisma.gameList.upsert({
+    where: {
+      gameId_userId: {
+        gameId,
+        userId,
+      },
+    },
     update: { isFavorited },
     create: { userId, gameId, isFavorited },
   });
@@ -21,8 +26,13 @@ export async function updateList(
   status: ListStatus | null | undefined,
   score: number | null | undefined
 ) {
-  await prisma.list.upsert({
-    where: { userId, gameId },
+  await prisma.gameList.upsert({
+    where: {
+      gameId_userId: {
+        gameId,
+        userId,
+      },
+    },
     update: { status, score },
     create: { userId, gameId, score, status },
   });
