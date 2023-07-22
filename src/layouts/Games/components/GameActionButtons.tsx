@@ -1,6 +1,7 @@
 "use client";
 
 import Box from "@mui/material/Box";
+import LoginButton from "@/components/NextAuth/LoginButton";
 import GameFavoriteButton from "./GameFavoriteButton";
 import GameListButton from "./GameListButton";
 import { Session } from "next-auth";
@@ -13,25 +14,35 @@ export default function GameActionButtons({
   session,
 }: {
   game: Game;
-  session: Session;
+  session: Session | null;
   gameListUser: GameListUser | null;
 }) {
   return (
     <Box
       mt={2}
       mb={3}
-      sx={{ display: "grid", gap: 2, gridTemplateColumns: "1fr 1fr" }}
+      sx={{
+        display: "grid",
+        gap: 2,
+        gridTemplateColumns: !session ? "1fr" : "1fr 1fr",
+      }}
     >
-      <GameFavoriteButton
-        isFavorited={gameListUser?.isFavorited || null}
-        game={game}
-        user={session.user}
-      />
-      <GameListButton
-        gameListUser={gameListUser}
-        game={game}
-        user={session.user}
-      />
+      {!session ? (
+        <LoginButton />
+      ) : (
+        <>
+          <GameFavoriteButton
+            isFavorited={gameListUser?.isFavorited || null}
+            game={game}
+            user={session.user}
+          />
+          <GameListButton
+            gameListUser={gameListUser}
+            game={game}
+            user={session.user}
+          />
+        </>
+      )}
     </Box>
   );
 }
