@@ -58,10 +58,9 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
 
   const [session, games] = await Promise.all([sessionPromise, gamesPromise]);
 
-  const gameListUser = await prisma.gameList.findUnique({
+  const gameListUser = await prisma.gameList.findFirst({
     select: { isFavorited: true, status: true, score: true },
-    // @ts-ignore
-    where: { gameId: games[0].id, AND: { userId: session?.user.id || "" } },
+    where: { gameId: games[0].id, userId: session?.user.id || "" },
   });
 
   return (
