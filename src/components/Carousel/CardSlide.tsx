@@ -69,9 +69,9 @@ export default function CardSlide({
           image={getImageUrl(
             type === "games"
               ? //@ts-ignore
-                data.cover.image_id
+                data.cover?.image_id || ""
               : //@ts-ignore
-                data.games[0].cover.image_id,
+                data.games[0].cover.image_id || "",
             "cover_small",
             "2x"
           )}
