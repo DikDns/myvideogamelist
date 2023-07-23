@@ -78,7 +78,9 @@ export function getImageUrl(
   imageSize?: "2x" | undefined
 ) {
   if (imageId === "") {
-    return `https://upload.wikimedia.org/wikipedia/commons/8/86/No_cover.png`;
+    return `https://images.igdb.com/igdb/image/upload/t_${imageType}${
+      imageSize ? `_${imageSize}` : ``
+    }/undefined.jpg`;
   }
   return `https://images.igdb.com/igdb/image/upload/t_${imageType}${
     imageSize ? `_${imageSize}` : ``
