@@ -10,7 +10,7 @@ export default async function SearchPage({
   let games;
 
   if (searchParams.q && searchParams.q.length > 1) {
-    const body = `search "${searchParams.q}"; f *, genres.name, cover.image_id; l 20;`;
+    const body = `search "${searchParams.q}"; f name, slug, cover.image_id, genres.name, cover.image_id; l 20;`;
     games = await getGames(body);
   } else {
     const body = `
