@@ -16,7 +16,7 @@ function lastMonthDate() {
 async function getTopNewReleaseGames() {
   const body = `
     f name, cover.image_id, slug;
-    w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n;
+    w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n & aggregated_rating != n;
     s hypes desc;
     l 20;
   `;
