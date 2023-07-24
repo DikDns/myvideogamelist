@@ -11,7 +11,7 @@ export default async function SearchPage({
 
   return (
     <div>
-      <Search games={games} />
+      <Search initGames={games} searchParams={searchParams} />
     </div>
   );
 }
