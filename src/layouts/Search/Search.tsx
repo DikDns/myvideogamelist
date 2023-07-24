@@ -22,6 +22,12 @@ export default function Search({
   const [offset, setOffset] = useState(initGames.length);
   const [hasMore, setHasMore] = useState(true);
 
+  useEffect(() => {
+    setHasMore(true);
+    setGames(initGames);
+    setOffset(initGames.length);
+  }, [searchParams]);
+
   const fetchMore = async () => {
     let body = `
     f name, slug, cover.image_id, aggregated_rating, genres.name;
