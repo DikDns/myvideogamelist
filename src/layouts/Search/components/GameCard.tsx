@@ -11,6 +11,7 @@ import Link from "@mui/material/Link";
 import { getImageUrl } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
 import { Game } from "@/types/Game";
+import formatUnix from "@/utils/formatUnix";
 
 export default function GameCard({ game }: { game: Game }) {
   return (
@@ -46,17 +47,31 @@ export default function GameCard({ game }: { game: Game }) {
         <Typography className="name" variant="caption" component="p">
           {game.genres?.map((genre) => genre.name).join(" | ")}
         </Typography>
-        <Typography
-          className="name"
-          variant="caption"
-          component="p"
-          sx={{ display: "flex", alignItems: "center", gap: "2px" }}
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
         >
-          <Star fontSize="inherit" color="secondary" />
-          {game.aggregated_rating
-            ? Math.round(game.aggregated_rating / 10)
-            : "Not Rated"}
-        </Typography>
+          <Typography className="name" variant="caption" component="p">
+            {game.first_release_date
+              ? formatUnix(game.first_release_date || 0)
+              : "Date Not Found"}
+          </Typography>
+          <Typography
+            className="name"
+            variant="caption"
+            component="p"
+            sx={{ display: "flex", alignItems: "center", gap: "2px" }}
+          >
+            <Star fontSize="inherit" color="secondary" />
+            {game.aggregated_rating
+              ? Math.round(game.aggregated_rating / 10)
+              : "Not Rated"}
+          </Typography>
+        </Box>
       </CardContent>
     </Card>
   );
