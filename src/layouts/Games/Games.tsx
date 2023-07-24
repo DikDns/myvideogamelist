@@ -9,8 +9,17 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
+const brackets = {
+  topRated: "top-rated",
+  topNewReleases: "top-new-releases",
+  topUpcoming: "top-upcoming",
+  newReleases: "new-releases",
+};
+
 export function BracketFetchSelect() {
-  const [bracketFetch, setBracketFetch] = React.useState("top-rated");
+  const [bracketFetch, setBracketFetch] = React.useState(
+    brackets.topNewReleases
+  );
 
   const handleChange = (event: SelectChangeEvent) => {
     setBracketFetch(event.target.value as string);
@@ -27,10 +36,10 @@ export function BracketFetchSelect() {
           label="Bracket"
           onChange={handleChange}
         >
-          <MenuItem value={"top-rated"}>Top Rated</MenuItem>
-          <MenuItem value={"top-new-releases"}>Top New Releases</MenuItem>
-          <MenuItem value={"top-upcoming"}>Top Upcoming</MenuItem>
-          <MenuItem value={"new-releases"}>New Releases</MenuItem>
+          <MenuItem value={brackets.topRated}>Top Rated</MenuItem>
+          <MenuItem value={brackets.topNewReleases}>Top New Releases</MenuItem>
+          <MenuItem value={brackets.topUpcoming}>Top Upcoming</MenuItem>
+          <MenuItem value={brackets.newReleases}>New Releases</MenuItem>
         </Select>
       </FormControl>
     </Box>
