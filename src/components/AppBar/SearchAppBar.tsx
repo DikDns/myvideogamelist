@@ -60,7 +60,7 @@ export default function SearchAppBar() {
 
   const handleSearchInput = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
-      router.push(`/search?q=${search}`);
+      router.push(`/search?q=${search.replaceAll("\\", "")}`);
     }
   };
 
