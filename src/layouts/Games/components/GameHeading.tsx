@@ -4,7 +4,8 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { h2, h3 } from "@/layouts/styles";
+import Star from "@mui/icons-material/Star";
+import { h2, h3, h4, h5, h6 } from "@/layouts/styles";
 import { getImageUrl } from "@/lib/igdb";
 import formatUnix from "@/utils/formatUnix";
 import { Game } from "@/types/Game";
@@ -60,6 +61,19 @@ export default function GameHeading({ game }: { game: Game }) {
               {game.first_release_date
                 ? `${formatUnix(game.first_release_date || 0)}`
                 : ""}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography
+              className="name"
+              variant="caption"
+              sx={{ display: "flex", alignItems: "center", gap: "2px" }}
+            >
+              <Star fontSize="inherit" color="secondary" />
+              {game.aggregated_rating
+                ? `${Math.round(game.aggregated_rating / 10)} from
+                ${game.aggregated_rating_count} critic reviews`
+                : "Not Rated"}{" "}
             </Typography>
           </Grid>
         </Grid>

@@ -33,6 +33,7 @@ export default async function GamePage({ params: { slug } }: GamePageProps) {
   const sessionPromise = getServerSession(authOptions);
   const body = `
     f slug, name, summary, first_release_date,
+    aggregated_rating, aggregated_rating_count,
     genres.name, platforms.abbreviation, 
     screenshots.image_id, artworks.image_id, videos.video_id, 
     age_ratings.rating,
