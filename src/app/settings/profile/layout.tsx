@@ -7,5 +7,5 @@ export default function SettingsProfileLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return children;
 }
