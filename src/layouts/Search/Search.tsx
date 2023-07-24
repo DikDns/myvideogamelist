@@ -35,7 +35,8 @@ export default function Search({
       body = `search "${searchParams.q}"; f name, aggregated_rating, category, slug, cover.image_id, genres.name, cover.image_id; l 10; o ${offset};`;
     }
 
-    const nextGames = await getGames(body);
+    const nextGames: Game[] = await getGames(body);
+    nextGames.sort((a, b) => (a.category || 0) - (b.category || 0));
 
     if (nextGames.length <= 0) return setHasMore(false);
 
