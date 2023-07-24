@@ -10,7 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import GameCard from "./components/GameCard";
 import { getGames } from "@/lib/igdb";
 import { SearchParams } from "@/types/SearchParams";
-import { h2, h3 } from "../styles";
+import { h3 } from "../styles";
 
 export default function Search({
   initGames,
@@ -24,7 +24,7 @@ export default function Search({
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    setHasMore(true);
+    setHasMore(initGames.length === 10);
     setGames(initGames);
     setOffset(initGames.length);
   }, [searchParams]);
