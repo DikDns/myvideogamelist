@@ -1,4 +1,4 @@
-import getHomeData from "./server/getHomeData";
+import getHomeData from "@/layouts/Home/server/getHomeData";
 import Home from "@/layouts/Home/Home";
 
 export default async function IndexPage() {
