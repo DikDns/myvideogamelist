@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
+import CircularLoading from "@/components/Loading/CircularLoading";
 import GameCard from "./components/GameCard";
 import { getGames } from "@/lib/igdb";
 import { SearchParams } from "@/types/SearchParams";
@@ -62,7 +62,7 @@ export default function Search({
           dataLength={games.length} //This is important field to render the next data
           next={fetchMore}
           hasMore={hasMore}
-          loader={<Loading />}
+          loader={<CircularLoading />}
         >
           <Grid container gap={3}>
             {games.map((game, i) => (
@@ -78,21 +78,5 @@ export default function Search({
         </Typography>
       )}
     </Container>
-  );
-}
-
-function Loading() {
-  return (
-    <Grid
-      overflow="hidden"
-      container
-      py={2}
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Grid item>
-        <CircularProgress />
-      </Grid>
-    </Grid>
   );
 }

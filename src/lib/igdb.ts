@@ -84,7 +84,7 @@ export async function getTopNewReleaseGames(
   offset: number = 0
 ) {
   const body = `
-    f name, cover.image_id, slug;
+    f name, cover.image_id, slug, first_release_date, aggregated_rating, category;
     w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n & aggregated_rating != n;
     s hypes desc;
     l ${limit};
