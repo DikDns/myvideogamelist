@@ -1,13 +1,16 @@
 "use client";
 
 import { Game } from "@/types/Game";
+import { useEffect } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import GameCard from "./components/GameCard";
 
 export default function Search({ games }: { games: Game[] }) {
-  console.log(games);
+  useEffect(() => {
+    console.log(games);
+  }, []);
 
   return (
     <Container component="main" sx={{ mt: 10 }}>
