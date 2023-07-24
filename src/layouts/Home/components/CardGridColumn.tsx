@@ -7,6 +7,7 @@ import Chip from "@mui/material/Chip";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
+import Star from "@mui/icons-material/Star";
 import Typography from "@mui/material/Typography";
 import { getImageUrl } from "@/lib/igdb";
 import { Game } from "@/types/Game";
@@ -65,14 +66,14 @@ export default function CardGridColumn({
           </Typography>
 
           {type === "rated" ? (
-            <Typography variant="caption">
-              <Chip
-                label={`${dt.aggregated_rating}`.substring(0, 4)}
-                variant="filled"
-                color="secondary"
-                sx={{ mr: 1 }}
-              />
-              {`${dt.aggregated_rating_count} Critic Reviews`}
+            <Typography
+              variant="caption"
+              display="flex"
+              alignItems="center"
+              gap="2px"
+            >
+              <Star fontSize="inherit" color="secondary" />
+              {`${Math.round((dt.aggregated_rating || 1) / 10)}`}
             </Typography>
           ) : type === "upcoming" ? (
             <Typography variant="caption">
