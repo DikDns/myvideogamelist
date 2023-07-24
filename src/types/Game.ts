@@ -18,6 +18,7 @@ export type Game = {
   name?: string;
   slug?: string;
   summary?: string;
+  category?: number;
   first_release_date?: number;
   cover?: Image;
   player_perspectives?: PlayerPerspective[];
