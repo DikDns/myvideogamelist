@@ -15,7 +15,7 @@ export default function Search({ games }: { games: Game[] }) {
   return (
     <Container component="main" sx={{ mt: 10 }}>
       {games.length > 0 ? (
-        <Grid container gap={4}>
+        <Grid container gap={3}>
           {games.map((game) => (
             <Grid item key={game.id} xs={12}>
               <GameCard game={game} />
