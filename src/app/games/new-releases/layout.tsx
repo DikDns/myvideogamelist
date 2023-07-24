@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Top New Releases | MVGL",
+  title: "New Releases | MVGL",
 };
 
 export default function NewReleasesLayout({
