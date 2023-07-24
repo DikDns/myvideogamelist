@@ -10,6 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import GameCard from "./components/GameCard";
 import { getGames } from "@/lib/igdb";
 import { SearchParams } from "@/types/SearchParams";
+import { h2, h3 } from "../styles";
 
 export default function Search({
   initGames,
@@ -52,6 +53,10 @@ export default function Search({
 
   return (
     <Container component="main" sx={{ my: 11 }}>
+      <Typography variant="h3" sx={h3} mb={2}>
+        {`Search result: ${searchParams.q}`}
+      </Typography>
+
       {initGames.length > 0 ? (
         <InfiniteScroll
           dataLength={games.length} //This is important field to render the next data
