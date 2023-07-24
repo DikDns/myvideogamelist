@@ -18,7 +18,7 @@ export default function GameCard({ game }: { game: Game }) {
       variant="outlined"
       sx={{
         display: "grid",
-        gridTemplateColumns: "0.25fr 0.75fr",
+        gridTemplateColumns: "max-content auto",
       }}
     >
       <CardMedia
@@ -28,6 +28,7 @@ export default function GameCard({ game }: { game: Game }) {
         title={`${game.name} Cover`}
         alt={`${game.name} Cover`}
         height="100%"
+        sx={{ maxWidth: "90px" }}
       />
       <CardContent
         sx={{
