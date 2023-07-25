@@ -77,7 +77,7 @@ export default function Games() {
   };
 
   return (
-    <Container sx={{ mt: 10 }}>
+    <Container>
       <BracketSelect
         value={bracket}
         onChange={(event: SelectChangeEvent) =>
