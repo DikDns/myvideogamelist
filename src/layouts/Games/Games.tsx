@@ -54,7 +54,7 @@ export default function Games() {
   const [bracket, setBracket] = useState(brackets.topNewReleases);
 
   const [games, setGames] = useState<Game[]>([]);
-  const [offset, setOffset] = useState(10);
+  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
@@ -66,10 +66,7 @@ export default function Games() {
   }, [bracket]);
 
   const fetchMore = async () => {
-    const nextGames: Game[] = await getTopNewReleaseGames(
-      10,
-      games.length === 0 ? 0 : offset
-    );
+    const nextGames: Game[] = await getTopNewReleaseGames(10, offset);
 
     nextGames.sort((a, b) => (a.category || 0) - (b.category || 0));
 
