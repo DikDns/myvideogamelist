@@ -28,8 +28,7 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <ThemeRegistry>
-            <SearchAppBar />
-            {children}
+            <SearchAppBar>{children}</SearchAppBar>
           </ThemeRegistry>
         </SessionProvider>
       </body>

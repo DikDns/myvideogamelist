@@ -1,14 +1,24 @@
 "use client";
 
+import Image from "next/image";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
+import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import CssBaseline from "@mui/material/CssBaseline";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/navigation";
 
@@ -54,9 +64,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+const drawerWidth = 260;
+
+export default function SearchAppBar({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const [search, setSearch] = React.useState("");
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   const handleSearchInput = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
@@ -64,8 +85,40 @@ export default function SearchAppBar() {
     }
   };
 
+  const drawer = (
+    <div>
+      <Toolbar>
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            gap: 1,
+          }}
+        >
+          <Image src="/icon.svg" alt="MVGL Brand Icon" width={30} height={30} />
+          MyVideoGameList
+        </Typography>
+      </Toolbar>
+      <Divider />
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </div>
+  );
+
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <CssBaseline />
       <AppBar position="fixed">
         <Toolbar>
           <IconButton
@@ -73,6 +126,7 @@ export default function SearchAppBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
+            onClick={handleDrawerToggle}
             sx={{ mr: 2 }}
           >
             <MenuIcon />
@@ -81,8 +135,18 @@ export default function SearchAppBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "flex" },
+              gap: 1,
+            }}
           >
+            <Image
+              src="/icon.svg"
+              alt="MVGL Brand Icon"
+              width={30}
+              height={30}
+            />
             MyVideoGameList
           </Typography>
           <Search>
@@ -99,6 +163,38 @@ export default function SearchAppBar() {
           </Search>
         </Toolbar>
       </AppBar>
+      <Box
+        component="nav"
+        sx={{ flexShrink: { sm: 0 } }}
+        aria-label="home games franchises series profile settings"
+      >
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          pt: 3,
+        }}
+      >
+        <Toolbar />
+        {children}
+      </Box>
     </Box>
   );
 }
