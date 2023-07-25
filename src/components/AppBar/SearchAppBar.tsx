@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import NextLink from "next/link";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -19,6 +20,12 @@ import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
+import GamesIcon from "@mui/icons-material/Games";
+import MovieIcon from "@mui/icons-material/Movie";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LoginIcon from "@mui/icons-material/Login";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import { useRouter } from "next/navigation";
 
@@ -66,6 +73,49 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const drawerWidth = 260;
 
+const drawerNavPages = [
+  {
+    src: "/",
+    name: "Home",
+    icon: HomeIcon,
+  },
+  {
+    src: "/games",
+    name: "Games",
+    icon: GamesIcon,
+  },
+  {
+    src: "/franchises",
+    name: "Franchises",
+    icon: GamesIcon,
+  },
+  {
+    src: "/series",
+    name: "Series",
+    icon: GamesIcon,
+  },
+  {
+    src: "/videos",
+    name: "Videos",
+    icon: MovieIcon,
+  },
+  {
+    src: "/list",
+    name: "My List",
+    icon: FormatListBulletedIcon,
+  },
+  {
+    src: "/profile",
+    name: "My Profile",
+    icon: AccountCircleIcon,
+  },
+  {
+    src: "/settings",
+    name: "Settings",
+    icon: SettingsIcon,
+  },
+];
+
 export default function SearchAppBar({
   children,
 }: {
@@ -104,14 +154,16 @@ export default function SearchAppBar({
       </Toolbar>
       <Divider />
       <List>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
+        {drawerNavPages.map((link, i) => (
+          <ListItem disablePadding key={i}>
+            <ListItemButton LinkComponent={NextLink} href={link.src}>
+              <ListItemIcon>
+                <link.icon />
+              </ListItemIcon>
+              <ListItemText primary={link.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </div>
   );
