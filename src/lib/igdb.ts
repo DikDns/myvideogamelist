@@ -30,6 +30,8 @@ function lastMonthDate() {
   return unixTimestamp;
 }
 
+const defaultField = `name, cover.image_id, slug, first_release_date, aggregated_rating, category, genres.name`;
+
 export async function fetchIGDBToken() {
   const baseUrl = process.env.TWITCH_TOKEN_URL ?? "";
   const clientId = process.env.TWITCH_CLIENT_ID ?? "";
@@ -84,7 +86,7 @@ export async function getTopNewReleaseGames(
   offset: number = 0
 ) {
   const body = `
-    f name, cover.image_id, slug, first_release_date, aggregated_rating, category;
+    f ${defaultField};
     w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n & aggregated_rating != n;
     s hypes desc;
     l ${limit};
@@ -125,7 +127,7 @@ export async function getNewTrailers() {
 
 export async function getPopularUpcomingGames() {
   const body = `
-    f name, slug, first_release_date, cover.image_id, genres.name;
+    f ${defaultField};
     w first_release_date > ${currentDate()} & hypes != n & cover != n;
     s hypes desc;
     l 5;
@@ -135,7 +137,7 @@ export async function getPopularUpcomingGames() {
 
 export async function getNewReleaseGames() {
   const body = `
-    f name, slug, first_release_date, cover.image_id, genres.name;
+    f ${defaultField};
     w first_release_date < ${currentDate()} & cover != n & genres != n;
     s first_release_date desc;
     l 5;
@@ -145,7 +147,7 @@ export async function getNewReleaseGames() {
 
 export async function getTopRatedGames() {
   const body = `
-    f name, slug, cover.image_id, aggregated_rating, aggregated_rating_count, genres.name;
+    f ${defaultField};
     w aggregated_rating != n & aggregated_rating_count > 7;
     s aggregated_rating desc;
     l 5;
