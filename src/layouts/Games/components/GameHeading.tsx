@@ -13,7 +13,7 @@ import { Game } from "@/types/Game";
 export default function GameHeading({ game }: { game: Game }) {
   return (
     <Box
-      mt={7}
+      mt={-3}
       pt={10}
       sx={{
         backgroundSize: "cover",
