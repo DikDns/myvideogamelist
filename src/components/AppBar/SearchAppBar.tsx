@@ -99,6 +99,9 @@ const drawerNavPages = [
     name: "Videos",
     icon: MovieIcon,
   },
+];
+
+const drawerUserPages = [
   {
     src: "/list",
     name: "My List",
@@ -155,6 +158,17 @@ export default function SearchAppBar({
       <Divider />
       <List>
         {drawerNavPages.map((link, i) => (
+          <ListItem disablePadding key={i}>
+            <ListItemButton LinkComponent={NextLink} href={link.src}>
+              <ListItemIcon>
+                <link.icon />
+              </ListItemIcon>
+              <ListItemText primary={link.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+        <Divider />
+        {drawerUserPages.map((link, i) => (
           <ListItem disablePadding key={i}>
             <ListItemButton LinkComponent={NextLink} href={link.src}>
               <ListItemIcon>
