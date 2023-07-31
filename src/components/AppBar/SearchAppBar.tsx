@@ -15,6 +15,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
@@ -87,12 +88,12 @@ const drawerNavPages = [
   {
     src: "/franchises",
     name: "Franchises",
-    icon: GamesIcon,
+    icon: VideogameAssetIcon,
   },
   {
     src: "/series",
     name: "Series",
-    icon: GamesIcon,
+    icon: VideogameAssetIcon,
   },
   {
     src: "/videos",
