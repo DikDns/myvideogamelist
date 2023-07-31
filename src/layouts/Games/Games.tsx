@@ -48,8 +48,6 @@ export default function Games() {
       fetchLimit
     );
 
-    nextGames.sort((a, b) => (a.category || 0) - (b.category || 0));
-
     if (nextGames.length <= 0) return setHasMore(false);
 
     setGames((prevGames) => [...prevGames, ...nextGames]);
