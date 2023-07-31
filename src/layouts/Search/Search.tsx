@@ -5,9 +5,11 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CircularLoading from "@/components/Loading/CircularLoading";
 import CardGame from "@/components/Game/CardGame";
+import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import { Game } from "@/types/Game";
 import getSearchGames from "./server/getSearchGames";
 import { h3 } from "../styles";
@@ -43,6 +45,10 @@ export default function Search() {
 
   return (
     <Container component="main">
+      <Box mb={2}>
+        <BasicBreadcrumbs />
+      </Box>
+
       <Typography variant="h3" sx={h3} mb={2}>
         {`Search result: ${search}`}
       </Typography>
