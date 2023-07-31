@@ -24,12 +24,12 @@ export default function Search() {
     setHasMore(true);
     setGames([]);
     setOffset(0);
-  }, [search]);
+  }, [searchParam]);
 
   useEffect(() => {
     if (games.length > 0) return;
     fetchMore();
-  });
+  }, [games]);
 
   const fetchMore = async () => {
     const fetchLimit = 10;
@@ -38,7 +38,7 @@ export default function Search() {
     if (nextGames.length <= 0) return setHasMore(false);
 
     setGames((prevGames) => [...prevGames, ...nextGames]);
-    setOffset(games.length + nextGames.length);
+    setOffset((prevOffset) => prevOffset + nextGames.length);
   };
 
   return (
