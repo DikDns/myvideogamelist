@@ -167,7 +167,9 @@ export default function SearchAppBar({
             </ListItemButton>
           </ListItem>
         ))}
-        <Divider />
+      </List>
+      <Divider />
+      <List>
         {drawerUserPages.map((link, i) => (
           <ListItem disablePadding key={i}>
             <ListItemButton LinkComponent={NextLink} href={link.src}>
