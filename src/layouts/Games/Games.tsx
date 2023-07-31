@@ -40,10 +40,30 @@ export function BracketSelect({
           label="Bracket"
           onChange={onChange}
         >
-          <MenuItem value={brackets.topRated}>Top Rated</MenuItem>
-          <MenuItem value={brackets.topNewReleases}>Top New Releases</MenuItem>
-          <MenuItem value={brackets.topUpcoming}>Top Upcoming</MenuItem>
-          <MenuItem value={brackets.newReleases}>New Releases</MenuItem>
+          <MenuItem
+            disabled={value === brackets.topRated}
+            value={brackets.topRated}
+          >
+            Top Rated
+          </MenuItem>
+          <MenuItem
+            disabled={value === brackets.topNewReleases}
+            value={brackets.topNewReleases}
+          >
+            Top New Releases
+          </MenuItem>
+          <MenuItem
+            disabled={value === brackets.topUpcoming}
+            value={brackets.topUpcoming}
+          >
+            Top Upcoming
+          </MenuItem>
+          <MenuItem
+            disabled={value === brackets.newReleases}
+            value={brackets.newReleases}
+          >
+            New Releases
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>
