@@ -4,11 +4,13 @@ import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { SelectChangeEvent } from "@mui/material/Select";
 import CircularLoading from "@/components/Loading/CircularLoading";
 import { Game } from "@/types/Game";
 import CardGame from "@/components/Game/CardGame";
+import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
 import getGamesBracket from "./Server/getGamesBracket";
 
@@ -56,6 +58,9 @@ export default function Games() {
 
   return (
     <Container>
+      <Box mb={2}>
+        <BasicBreadcrumbs />
+      </Box>
       <GamesBracketSelect
         value={bracket}
         onChange={(event: SelectChangeEvent) =>
