@@ -7,8 +7,8 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CircularLoading from "@/components/Loading/CircularLoading";
+import CardGame from "@/components/Game/CardGame";
 import { Game } from "@/types/Game";
-import GameCard from "./components/GameCard";
 import getSearchGames from "./server/getSearchGames";
 import { h3 } from "../styles";
 
@@ -65,7 +65,7 @@ export default function Search() {
         <Grid container gap={3} mb={4}>
           {games.map((game, i) => (
             <Grid item key={i} xs={12}>
-              <GameCard game={game} />
+              <CardGame game={game} />
             </Grid>
           ))}
         </Grid>

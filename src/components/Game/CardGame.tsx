@@ -13,7 +13,7 @@ import truncStr from "@/utils/truncStr";
 import { Game } from "@/types/Game";
 import formatUnix from "@/utils/formatUnix";
 
-export default function GameCard({ game }: { game: Game }) {
+export default function CardGame({ game }: { game: Game }) {
   return (
     <Card
       variant="outlined"

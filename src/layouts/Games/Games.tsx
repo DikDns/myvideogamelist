@@ -8,9 +8,9 @@ import Grid from "@mui/material/Grid";
 import { SelectChangeEvent } from "@mui/material/Select";
 import CircularLoading from "@/components/Loading/CircularLoading";
 import { Game } from "@/types/Game";
+import CardGame from "@/components/Game/CardGame";
 import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
 import getGamesBracket from "./Server/getGamesBracket";
-import GameCard from "../Search/components/GameCard";
 
 function validateBracketParams(param: string | null) {
   return param === brackets.topRated ||
@@ -71,7 +71,7 @@ export default function Games() {
         <Grid container gap={3} mt={3}>
           {games.map((game, i) => (
             <Grid item key={i} xs={12}>
-              <GameCard game={game} />
+              <CardGame game={game} />
             </Grid>
           ))}
         </Grid>
