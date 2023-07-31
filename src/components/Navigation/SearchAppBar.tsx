@@ -11,6 +11,7 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
+import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -76,11 +77,6 @@ const drawerWidth = 260;
 
 const drawerNavPages = [
   {
-    src: "/",
-    name: "Home",
-    icon: HomeIcon,
-  },
-  {
     src: "/games",
     name: "Games",
     icon: GamesIcon,
@@ -143,19 +139,26 @@ export default function SearchAppBar({
   const drawer = (
     <div>
       <Toolbar>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            gap: 1,
-          }}
-        >
-          <Image src="/icon.svg" alt="MVGL Brand Icon" width={30} height={30} />
-          MyVideoGameList
-        </Typography>
+        <Link href="/" component={NextLink} underline="none" color="inherit">
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              gap: 1,
+            }}
+          >
+            <Image
+              src="/icon.svg"
+              alt="MVGL Brand Icon"
+              width={30}
+              height={30}
+            />
+            MyVideoGameList
+          </Typography>
+        </Link>
       </Toolbar>
       <Divider />
       <List>
