@@ -12,6 +12,7 @@ import CardGame from "@/components/Game/CardGame";
 import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
 import getGamesBracket from "./Server/getGamesBracket";
+import { cardGameContainer } from "../styles";
 
 function validateBracketParams(param: string | null) {
   return param === brackets.topRated ||
@@ -21,17 +22,6 @@ function validateBracketParams(param: string | null) {
     ? param
     : brackets.topNewReleases;
 }
-
-const cardGameContainer = {
-  mt: 3,
-  display: "grid",
-  columnGap: { md: 6, xs: 3 },
-  rowGap: { md: 4, xs: 2 },
-  gridTemplateColumns: {
-    sm: "1fr 1fr",
-    xs: "1fr",
-  },
-};
 
 export default function Games() {
   const searchParams = useSearchParams();
