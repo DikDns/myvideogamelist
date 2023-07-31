@@ -4,14 +4,13 @@ import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { SelectChangeEvent } from "@mui/material/Select";
-import GameCard from "../Search/components/GameCard";
 import CircularLoading from "@/components/Loading/CircularLoading";
 import { Game } from "@/types/Game";
-import { getTopNewReleaseGames } from "@/lib/igdb";
 import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
+import getGamesBracket from "./Server/getGamesBracket";
+import GameCard from "../Search/components/GameCard";
 
 function validateBracketParams(param: string | null) {
   return param === brackets.topRated ||
@@ -24,24 +23,30 @@ function validateBracketParams(param: string | null) {
 
 export default function Games() {
   const searchParams = useSearchParams();
-  const [bracket, setBracket] = useState(
-    validateBracketParams(searchParams.get("bracket"))
-  );
+  const bracketParams = validateBracketParams(searchParams.get("bracket"));
+  const [bracket, setBracket] = useState(bracketParams);
 
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    console.log(games);
-  }, [games]);
-
-  useEffect(() => {
-    fetchMore();
+    setOffset(0);
+    setGames([]);
   }, [bracket]);
 
+  useEffect(() => {
+    if (games.length > 0) return;
+    fetchMore();
+  }, [games]);
+
   const fetchMore = async () => {
-    const nextGames: Game[] = await getTopNewReleaseGames(10, offset);
+    const fetchLimit = 10;
+    const nextGames: Game[] = await getGamesBracket(
+      bracket,
+      offset,
+      fetchLimit
+    );
 
     nextGames.sort((a, b) => (a.category || 0) - (b.category || 0));
 
