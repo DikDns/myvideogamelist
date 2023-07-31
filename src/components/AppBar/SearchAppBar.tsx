@@ -28,7 +28,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -126,7 +126,8 @@ export default function SearchAppBar({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const [search, setSearch] = React.useState("");
+  const searchParams = useSearchParams();
+  const [search, setSearch] = React.useState(searchParams.get("q") || "");
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
