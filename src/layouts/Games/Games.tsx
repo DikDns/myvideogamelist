@@ -5,70 +5,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent, SelectProps } from "@mui/material/Select";
+import { SelectChangeEvent } from "@mui/material/Select";
 import GameCard from "../Search/components/GameCard";
 import CircularLoading from "@/components/Loading/CircularLoading";
 import { Game } from "@/types/Game";
 import { getTopNewReleaseGames } from "@/lib/igdb";
-
-const brackets = {
-  topRated: "top-rated",
-  topNewReleases: "top-new-releases",
-  topUpcoming: "top-upcoming",
-  newReleases: "new-releases",
-};
-
-export function BracketSelect({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: any;
-}) {
-  return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="bracket-select-label">Bracket</InputLabel>
-        <Select
-          labelId="bracket-select-label"
-          id="bracket-select"
-          value={value}
-          label="Bracket"
-          onChange={onChange}
-        >
-          <MenuItem
-            disabled={value === brackets.topRated}
-            value={brackets.topRated}
-          >
-            Top Rated
-          </MenuItem>
-          <MenuItem
-            disabled={value === brackets.topNewReleases}
-            value={brackets.topNewReleases}
-          >
-            Top New Releases
-          </MenuItem>
-          <MenuItem
-            disabled={value === brackets.topUpcoming}
-            value={brackets.topUpcoming}
-          >
-            Top Upcoming
-          </MenuItem>
-          <MenuItem
-            disabled={value === brackets.newReleases}
-            value={brackets.newReleases}
-          >
-            New Releases
-          </MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
-}
+import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
 
 export default function Games() {
   const [bracket, setBracket] = useState(brackets.topNewReleases);
@@ -98,7 +40,7 @@ export default function Games() {
 
   return (
     <Container>
-      <BracketSelect
+      <GamesBracketSelect
         value={bracket}
         onChange={(event: SelectChangeEvent) =>
           setBracket(event.target.value as string)
