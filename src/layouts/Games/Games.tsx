@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import { SelectChangeEvent } from "@mui/material/Select";
 import CircularLoading from "@/components/Loading/CircularLoading";
 import { Game } from "@/types/Game";
@@ -22,6 +21,17 @@ function validateBracketParams(param: string | null) {
     ? param
     : brackets.topNewReleases;
 }
+
+const cardGameContainer = {
+  mt: 3,
+  display: "grid",
+  columnGap: { md: 6, xs: 3 },
+  rowGap: { md: 4, xs: 2 },
+  gridTemplateColumns: {
+    sm: "1fr 1fr",
+    xs: "1fr",
+  },
+};
 
 export default function Games() {
   const searchParams = useSearchParams();
@@ -58,7 +68,7 @@ export default function Games() {
 
   return (
     <Container>
-      <Box mb={2}>
+      <Box sx={{ mb: { sm: 3, xs: 2 } }}>
         <BasicBreadcrumbs />
       </Box>
       <GamesBracketSelect
@@ -73,13 +83,11 @@ export default function Games() {
         hasMore={hasMore}
         loader={<CircularLoading />}
       >
-        <Grid container gap={3} mt={3}>
+        <Box sx={cardGameContainer}>
           {games.map((game, i) => (
-            <Grid item key={i} xs={12}>
-              <CardGame game={game} />
-            </Grid>
+            <CardGame key={i} game={game} />
           ))}
-        </Grid>
+        </Box>
       </InfiniteScroll>
     </Container>
   );
