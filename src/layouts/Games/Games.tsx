@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
@@ -12,8 +13,20 @@ import { Game } from "@/types/Game";
 import { getTopNewReleaseGames } from "@/lib/igdb";
 import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
 
+function validateBracketParams(param: string | null) {
+  return param === brackets.topRated ||
+    param === brackets.topNewReleases ||
+    param === brackets.topUpcoming ||
+    param === brackets.newReleases
+    ? param
+    : brackets.topNewReleases;
+}
+
 export default function Games() {
-  const [bracket, setBracket] = useState(brackets.topNewReleases);
+  const searchParams = useSearchParams();
+  const [bracket, setBracket] = useState(
+    validateBracketParams(searchParams.get("bracket"))
+  );
 
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
