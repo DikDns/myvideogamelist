@@ -42,7 +42,7 @@ export default function Search() {
   };
 
   return (
-    <Container component="main" sx={{ my: 11 }}>
+    <Container component="main">
       <Typography variant="h3" sx={h3} mb={2}>
         {`Search result: ${search}`}
       </Typography>
@@ -62,7 +62,7 @@ export default function Search() {
           )
         }
       >
-        <Grid container gap={3}>
+        <Grid container gap={3} mb={4}>
           {games.map((game, i) => (
             <Grid item key={i} xs={12}>
               <GameCard game={game} />
