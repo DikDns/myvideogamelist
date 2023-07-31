@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Game } from "@/types/Game";
 import { GameListUser } from "./types/GameListUser";
 import Container from "@mui/material/Container";
+import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
 import GameMedia from "./components/GameMedia";
@@ -41,6 +42,7 @@ export default function Game({
           session={session}
           gameListUser={gameListUser}
         />
+        <BasicBreadcrumbs />
         <GameSummary game={game} />
         <GameMedia game={game} />
         <GameRelatedContent game={game} />
