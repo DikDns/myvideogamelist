@@ -1,7 +1,7 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
 import SessionProvider from "@/components/NextAuth/SessionProvider";
-import SearchAppBar from "@/components/AppBar/SearchAppBar";
+import SearchAppBar from "@/components/Navigation/SearchAppBar";
 
 export const metadata = {
   referrer: "origin-when-cross-origin",
