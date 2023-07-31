@@ -125,32 +125,41 @@ export async function getNewTrailers() {
   return await getGameVideos(body);
 }
 
-export async function getPopularUpcomingGames() {
+export async function getPopularUpcomingGames(
+  limit: number = 5,
+  offset: number = 0
+) {
   const body = `
     f ${defaultField};
     w first_release_date > ${currentDate()} & hypes != n & cover != n;
     s hypes desc;
-    l 5;
+    l ${limit};
+    o ${offset};
   `;
   return await getGames(body);
 }
 
-export async function getNewReleaseGames() {
+export async function getNewReleaseGames(
+  limit: number = 5,
+  offset: number = 0
+) {
   const body = `
     f ${defaultField};
     w first_release_date < ${currentDate()} & cover != n & genres != n;
     s first_release_date desc;
-    l 5;
+    l ${limit};
+    o ${offset};
   `;
   return await getGames(body);
 }
 
-export async function getTopRatedGames() {
+export async function getTopRatedGames(limit: number = 5, offset: number = 0) {
   const body = `
     f ${defaultField};
     w aggregated_rating != n & aggregated_rating_count > 7;
     s aggregated_rating desc;
-    l 5;
+    l ${limit};
+    o ${offset};
   `;
   return await getGames(body);
 }
