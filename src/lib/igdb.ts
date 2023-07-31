@@ -164,6 +164,20 @@ export async function getTopRatedGames(limit: number = 5, offset: number = 0) {
   return await getGames(body);
 }
 
+export async function searchGames(
+  search: string,
+  limit: number = 10,
+  offset: number = 0
+) {
+  const body = `
+    search "${search}";
+    f ${defaultField};
+    l ${limit};
+    o ${offset};
+  `;
+  return await getGames(body);
+}
+
 /**
  * IGDB Image URL Generator
  * @param imageId - The image id.

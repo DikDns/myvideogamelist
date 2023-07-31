@@ -11,23 +11,21 @@ import GameCard from "./components/GameCard";
 import { getGames } from "@/lib/igdb";
 import { SearchParams } from "@/types/SearchParams";
 import { h3 } from "../styles";
+import { useSearchParams } from "next/navigation";
 
-export default function Search({
-  initGames,
-  searchParams,
-}: {
-  initGames: Game[];
-  searchParams: SearchParams;
-}) {
-  const [games, setGames] = useState(initGames);
-  const [offset, setOffset] = useState(initGames.length);
+export default function Search() {
+  const searchParam = useSearchParams();
+  const search = searchParam.get("q");
+
+  const [games, setGames] = useState([]);
+  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    setHasMore(initGames.length === 10);
-    setGames(initGames);
-    setOffset(initGames.length);
-  }, [searchParams]);
+    setHasMore(true);
+    setGames([]);
+    setOffset(0);
+  }, [search]);
 
   const fetchMore = async () => {
     let body = `
@@ -38,8 +36,8 @@ export default function Search({
     o ${offset};
   `;
 
-    if (searchParams.q && searchParams.q.length > 1) {
-      body = `search "${searchParams.q}"; f name, aggregated_rating, category, slug, cover.image_id, genres.name, cover.image_id; l 10; o ${offset};`;
+    if (search && search.length > 1) {
+      body = `search "${search}"; f name, aggregated_rating, category, slug, cover.image_id, genres.name, cover.image_id; l 10; o ${offset};`;
     }
 
     const nextGames: Game[] = await getGames(body);
