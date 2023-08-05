@@ -14,6 +14,10 @@ A website similar to MyAnimeList, but for tracking video games.
 - [ ] User Steam/Epic Games/Google Connection Auth0 Logic
 - [ ] Optimize Performance
 
+`/search`
+
+- [ ] Fix bug double fetching (?)
+
 `/games`
 
 - [ ] Advanced Search Game List
