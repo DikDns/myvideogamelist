@@ -4,13 +4,16 @@ import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import Star from "@mui/icons-material/Star";
-import { h2, h3, h4, h5, h6 } from "@/layouts/styles";
+import { h2, h3 } from "@/layouts/styles";
 import { getImageUrl } from "@/lib/igdb";
 import formatUnix from "@/utils/formatUnix";
 import { Game } from "@/types/Game";
 
 export default function GameHeading({ game }: { game: Game }) {
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
     <Box
       mt={-3}
@@ -32,8 +35,7 @@ export default function GameHeading({ game }: { game: Game }) {
         alignItems="center"
         flexWrap="nowrap"
         container
-        pt={2}
-        pb={1}
+        py={1}
         px={2}
         gap={2}
         sx={{
@@ -46,8 +48,8 @@ export default function GameHeading({ game }: { game: Game }) {
           <Image
             src={getImageUrl(game.cover?.image_id || "", "cover_big", "2x")}
             alt={`${game.name} Cover`}
-            width={90}
-            height={128}
+            width={matches ? 180 : 90}
+            height={matches ? 256 : 128}
           />
         </Grid>
         <Grid container item direction="column" xs={10} gap={1}>
