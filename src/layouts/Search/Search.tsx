@@ -12,7 +12,7 @@ import CardGame from "@/components/Game/CardGame";
 import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import { Game } from "@/types/Game";
 import getSearchGames from "./server/getSearchGames";
-import { h3 } from "../styles";
+import { cardGameContainer, h3 } from "../styles";
 
 export default function Search() {
   const searchParam = useSearchParams();
@@ -49,7 +49,7 @@ export default function Search() {
         <BasicBreadcrumbs />
       </Box>
 
-      <Typography variant="h3" sx={h3} mb={2}>
+      <Typography variant="h3" sx={h3}>
         {`Search result: ${search}`}
       </Typography>
 
@@ -68,7 +68,7 @@ export default function Search() {
           )
         }
       >
-        <Grid container gap={3} mb={4}>
+        <Grid container gap={3} mb={4} sx={cardGameContainer}>
           {games.map((game, i) => (
             <Grid item key={i} xs={12}>
               <CardGame game={game} />
