@@ -15,7 +15,7 @@ type Type = "games" | "franchises" | "series";
 
 export default function GameRelatedContent({ game }: { game: Game }) {
   return (
-    <Stack gap={1} my={5}>
+    <Stack mt={2}>
       <Typography mb={1} variant="h3" sx={h3}>{`Related Content`}</Typography>
 
       {game.parent_game ? (

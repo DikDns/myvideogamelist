@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Game } from "@/types/Game";
 import { GameListUser } from "./types/GameListUser";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import GameHeading from "./components/GameHeading";
 import GameSummary from "./components/GameSummary";
@@ -36,18 +37,29 @@ export default function Game({
       <GameHeading game={game} />
 
       {/* Game Information: Genres, Platforms, Summary */}
-      <Container component="main" sx={{ overflow: "hidden" }}>
-        <BasicBreadcrumbs />
-        <GameActionButtons
-          game={game}
-          session={session}
-          gameListUser={gameListUser}
-        />
-        <GameSummary game={game} />
-        <GameMedia game={game} />
-        <GameRelatedContent game={game} />
-        <GameResources game={game} />
-        <GameInformation game={game} />
+      <Container sx={{ overflow: "hidden" }}>
+        <Box
+          sx={{
+            display: { md: "grid" },
+            gridTemplateColumns: { md: "75% 25%" },
+          }}
+        >
+          <Box component="main">
+            <BasicBreadcrumbs />
+            <GameActionButtons
+              game={game}
+              session={session}
+              gameListUser={gameListUser}
+            />
+            <GameSummary game={game} />
+            <GameMedia game={game} />
+            <GameRelatedContent game={game} />
+            <GameResources game={game} />
+          </Box>
+          <Box component="aside">
+            <GameInformation game={game} />
+          </Box>
+        </Box>
         <GameRecomendation game={game} />
       </Container>
     </>

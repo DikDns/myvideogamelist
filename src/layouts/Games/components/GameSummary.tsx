@@ -12,7 +12,7 @@ export default function GameSummary({ game }: { game: Game }) {
   const [isReadMoreSumary, setIsReadMoreSummary] = useState(false);
 
   return (
-    <Stack gap={2} mb={5} mt={2}>
+    <Stack my={1} mb={2}>
       <BoxGrid sx={{ gridTemplateColumns: "90px auto" }} label={`Genre`}>
         {game.genres?.map((genre) => genre.name).join(", ")}
       </BoxGrid>

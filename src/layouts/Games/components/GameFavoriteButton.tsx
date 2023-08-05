@@ -41,7 +41,7 @@ export default function GameFavoriteButton({
         display: "flex",
         gap: 1,
         flexWrap: "wrap",
-        width: { xs: "100%", sm: "200px" },
+        width: { md: "200px" },
       }}
       onClick={() => handleFavorite()}
     >

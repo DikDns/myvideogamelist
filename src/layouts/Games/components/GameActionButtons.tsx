@@ -19,10 +19,9 @@ export default function GameActionButtons({
 }) {
   return (
     <Box
-      mt={2}
-      mb={3}
+      my={2}
       sx={{
-        display: { xs: "grid", sm: "flex" },
+        display: { xs: "grid", md: "flex" },
         gap: 2,
         gridTemplateColumns: !session ? "1fr" : "1fr 1fr",
       }}
