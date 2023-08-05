@@ -21,15 +21,13 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
 import GamesIcon from "@mui/icons-material/Games";
 import MovieIcon from "@mui/icons-material/Movie";
 import SettingsIcon from "@mui/icons-material/Settings";
-import LoginIcon from "@mui/icons-material/Login";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -123,6 +121,7 @@ export default function SearchAppBar({
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const [search, setSearch] = React.useState(searchParams.get("q") || "");
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -164,7 +163,11 @@ export default function SearchAppBar({
       <List>
         {drawerNavPages.map((link, i) => (
           <ListItem disablePadding key={i}>
-            <ListItemButton LinkComponent={NextLink} href={link.src}>
+            <ListItemButton
+              selected={pathname.includes(link.src)}
+              LinkComponent={NextLink}
+              href={link.src}
+            >
               <ListItemIcon>
                 <link.icon />
               </ListItemIcon>
@@ -177,7 +180,11 @@ export default function SearchAppBar({
       <List>
         {drawerUserPages.map((link, i) => (
           <ListItem disablePadding key={i}>
-            <ListItemButton LinkComponent={NextLink} href={link.src}>
+            <ListItemButton
+              selected={pathname.includes(link.src)}
+              LinkComponent={NextLink}
+              href={link.src}
+            >
               <ListItemIcon>
                 <link.icon />
               </ListItemIcon>
