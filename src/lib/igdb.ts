@@ -23,9 +23,9 @@ function currentDate() {
   return unixTimestamp;
 }
 
-function lastMonthDate() {
+function lastMonthDate(date: number = -30) {
   const lastMonthDate = new Date();
-  lastMonthDate.setDate(-30);
+  lastMonthDate.setDate(date);
   const unixTimestamp = Math.floor(lastMonthDate.getTime() / 1000);
   return unixTimestamp;
 }
@@ -87,7 +87,9 @@ export async function getTopNewReleaseGames(
 ) {
   const body = `
     f ${defaultField};
-    w first_release_date > ${lastMonthDate()} & first_release_date < ${currentDate()} & hypes != n & cover != n & aggregated_rating != n;
+    w first_release_date > ${lastMonthDate(-60)} & 
+    first_release_date < ${currentDate()} & 
+    hypes != n & cover != n & aggregated_rating != n;
     s hypes desc;
     l ${limit};
     o ${offset};
