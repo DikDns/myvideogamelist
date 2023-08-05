@@ -29,7 +29,7 @@ A website similar to MyAnimeList, but for tracking video games.
 - [x] Display Game Data Information.
 - [x] Display Game Trailers and Screenshot with Carousel.
 - [x] Display Company who developed the game.
-- [ ] Bigger Screen Layout Grid
+- [x] Bigger Screen Layout Grid
 - [ ] Game Gallery Logic with Embla Carousel
 
 `/franchises`
