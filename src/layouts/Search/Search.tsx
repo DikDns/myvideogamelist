@@ -4,7 +4,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CircularLoading from "@/components/Loading/CircularLoading";
@@ -68,13 +67,11 @@ export default function Search() {
           )
         }
       >
-        <Grid container gap={3} mb={4} sx={cardGameContainer}>
+        <Box sx={cardGameContainer}>
           {games.map((game, i) => (
-            <Grid item key={i} xs={12}>
-              <CardGame game={game} />
-            </Grid>
+            <CardGame key={i} game={game} />
           ))}
-        </Grid>
+        </Box>
       </InfiniteScroll>
     </Container>
   );
