@@ -37,7 +37,12 @@ export default function GameFavoriteButton({
     <Button
       variant="outlined"
       color={favoriteOptimistic.isFavorited ? "secondary" : "inherit"}
-      sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}
+      sx={{
+        display: "flex",
+        gap: 1,
+        flexWrap: "wrap",
+        width: { xs: "100%", sm: "200px" },
+      }}
       onClick={() => handleFavorite()}
     >
       <Favorite fontSize="small" />

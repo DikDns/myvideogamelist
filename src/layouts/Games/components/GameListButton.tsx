@@ -61,6 +61,9 @@ export default function GameListButton({
           setOpen(true);
           setStatus(list?.status ? list.status : ListStatus.PLAYING);
         }}
+        sx={{
+          width: { xs: "100%", sm: "200px" },
+        }}
       >
         {list?.status ? `${list?.status}` : `Add to List`}
       </Button>

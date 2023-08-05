@@ -22,7 +22,7 @@ export default function GameActionButtons({
       mt={2}
       mb={3}
       sx={{
-        display: "grid",
+        display: { xs: "grid", sm: "flex" },
         gap: 2,
         gridTemplateColumns: !session ? "1fr" : "1fr 1fr",
       }}
