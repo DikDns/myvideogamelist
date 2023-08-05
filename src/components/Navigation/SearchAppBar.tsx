@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import NextLink from "next/link";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useSession, signIn } from "next-auth/react";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -23,11 +25,11 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import GamesIcon from "@mui/icons-material/Games";
 import MovieIcon from "@mui/icons-material/Movie";
+import LoginIcon from "@mui/icons-material/Login";
 import SettingsIcon from "@mui/icons-material/Settings";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -119,6 +121,7 @@ export default function SearchAppBar({
 }: {
   children: React.ReactNode;
 }) {
+  const { data } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -178,20 +181,31 @@ export default function SearchAppBar({
       </List>
       <Divider />
       <List>
-        {drawerUserPages.map((link, i) => (
-          <ListItem disablePadding key={i}>
-            <ListItemButton
-              selected={pathname.includes(link.src)}
-              LinkComponent={NextLink}
-              href={link.src}
-            >
+        {data ? (
+          drawerUserPages.map((link, i) => (
+            <ListItem disablePadding key={i}>
+              <ListItemButton
+                selected={pathname.includes(link.src)}
+                LinkComponent={NextLink}
+                href={link.src}
+              >
+                <ListItemIcon>
+                  <link.icon />
+                </ListItemIcon>
+                <ListItemText primary={link.name} />
+              </ListItemButton>
+            </ListItem>
+          ))
+        ) : (
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => signIn("auth0")}>
               <ListItemIcon>
-                <link.icon />
+                <LoginIcon />
               </ListItemIcon>
-              <ListItemText primary={link.name} />
+              <ListItemText primary="Sign In" />
             </ListItemButton>
           </ListItem>
-        ))}
+        )}
       </List>
     </div>
   );
