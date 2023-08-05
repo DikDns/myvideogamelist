@@ -17,7 +17,7 @@ A website similar to MyAnimeList, but for tracking video games.
 `/games`
 
 - [ ] Advanced Search Game List
-- [ ] Default Game List
+- [x] Default Game List
 
 `/games/[slug]`
 
