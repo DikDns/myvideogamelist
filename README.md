@@ -6,8 +6,8 @@ A website similar to MyAnimeList, but for tracking video games.
 
 `Features`
 
-- [ ] Favorite Game Logic
-- [ ] My Video Game List Logic
+- [x] Favorite Game Logic
+- [x] My Video Game List Logic
 - [ ] Following/Follower User Logic
 - [ ] MVGL User Rating Logic
 - [ ] User Auth0 Settings Logic
@@ -25,7 +25,7 @@ A website similar to MyAnimeList, but for tracking video games.
 - [x] Display Game Data Information.
 - [x] Display Game Trailers and Screenshot with Carousel.
 - [x] Display Company who developed the game.
-- [ ] Bigger Screen Layout Grid 
+- [ ] Bigger Screen Layout Grid
 - [ ] Game Gallery Logic with Embla Carousel
 
 `/franchises`
