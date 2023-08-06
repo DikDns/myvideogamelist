@@ -78,15 +78,6 @@ model FranchiseList {
   @@map("franchise_lists")
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-  @@map("verificationtokens")
-}
-
 model IGDBToken {
   accessToken String   @id @unique @map("access_token")
   expiredAt   DateTime @map("expires_at")
