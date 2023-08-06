@@ -10,7 +10,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { User } from "next-auth";
 import { updateList } from "../Server/Actions";
 import { GameListUser } from "../types/GameListUser";
 import { Game } from "@/types/Game";
@@ -19,11 +18,9 @@ import { ListStatus } from "@prisma/client";
 export default function GameListButton({
   gameListUser,
   game,
-  user,
 }: {
   gameListUser: GameListUser | null;
   game: Game;
-  user: User;
 }) {
   const [list, setList] = useState({
     status: gameListUser?.status,

@@ -4,16 +4,13 @@ import { experimental_useOptimistic as useOptimistic } from "react";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
 import { updateIsFavorited } from "../Server/Actions";
-import { User } from "next-auth";
 import { Game } from "@/types/Game";
 
 export default function GameFavoriteButton({
   isFavorited,
-  user,
   game,
 }: {
   isFavorited: boolean | null;
-  user: User;
   game: Game;
 }) {
   const [favoriteOptimistic, addFavoriteOptimistic] = useOptimistic(

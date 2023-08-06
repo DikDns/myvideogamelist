@@ -1,7 +1,7 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
-import SessionProvider from "@/components/NextAuth/SessionProvider";
 import SearchAppBar from "@/components/Navigation/SearchAppBar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
   referrer: "origin-when-cross-origin",
@@ -24,14 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <SessionProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
           <ThemeRegistry>
             <SearchAppBar>{children}</SearchAppBar>
           </ThemeRegistry>
-        </SessionProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
