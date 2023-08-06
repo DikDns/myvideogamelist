@@ -9,7 +9,6 @@ import { GameListUser } from "../types/GameListUser";
 export default function GameActionButtons({
   game,
   gameListUser,
-,
 }: {
   game: Game;
   gameListUser: GameListUser | null;

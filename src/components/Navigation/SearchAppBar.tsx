@@ -3,7 +3,7 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useSession, signIn } from "next-auth/react";
+import { UserButton } from "@clerk/nextjs";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -121,7 +121,7 @@ export default function SearchAppBar({
 }: {
   children: React.ReactNode;
 }) {
-  const { data } = useSession();
+  // const { data } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -181,31 +181,7 @@ export default function SearchAppBar({
       </List>
       <Divider />
       <List>
-        {data ? (
-          drawerUserPages.map((link, i) => (
-            <ListItem disablePadding key={i}>
-              <ListItemButton
-                selected={pathname.includes(link.src)}
-                LinkComponent={NextLink}
-                href={link.src}
-              >
-                <ListItemIcon>
-                  <link.icon />
-                </ListItemIcon>
-                <ListItemText primary={link.name} />
-              </ListItemButton>
-            </ListItem>
-          ))
-        ) : (
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => signIn("auth0")}>
-              <ListItemIcon>
-                <LoginIcon />
-              </ListItemIcon>
-              <ListItemText primary="Sign In" />
-            </ListItemButton>
-          </ListItem>
-        )}
+        <UserButton />
       </List>
     </div>
   );
