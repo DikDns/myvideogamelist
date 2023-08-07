@@ -36,8 +36,8 @@ A website similar to MyAnimeList, but for tracking video games.
 
 `/franchises/[slug]`
 
-- [ ] Display the Franchise Data.
-- [ ] Display the List of Games in the Franchise.
+- [x] Display the Franchise Data.
+- [x] Display the List of Games in the Franchise.
 
 `/series`
 
@@ -46,8 +46,8 @@ A website similar to MyAnimeList, but for tracking video games.
 
 `/series/[slug]`
 
-- [ ] Display the Series Data.
-- [ ] Display the List of Games in the Series.
+- [x] Display the Series Data.
+- [x] Display the List of Games in the Series.
 
 `/profile/[username]`
 
