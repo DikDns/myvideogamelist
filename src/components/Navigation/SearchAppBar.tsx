@@ -4,7 +4,12 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import * as React from "react";
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -110,8 +115,8 @@ const drawerUserPages = [
     icon: AccountCircleIcon,
   },
   {
-    src: "/settings",
-    name: "Settings",
+    src: "/account",
+    name: "Account Settings",
     icon: SettingsIcon,
   },
 ];
@@ -180,8 +185,8 @@ export default function SearchAppBar({
         ))}
       </List>
       <Divider />
-      <List>
-        <SignedIn>
+      <SignedIn>
+        <List>
           {drawerUserPages.map((link, i) => (
             <ListItem disablePadding key={i}>
               <ListItemButton
@@ -196,8 +201,20 @@ export default function SearchAppBar({
               </ListItemButton>
             </ListItem>
           ))}
-        </SignedIn>
-        <SignedOut>
+        </List>
+        <Divider />
+        <List>
+          <ListItem disablePadding>
+            <SignOutButton>
+              <Button sx={{ my: 1, mx: 2, width: "100%" }} variant="outlined">
+                Sign Out
+              </Button>
+            </SignOutButton>
+          </ListItem>
+        </List>
+      </SignedIn>
+      <SignedOut>
+        <List>
           <ListItem disablePadding>
             <SignInButton>
               <Button sx={{ my: 1, mx: 2, width: "100%" }} variant="contained">
@@ -205,8 +222,8 @@ export default function SearchAppBar({
               </Button>
             </SignInButton>
           </ListItem>
-        </SignedOut>
-      </List>
+        </List>
+      </SignedOut>
     </div>
   );
 

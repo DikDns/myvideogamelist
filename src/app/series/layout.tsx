@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Games",
+  title: "Series",
   description:
     "Welcome to MVGL Series Section! The place where you can search your favorite Series!",
 };

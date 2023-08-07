@@ -1,8 +1,8 @@
 export const metadata = {
-  title: "Your Profile",
+  title: "Account",
 };
 
-export default function SettingsProfileLayout({
+export default function SeriesLayout({
   children,
 }: {
   children: React.ReactNode;
