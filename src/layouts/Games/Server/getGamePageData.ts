@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs";
 import { getGames } from "@/lib/igdb";
 import { prisma } from "@/lib/db";
 import { Game } from "@/types/Game";
-import truncStr from "@/utils/truncStr";
 
 export default async function getGamePageData(slug: string) {
-  // const sessionPromise = getServerSession(authOptions);
-  const sessionPromise = {};
+  const authPromises = auth();
   const body = `
     f slug, name, summary, first_release_date,
     aggregated_rating, aggregated_rating_count,
@@ -33,23 +32,14 @@ export default async function getGamePageData(slug: string) {
   `;
   const gamesPromise: Promise<Game[]> = getGames(body);
 
-  const [session, games] = await Promise.all([sessionPromise, gamesPromise]);
+  const [{ userId }, games] = await Promise.all([authPromises, gamesPromise]);
 
-  const gameListUser = await prisma.gameList.findFirst({
+  if (games.length < 1) return notFound();
+
+  const userGameList = await prisma.gameList.findFirst({
     select: { isFavorited: true, status: true, score: true },
-    where: { gameId: games[0].id, userId: session?.user.id || "" },
+    where: { gameId: games[0].id, userId: userId || "" },
   });
 
-  return { gameListUser, session, games };
-}
-
-export async function getGamePageMetadata(slug: string) {
-  const body = `f name; w slug="${slug}";`;
-  const games: Game[] = await getGames(body);
-
-  if (games.length < 1) notFound();
-
-  return {
-    title: `${truncStr(games[0].name || "", 20)} | MVGL`,
-  };
+  return { userGameList, games };
 }

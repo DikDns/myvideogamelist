@@ -1,5 +1,6 @@
 "use client";
 
+import { auth } from "@clerk/nextjs";
 import { useState, useTransition } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -22,6 +23,7 @@ export default function GameListButton({
   gameListUser: GameListUser | null;
   game: Game;
 }) {
+  const { userId } = auth();
   const [list, setList] = useState({
     status: gameListUser?.status,
     score: gameListUser?.score,
@@ -40,7 +42,9 @@ export default function GameListButton({
   const handleDialogSave = () => {
     setList({ status, score });
     setOpen(false);
-    return startTransition(() => updateList(user.id, game.id, status, score));
+    return startTransition(() =>
+      updateList(userId || "", game.id, status, score)
+    );
   };
 
   return (

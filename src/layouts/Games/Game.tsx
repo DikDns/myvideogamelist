@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Game } from "@/types/Game";
 import { GameListUser } from "./types/GameListUser";
 import Container from "@mui/material/Container";
@@ -14,22 +13,14 @@ import GameResources from "./components/GameResources";
 import GameInformation from "./components/GameInformation";
 import GameRecomendation from "./components/GameRecomendation";
 import GameActionButtons from "./components/GameActionButtons";
-import { Session } from "next-auth";
 
 export default function Game({
-  session,
   game,
-  gameListUser,
+  userGameList,
 }: {
   game: Game;
-  gameListUser: GameListUser | null;
-  session: Session | null;
+  userGameList: GameListUser | null;
 }) {
-  useEffect(() => {
-    // console.log(game);
-    // console.log(gameListUser);
-  }, []);
-
   return (
     <>
       {/* Heading: Game Cover and Name */}
@@ -46,11 +37,7 @@ export default function Game({
         >
           <Box component="main">
             <BasicBreadcrumbs />
-            <GameActionButtons
-              game={game}
-              session={session}
-              gameListUser={gameListUser}
-            />
+            <GameActionButtons game={game} gameListUser={userGameList} />
             <GameSummary game={game} />
             <GameMedia game={game} />
             <GameRelatedContent game={game} />

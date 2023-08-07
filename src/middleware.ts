@@ -1,5 +1,4 @@
 import { authMiddleware } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
 
 export default authMiddleware({
   publicRoutes: [
@@ -7,6 +6,11 @@ export default authMiddleware({
     /\/(games|franchises|series|videos|search)./,
     /\/api\/igdb./,
     "/api/auth",
+    "/games",
+    "/franchises",
+    "/series",
+    "/videos",
+    "/search",
   ],
 });
 

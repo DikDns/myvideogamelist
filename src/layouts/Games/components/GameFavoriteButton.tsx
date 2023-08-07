@@ -1,5 +1,6 @@
 "use client";
 
+import { auth } from "@clerk/nextjs";
 import { experimental_useOptimistic as useOptimistic } from "react";
 import Button from "@mui/material/Button";
 import Favorite from "@mui/icons-material/Favorite";
@@ -13,6 +14,7 @@ export default function GameFavoriteButton({
   isFavorited: boolean | null;
   game: Game;
 }) {
+  const { userId } = auth();
   const [favoriteOptimistic, addFavoriteOptimistic] = useOptimistic(
     {
       isFavorited: isFavorited,
@@ -27,7 +29,11 @@ export default function GameFavoriteButton({
 
   const handleFavorite = async () => {
     addFavoriteOptimistic(!favoriteOptimistic.isFavorited);
-    await updateIsFavorited(user.id, game.id, !favoriteOptimistic.isFavorited);
+    await updateIsFavorited(
+      userId || "",
+      game.id,
+      !favoriteOptimistic.isFavorited
+    );
   };
 
   return (

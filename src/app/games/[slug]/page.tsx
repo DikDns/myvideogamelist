@@ -5,11 +5,11 @@ import Game from "@/layouts/Games/Game";
 type GamePageProps = PageProps<{ slug: string }>;
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
-  const { session, games, gameListUser } = await getGamePageData(slug);
+  const { games, userGameList } = await getGamePageData(slug);
 
   return (
     <div>
-      <Game session={session} game={games[0]} gameListUser={gameListUser} />
+      <Game game={games[0]} userGameList={userGameList} />
     </div>
   );
 }
