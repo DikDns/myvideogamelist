@@ -146,7 +146,13 @@ export default function SearchAppBar({
   const drawer = (
     <div>
       <Toolbar>
-        <Link href="/" component={NextLink} underline="none" color="inherit">
+        <Link
+          href="/"
+          component={NextLink}
+          underline="none"
+          color="inherit"
+          onClick={() => setMobileOpen(false)}
+        >
           <Typography
             variant="h6"
             noWrap
@@ -175,6 +181,7 @@ export default function SearchAppBar({
               selected={pathname.includes(link.src)}
               LinkComponent={NextLink}
               href={link.src}
+              onClick={() => setMobileOpen(false)}
             >
               <ListItemIcon>
                 <link.icon />
@@ -193,6 +200,7 @@ export default function SearchAppBar({
                 selected={pathname.includes(link.src)}
                 LinkComponent={NextLink}
                 href={link.src}
+                onClick={() => setMobileOpen(false)}
               >
                 <ListItemIcon>
                   <link.icon />
@@ -204,7 +212,7 @@ export default function SearchAppBar({
         </List>
         <Divider />
         <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={() => setMobileOpen(false)}>
             <SignOutButton>
               <Button sx={{ my: 1, mx: 2, width: "100%" }} variant="outlined">
                 Sign Out
@@ -215,7 +223,7 @@ export default function SearchAppBar({
       </SignedIn>
       <SignedOut>
         <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={() => setMobileOpen(false)}>
             <SignInButton>
               <Button sx={{ my: 1, mx: 2, width: "100%" }} variant="contained">
                 Sign In
@@ -230,50 +238,52 @@ export default function SearchAppBar({
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CssBaseline />
-      <AppBar position="fixed">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "flex" },
-              gap: 1,
-            }}
-          >
-            <Image
-              src="/icon.svg"
-              alt="MVGL Brand Icon"
-              width={30}
-              height={30}
-            />
-            MyVideoGameList
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search games…"
-              inputProps={{ "aria-label": "search games" }}
-              value={search}
-              onKeyDown={handleSearchInput}
-              onChange={(event) => setSearch(event.target.value)}
-            />
-          </Search>
-        </Toolbar>
-      </AppBar>
+      {!pathname.includes("sign-in") && !pathname.includes("sign-up") && (
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "flex" },
+                gap: 1,
+              }}
+            >
+              <Image
+                src="/icon.svg"
+                alt="MVGL Brand Icon"
+                width={30}
+                height={30}
+              />
+              MyVideoGameList
+            </Typography>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search games…"
+                inputProps={{ "aria-label": "search games" }}
+                value={search}
+                onKeyDown={handleSearchInput}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+            </Search>
+          </Toolbar>
+        </AppBar>
+      )}
       <Box
         component="nav"
         sx={{ flexShrink: { sm: 0 } }}
