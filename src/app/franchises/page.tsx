@@ -1,3 +1,9 @@
+import Franchises from "@/layouts/Franchises/Franchises";
+
 export default async function FranchisesPage() {
-  return <div></div>;
+  return (
+    <div>
+      <Franchises />
+    </div>
+  );
 }

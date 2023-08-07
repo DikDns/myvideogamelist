@@ -9,9 +9,8 @@ import Link from "@mui/material/Link";
 import { getImageUrl } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
 import { Franchise } from "@/types/Franchise";
-import { Series } from "@/types/Series";
 
-export default function CardGames({ data }: { data: Franchise | Series }) {
+export default function CardFranchise({ data }: { data: Franchise }) {
   return (
     <Card
       variant="outlined"
@@ -43,7 +42,7 @@ export default function CardGames({ data }: { data: Franchise | Series }) {
         }}
       >
         <Typography className="name" variant="h6" component="h2">
-          <Link href={`/games/${data.slug}`} component={NextLink}>
+          <Link href={`/franchises/${data.slug}`} component={NextLink}>
             {truncStr(data.name || "", 40)}
           </Link>
         </Typography>
