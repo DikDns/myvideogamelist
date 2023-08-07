@@ -13,6 +13,11 @@ export default authMiddleware({
     "/search**",
     "/api/igdb**",
   ],
+  afterAuth(auth, req, evt) {
+    console.log(auth);
+    console.log(req);
+    console.log(evt);
+  },
 });
 
 export const config = {
