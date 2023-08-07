@@ -3,13 +3,14 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
 import * as React from "react";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,7 +26,6 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import GamesIcon from "@mui/icons-material/Games";
 import MovieIcon from "@mui/icons-material/Movie";
-import LoginIcon from "@mui/icons-material/Login";
 import SettingsIcon from "@mui/icons-material/Settings";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -181,7 +181,31 @@ export default function SearchAppBar({
       </List>
       <Divider />
       <List>
-        <UserButton />
+        <SignedIn>
+          {drawerUserPages.map((link, i) => (
+            <ListItem disablePadding key={i}>
+              <ListItemButton
+                selected={pathname.includes(link.src)}
+                LinkComponent={NextLink}
+                href={link.src}
+              >
+                <ListItemIcon>
+                  <link.icon />
+                </ListItemIcon>
+                <ListItemText primary={link.name} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </SignedIn>
+        <SignedOut>
+          <ListItem disablePadding>
+            <SignInButton>
+              <Button sx={{ my: 1, mx: 2, width: "100%" }} variant="contained">
+                Sign In
+              </Button>
+            </SignInButton>
+          </ListItem>
+        </SignedOut>
       </List>
     </div>
   );
