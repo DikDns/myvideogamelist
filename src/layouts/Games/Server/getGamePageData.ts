@@ -1,13 +1,12 @@
-import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import { getGames } from "@/lib/igdb";
-import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { Game } from "@/types/Game";
 import truncStr from "@/utils/truncStr";
 
 export default async function getGamePageData(slug: string) {
-  const sessionPromise = getServerSession(authOptions);
+  // const sessionPromise = getServerSession(authOptions);
+  const sessionPromise = {};
   const body = `
     f slug, name, summary, first_release_date,
     aggregated_rating, aggregated_rating_count,
