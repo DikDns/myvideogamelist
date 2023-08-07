@@ -1,6 +1,6 @@
 "use client";
 
-import { auth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { useState, useTransition } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -23,7 +23,7 @@ export default function GameListButton({
   gameListUser: GameListUser | null;
   game: Game;
 }) {
-  const { userId } = auth();
+  const { userId } = useAuth();
   const [list, setList] = useState({
     status: gameListUser?.status,
     score: gameListUser?.score,
