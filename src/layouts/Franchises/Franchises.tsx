@@ -40,9 +40,7 @@ export default function Franchises() {
 
   return (
     <Container>
-      <Box sx={{ mb: { sm: 3, xs: 2 } }}>
-        <BasicBreadcrumbs />
-      </Box>
+      <BasicBreadcrumbs />
 
       <InfiniteScroll
         dataLength={franchises.length} //This is important field to render the next data

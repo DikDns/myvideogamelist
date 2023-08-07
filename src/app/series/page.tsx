@@ -1,3 +1,9 @@
+import Series from "@/layouts/Series/Series";
+
 export default async function SeriesPage() {
-  return <div></div>;
+  return (
+    <div>
+      <Series />
+    </div>
+  );
 }
