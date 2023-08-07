@@ -1,17 +1,15 @@
-import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
 import { auth, clerkClient } from "@clerk/nextjs";
 import { prisma } from "@/lib/db";
 
-export async function GET() {
+export default async function AuthPage() {
   const { userId } = auth();
 
-  if (!userId) {
-    return NextResponse.redirect("/");
-  }
+  if (!userId) return redirect("/");
 
   const { username, imageUrl } = await clerkClient.users.getUser(userId);
 
-  const user = { id: userId, username, imageUrl };
+  const user = { id: userId, username, image: imageUrl };
 
   const res = await prisma.user.upsert({
     where: { id: userId },
@@ -19,7 +17,5 @@ export async function GET() {
     create: user,
   });
 
-  console.log(res);
-
-  return NextResponse.redirect("/");
+  return redirect("/");
 }
