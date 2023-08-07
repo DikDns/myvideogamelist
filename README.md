@@ -10,9 +10,6 @@ A website similar to MyAnimeList, but for tracking video games.
 - [x] My Video Game List Logic
 - [ ] Following/Follower User Logic
 - [ ] MVGL User Rating Logic
-- [ ] User Auth0 Settings Logic
-- [ ] User Steam/Epic Games/Google Connection Auth0 Logic
-- [ ] Optimize Performance
 
 `/search`
 
@@ -35,7 +32,7 @@ A website similar to MyAnimeList, but for tracking video games.
 `/franchises`
 
 - [ ] Simple Search Franchises List
-- [ ] Default Franchises List
+- [x] Default Franchises List
 
 `/franchises/[slug]`
 
@@ -45,7 +42,7 @@ A website similar to MyAnimeList, but for tracking video games.
 `/series`
 
 - [ ] Simple Search Series List
-- [ ] Default Series List
+- [x] Default Series List
 
 `/series/[slug]`
 
