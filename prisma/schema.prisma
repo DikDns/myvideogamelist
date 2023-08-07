@@ -23,7 +23,6 @@ model Follows {
 model User {
   id            String          @id
   username      String?
-  email         String?         @unique
   image         String?
   followers     Follows[]       @relation("following")
   following     Follows[]       @relation("follower")

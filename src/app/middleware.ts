@@ -1,3 +1,4 @@
+import { prisma } from "@/lib/db";
 import { authMiddleware } from "@clerk/nextjs";
 
 // This example protects all routes including api/trpc routes
@@ -14,9 +15,21 @@ export default authMiddleware({
     "/api/igdb**",
   ],
   afterAuth(auth, req, evt) {
-    console.log(auth);
-    console.log(req);
-    console.log(evt);
+    if (auth.userId) {
+      const user = {
+        id: auth.userId,
+        username: auth.user?.username || "",
+        image: auth.user?.imageUrl || "",
+      };
+
+      prisma.user.upsert({
+        where: {
+          id: auth.userId,
+        },
+        update: user,
+        create: user,
+      });
+    }
   },
 });
 
