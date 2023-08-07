@@ -1,8 +1,11 @@
 "use client";
 
+import NextLink from "next/link";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import CardSlide from "@/components/Carousel/CardSlide";
 import CardCarousel from "@/components/Carousel/CardCarousel";
 import MediaCarousel from "@/components/Carousel/MediaCarousel";
@@ -26,19 +29,12 @@ export default async function Home({ data }: { data: HomeData }) {
             <HeadlineSlide key={game.id} game={game} />
           ))}
         />
-      </Box>
 
-      {/* TOP FRANCHISES */}
-      <Box component="section" mb={5}>
-        <Typography sx={h2} variant="h2" mb={2}>
-          {`Top Franchises`}
-        </Typography>
-
-        <CardCarousel
-          slides={data.topFranchises.map((franchise) => (
-            <CardSlide key={franchise.id} type="franchises" data={franchise} />
-          ))}
-        />
+        <Box mt={2}>
+          <Link component={NextLink} href="/games?bracket=top-new-releases">
+            See More
+          </Link>
+        </Box>
       </Box>
 
       {/* TOP SERIES */}
@@ -52,6 +48,31 @@ export default async function Home({ data }: { data: HomeData }) {
             <CardSlide key={series.id} type="series" data={series} />
           ))}
         />
+
+        <Box mt={1}>
+          <Link component={NextLink} href="/series">
+            See More
+          </Link>
+        </Box>
+      </Box>
+
+      {/* TOP FRANCHISES */}
+      <Box component="section" mb={5}>
+        <Typography sx={h2} variant="h2" mb={2}>
+          {`Top Franchises`}
+        </Typography>
+
+        <CardCarousel
+          slides={data.topFranchises.map((franchise) => (
+            <CardSlide key={franchise.id} type="franchises" data={franchise} />
+          ))}
+        />
+
+        <Box mt={1}>
+          <Link component={NextLink} href="/franchises">
+            See More
+          </Link>
+        </Box>
       </Box>
 
       {/* NEW VIDEO TRAILERS */}
@@ -65,6 +86,12 @@ export default async function Home({ data }: { data: HomeData }) {
             <VideoSlide key={trailer.id} video={trailer} />
           ))}
         />
+
+        <Box mt={1}>
+          <Link component={NextLink} href="/videos">
+            See More
+          </Link>
+        </Box>
       </Box>
 
       <Box
@@ -78,7 +105,9 @@ export default async function Home({ data }: { data: HomeData }) {
         {/* POPULAR UPCOMING */}
         <Box>
           <Typography sx={h4} variant="h4" mt={5}>
-            {`Popular Upcoming`}
+            <Link component={NextLink} href="/games?bracket=top-upcoming">
+              {`Popular Upcoming`}
+            </Link>
           </Typography>
         </Box>
 
@@ -87,7 +116,9 @@ export default async function Home({ data }: { data: HomeData }) {
         {/* TOP RATED */}
         <Box sx={{ gridArea: { md: "1 / 2 / 2 / 3" } }}>
           <Typography sx={h4} variant="h4" mt={5}>
-            {`Top Rated`}
+            <Link component={NextLink} href="/games?bracket=top-rated">
+              {`Top Rated`}
+            </Link>
           </Typography>
         </Box>
 
@@ -101,7 +132,9 @@ export default async function Home({ data }: { data: HomeData }) {
         {/* NEW RELEASES */}
         <Box sx={{ gridArea: { md: "1 / 3 / 2 / 4" } }}>
           <Typography sx={h4} variant="h4" mt={5}>
-            {`New Releases`}
+            <Link component={NextLink} href="/games?bracket=new-releases">
+              {`New Releases`}
+            </Link>
           </Typography>
         </Box>
 
