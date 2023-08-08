@@ -5,6 +5,7 @@ export default authMiddleware({
     "/",
     /\/(games|franchises|series|videos|search)./,
     /\/api\/igdb./,
+    /\/list\/./,
     "/api/auth",
     "/games",
     "/franchises",
