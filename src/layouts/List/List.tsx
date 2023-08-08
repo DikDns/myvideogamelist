@@ -54,9 +54,9 @@ export default function List({
             <TableRow>
               <TableCell>Cover</TableCell>
               <TableCell>Name</TableCell>
-              <TableCell align="right">Favorite</TableCell>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Score</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Score</TableCell>
+              <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -74,11 +74,9 @@ export default function List({
                   />
                 </TableCell>
                 <TableCell>{`${item.game.name}`}</TableCell>
-                <TableCell align="right">
-                  {item.isFavorited && `YES!`}
-                </TableCell>
-                <TableCell align="right">{item.status}</TableCell>
-                <TableCell align="right">{item.score}</TableCell>
+                <TableCell>{item.status}</TableCell>
+                <TableCell>{item.score}</TableCell>
+                <TableCell align="right">Delete</TableCell>
               </TableRow>
             ))}
           </TableBody>
