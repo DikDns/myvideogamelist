@@ -32,20 +32,24 @@ A website similar to MyAnimeList, but for tracking video games.
 `/franchises`
 
 - [ ] Simple Search Franchises List
+- [ ] Refactor Code
 - [x] Default Franchises List
 
 `/franchises/[slug]`
 
+- [ ] Refactor Code
 - [x] Display the Franchise Data.
 - [x] Display the List of Games in the Franchise.
 
 `/series`
 
 - [ ] Simple Search Series List
+- [ ] Refactor Code
 - [x] Default Series List
 
 `/series/[slug]`
 
+- [ ] Refactor Code
 - [x] Display the Series Data.
 - [x] Display the List of Games in the Series.
 
