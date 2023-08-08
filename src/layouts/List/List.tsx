@@ -1,5 +1,6 @@
 "use client";
 
+import NextLink from "next/link";
 import Image from "next/image";
 import * as React from "react";
 import Table from "@mui/material/Table";
@@ -8,10 +9,13 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import { getImageUrl } from "@/lib/igdb";
 import { ListStatus } from "@prisma/client";
+import { h3 } from "../styles";
 
 type GameList = {
   game: {
@@ -25,13 +29,21 @@ type GameList = {
   isFavorited: boolean | null | undefined;
 };
 
-export default function List({ data }: { data: GameList[] }) {
-  React.useEffect(() => {
-    console.log(data);
-  }, []);
-
+export default function List({
+  data,
+  username,
+}: {
+  data: GameList[];
+  username: string;
+}) {
   return (
     <Container>
+      <Typography mb={1} variant="h3" sx={h3}>
+        <Link component={NextLink} href={`/profile/${username}`}>
+          {`${username.toUpperCase()}`}
+        </Link>
+        {` Game List`}
+      </Typography>
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 650 }}

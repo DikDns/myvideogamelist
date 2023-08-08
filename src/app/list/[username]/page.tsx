@@ -11,7 +11,7 @@ export default async function ListUsernamePage({
 
   return (
     <div>
-      <List data={data} />
+      <List username={username} data={data} />
     </div>
   );
 }
