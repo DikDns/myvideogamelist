@@ -3,19 +3,36 @@ import List from "@/layouts/List/List";
 import { prisma } from "@/lib/db";
 import { getGames } from "@/lib/igdb";
 import { Game } from "@/types/Game";
-import { ListStatus } from "@prisma/client";
+import { PageProps } from "@/types/PageProps";
 
-export default async function ListUsernamePage() {
+type ListPageProps = PageProps<{ username: string }>;
+
+export default async function ListUsernamePage({
+  params: { username },
+}: ListPageProps) {
   const userInClerk = await currentUser();
-  const userInPrisma = await prisma.user.findUnique({
-    where: { id: userInClerk?.id },
-    include: { gameLists: { orderBy: [{ status: "asc" }] } },
-  });
+  let userInPrisma;
 
-  if (userInPrisma?.username !== userInClerk?.username) {
-    await prisma.user.update({
+  if (username === userInClerk?.username) {
+    userInPrisma = await prisma.user.findUnique({
       where: { id: userInClerk?.id },
-      data: { username: userInClerk?.username },
+      include: {
+        gameLists: { orderBy: [{ status: "asc" }, { isFavorited: "desc" }] },
+      },
+    });
+
+    if (userInPrisma?.username !== userInClerk?.username) {
+      await prisma.user.update({
+        where: { id: userInClerk?.id },
+        data: { username: userInClerk?.username },
+      });
+    }
+  } else {
+    userInPrisma = await prisma.user.findUnique({
+      where: { username },
+      include: {
+        gameLists: { orderBy: [{ status: "asc" }, { isFavorited: "desc" }] },
+      },
     });
   }
 
@@ -40,10 +57,6 @@ export default async function ListUsernamePage() {
       isFavorited: userInPrisma?.gameLists[i].isFavorited,
     });
   }
-
-  // gameListUser.sort((a, b) => {
-  //   if(a.s)
-  // });
 
   return (
     <div>
