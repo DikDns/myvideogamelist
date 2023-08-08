@@ -48,38 +48,27 @@ export default function List({ data }: { data: GameList[] }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <Image
-                  src={getImageUrl("", "cover_small", "2x")}
-                  alt="P5R Cover"
-                  width={45}
-                  height={68}
-                />
-              </TableCell>
-              <TableCell>{`Persona 5 Royal`}</TableCell>
-              <TableCell align="right">{`😍`}</TableCell>
-              <TableCell align="right">{`ON-HOLD`}</TableCell>
-              <TableCell align="right">{`9`}</TableCell>
-            </TableRow>
-            <TableRow
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                <Image
-                  src={getImageUrl("", "cover_small", "2x")}
-                  alt="P5R Cover"
-                  width={45}
-                  height={68}
-                />
-              </TableCell>
-              <TableCell>{`Persona 5 Royal`}</TableCell>
-              <TableCell align="right">{`😍`}</TableCell>
-              <TableCell align="right">{`ON-HOLD`}</TableCell>
-              <TableCell align="right">{`9`}</TableCell>
-            </TableRow>
+            {data.map((item, index) => (
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  <Image
+                    src={getImageUrl(item.game.imageId, "cover_small", "2x")}
+                    alt={`${item.game.name} Cover`}
+                    width={45}
+                    height={68}
+                  />
+                </TableCell>
+                <TableCell>{`${item.game.name}`}</TableCell>
+                <TableCell align="right">
+                  {item.isFavorited && `YES!`}
+                </TableCell>
+                <TableCell align="right">{item.status}</TableCell>
+                <TableCell align="right">{item.score}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
