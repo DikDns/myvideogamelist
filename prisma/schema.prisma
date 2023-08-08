@@ -34,8 +34,8 @@ model User {
 }
 
 enum ListStatus {
-  COMPLETED
   PLAYING
+  COMPLETED
   ONHOLD
   WISHTOPLAY
   DROPPED
