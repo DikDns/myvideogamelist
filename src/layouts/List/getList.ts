@@ -13,12 +13,24 @@ export default async function getList(username: string) {
   const userInClerk = await currentUser();
   let userInPrisma = await findUserByUsername(username);
 
-  if (!userInPrisma) {
-    userInPrisma = await findUserById(userInClerk?.id || "");
+  if (!userInPrisma && userInClerk?.id) {
+    userInPrisma = await findUserById(userInClerk?.id);
+  }
 
-    if (userInPrisma && userInPrisma?.username !== userInClerk?.username) {
-      await updateCurrentUsername(userInClerk?.id || "", username);
-    }
+  if (!userInPrisma && userInClerk?.id && userInClerk.username) {
+    const { id, username: usernameInClerk, imageUrl } = userInClerk;
+
+    userInPrisma = await createCurrentUser(id, usernameInClerk, imageUrl);
+  }
+
+  if (
+    userInPrisma?.id === userInClerk?.id &&
+    userInPrisma?.username !== userInClerk?.username
+  ) {
+    await updateCurrentUsername(
+      userInClerk?.id || "",
+      userInClerk?.username || ""
+    );
   }
 
   if (userInPrisma?.username !== username) return notFound();
@@ -54,6 +66,13 @@ async function updateCurrentUsername(id: string, username: string) {
   return await prisma.user.update({
     where: { id: id },
     data: { username: username },
+  });
+}
+
+async function createCurrentUser(id: string, username: string, image: string) {
+  return await prisma.user.create({
+    data: { id, username, image },
+    include: { gameLists: true },
   });
 }
 
