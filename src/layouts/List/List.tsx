@@ -1,8 +1,6 @@
 "use client";
 
 import NextLink from "next/link";
-import Image from "next/image";
-import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,11 +11,13 @@ import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { getImageUrl } from "@/lib/igdb";
 import { ListStatus } from "@prisma/client";
+import { useUser } from "@clerk/nextjs";
 import { h3 } from "../styles";
+import GameRowControl from "./GameRowControl";
+import GameRow from "./GameRow";
 
-type GameList = {
+export type GameList = {
   game: {
     id: number;
     slug: string;
@@ -36,10 +36,12 @@ export default function List({
   data: GameList[];
   username: string;
 }) {
+  const { user } = useUser();
+
   return (
     <Container>
       <Typography mb={1} variant="h3" sx={h3}>
-        <Link component={NextLink} href={`/profile/${username}`}>
+        <Link color="#fff" component={NextLink} href={`/profile/${username}`}>
           {`${username.toUpperCase()}`}
         </Link>
         {` Game List`}
@@ -60,25 +62,13 @@ export default function List({
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((item, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  <Image
-                    src={getImageUrl(item.game.imageId, "cover_small", "2x")}
-                    alt={`${item.game.name} Cover`}
-                    width={45}
-                    height={68}
-                  />
-                </TableCell>
-                <TableCell>{`${item.game.name}`}</TableCell>
-                <TableCell>{item.status}</TableCell>
-                <TableCell>{item.score}</TableCell>
-                <TableCell align="right">Delete</TableCell>
-              </TableRow>
-            ))}
+            {data.map((item, index) =>
+              user?.username === username ? (
+                <GameRowControl key={index} item={item} />
+              ) : (
+                <GameRow key={index} item={item} />
+              )
+            )}
           </TableBody>
         </Table>
       </TableContainer>
