@@ -40,7 +40,7 @@ export default function List({
 
   return (
     <Container>
-      <Typography mb={1} variant="h3" sx={h3}>
+      <Typography mb={2} variant="h3" sx={h3}>
         <Link color="#fff" component={NextLink} href={`/profile/${username}`}>
           {`${username.toUpperCase()}`}
         </Link>
@@ -70,6 +70,16 @@ export default function List({
               ) : (
                 <GameRow key={index} item={item} />
               )
+            )}
+            {data.length === 0 && (
+              <TableRow>
+                <TableCell
+                  align="center"
+                  colSpan={user?.username === username ? 5 : 4}
+                >
+                  No Data
+                </TableCell>
+              </TableRow>
             )}
           </TableBody>
         </Table>
