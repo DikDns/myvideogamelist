@@ -180,8 +180,10 @@ export default function SearchAppBar({
         <List>
           <ListItem disablePadding>
             <ListItemButton
-              selected={pathname.includes("/list")}
-              href={"/list"}
+              selected={pathname.includes(
+                `/list/${user?.username?.toLowerCase()}`
+              )}
+              href={`/list/${user?.username?.toLowerCase()}`}
               onClick={() => setMobileOpen(false)}
             >
               <ListItemIcon>

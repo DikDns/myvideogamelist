@@ -50,7 +50,6 @@ export default function GameRowControl({ item }: { item: GameList }) {
     const score = event.target.value as number;
 
     setScore(score);
-    setIsDeleted(true);
     startTransitionScore(() => updateScore(user.id, item.game.id, score));
   };
 
@@ -58,10 +57,9 @@ export default function GameRowControl({ item }: { item: GameList }) {
     if (!user) return;
     if (!user.id) return;
 
+    setIsDeleted(true);
     setOpen(false);
-    startTransitionDelete(() =>
-      deleteList(user.username || "", user.id, item.game.id)
-    );
+    startTransitionDelete(() => deleteList(user.id, item.game.id));
   };
 
   return (

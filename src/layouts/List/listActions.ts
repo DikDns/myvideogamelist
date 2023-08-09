@@ -40,11 +40,7 @@ export async function updateScore(
   });
 }
 
-export async function deleteList(
-  username: string,
-  userId: string,
-  gameId: number
-) {
+export async function deleteList(userId: string, gameId: number) {
   await prisma.gameList.delete({
     where: {
       gameId_userId: {
@@ -53,6 +49,4 @@ export async function deleteList(
       },
     },
   });
-
-  revalidatePath(`/list/${username.toLowerCase()}`);
 }
