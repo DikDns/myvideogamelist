@@ -180,6 +180,7 @@ export default function SearchAppBar({
         <List>
           <ListItem disablePadding>
             <ListItemButton
+              LinkComponent={NextLink}
               selected={pathname.includes(
                 `/list/${user?.username?.toLowerCase()}`
               )}
@@ -195,8 +196,11 @@ export default function SearchAppBar({
 
           <ListItem disablePadding>
             <ListItemButton
-              selected={pathname.includes("/profile")}
-              href={"/profile"}
+              LinkComponent={NextLink}
+              selected={pathname.includes(
+                `/profile/${user?.username?.toLowerCase()}`
+              )}
+              href={`/profile/${user?.username?.toLowerCase()}`}
               onClick={() => setMobileOpen(false)}
             >
               <ListItemIcon>
