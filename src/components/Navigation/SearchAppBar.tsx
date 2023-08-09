@@ -198,7 +198,6 @@ export default function SearchAppBar({
             <ListItem disablePadding key={i}>
               <ListItemButton
                 selected={pathname.includes(link.src)}
-                LinkComponent={NextLink}
                 href={link.src}
                 onClick={() => setMobileOpen(false)}
               >

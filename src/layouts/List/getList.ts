@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { prisma } from "@/lib/db";
 import { getGames } from "@/lib/igdb";
@@ -27,19 +27,25 @@ export default async function getList(username: string) {
     userInPrisma?.id === userInClerk?.id &&
     userInPrisma?.username !== userInClerk?.username
   ) {
-    await updateCurrentUsername(
+    userInPrisma = await updateCurrentUsername(
       userInClerk?.id || "",
       userInClerk?.username || ""
     );
+
+    return redirect("/list/" + userInClerk?.username?.toLowerCase());
   }
 
   if (userInPrisma?.username !== username) return notFound();
 
-  const games: Game[] = await getGames(
-    `f name, cover.image_id, slug; w id=(${userInPrisma?.gameLists
-      .map((game) => game.gameId)
-      .join(",")});`
-  );
+  let games: Game[] = [];
+
+  if (userInPrisma.gameLists.length > 0) {
+    games = await getGames(
+      `f name, cover.image_id, slug; w id=(${userInPrisma?.gameLists
+        .map((game) => game.gameId)
+        .join(",")});`
+    );
+  }
 
   return generateGameList(games, userInPrisma);
 }
@@ -66,6 +72,7 @@ async function updateCurrentUsername(id: string, username: string) {
   return await prisma.user.update({
     where: { id: id },
     data: { username: username },
+    include: { gameLists: true },
   });
 }
 
