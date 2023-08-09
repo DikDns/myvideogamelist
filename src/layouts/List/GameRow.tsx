@@ -30,7 +30,6 @@ export default function GameRow({ item }: { item: GameList }) {
       </TableCell>
       <TableCell>{item.status}</TableCell>
       <TableCell>{item.score}</TableCell>
-      <TableCell align="right">Delete</TableCell>
     </TableRow>
   );
 }

@@ -58,7 +58,9 @@ export default function List({
               <TableCell>Name</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Score</TableCell>
-              <TableCell align="right">Action</TableCell>
+              {user?.username === username && (
+                <TableCell align="right">Action</TableCell>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>

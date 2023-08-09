@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db";
 import { ListStatus } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function updateStatus(
   userId: string,
@@ -37,4 +38,21 @@ export async function updateScore(
       score,
     },
   });
+}
+
+export async function deleteList(
+  username: string,
+  userId: string,
+  gameId: number
+) {
+  await prisma.gameList.delete({
+    where: {
+      gameId_userId: {
+        gameId,
+        userId,
+      },
+    },
+  });
+
+  revalidatePath(`/list/${username.toLowerCase()}`);
 }

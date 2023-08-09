@@ -11,10 +11,16 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import DialogTitle from "@mui/material/DialogTitle";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { getImageUrl } from "@/lib/igdb";
 import { ListStatus } from "@prisma/client";
 import { GameList } from "./List";
-import { updateScore, updateStatus } from "./listActions";
+import { deleteList, updateScore, updateStatus } from "./listActions";
 
 export default function GameRowControl({ item }: { item: GameList }) {
   const { user } = useUser();
@@ -22,6 +28,9 @@ export default function GameRowControl({ item }: { item: GameList }) {
   const [status, setStatus] = useState(item.status as ListStatus);
   const [isPendingScore, startTransitionScore] = useTransition();
   const [score, setScore] = useState(item.score);
+
+  const [isPendingDelete, startTransitionDelete] = useTransition();
+  const [open, setOpen] = useState(false);
 
   const handleStatusChange = (event: SelectChangeEvent<ListStatus>) => {
     if (!user) return;
@@ -41,6 +50,16 @@ export default function GameRowControl({ item }: { item: GameList }) {
 
     setScore(score);
     startTransitionScore(() => updateScore(user.id, item.game.id, score));
+  };
+
+  const handleDelete = () => {
+    if (!user) return;
+    if (!user.id) return;
+
+    setOpen(false);
+    startTransitionDelete(() =>
+      deleteList(user.username || "", user.id, item.game.id)
+    );
   };
 
   return (
@@ -106,7 +125,33 @@ export default function GameRowControl({ item }: { item: GameList }) {
           </Select>
         </FormControl>
       </TableCell>
-      <TableCell align="right">Delete</TableCell>
+      <TableCell align="right">
+        <IconButton
+          color="error"
+          aria-label="delete"
+          onClick={() => setOpen(true)}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </TableCell>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {`Remove ${item.game.name} from ${user?.username} list?`}
+        </DialogTitle>
+        <DialogActions>
+          <Button color="inherit" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button color="error" onClick={handleDelete} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </TableRow>
   );
 }
