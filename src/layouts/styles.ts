@@ -92,3 +92,14 @@ export const subtitleSlide: SxProps = {
   py: "8px",
   transition: "all 250ms ease-in-out",
 };
+
+export const cardGameContainer = {
+  mt: 3,
+  display: "grid",
+  columnGap: { md: 6, xs: 3 },
+  rowGap: { md: 4, xs: 2 },
+  gridTemplateColumns: {
+    sm: "1fr 1fr",
+    xs: "1fr",
+  },
+};

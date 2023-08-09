@@ -1,98 +1,78 @@
 "use client";
 
-import { Game } from "@/types/Game";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
-import GameCard from "./components/GameCard";
-import { getGames } from "@/lib/igdb";
-import { SearchParams } from "@/types/SearchParams";
-import { h2, h3 } from "../styles";
+import CircularLoading from "@/components/Loading/CircularLoading";
+import CardGame from "@/components/Game/CardGame";
+import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
+import { Game } from "@/types/Game";
+import getSearchGames from "./server/getSearchGames";
+import { cardGameContainer, h3 } from "../styles";
 
-export default function Search({
-  initGames,
-  searchParams,
-}: {
-  initGames: Game[];
-  searchParams: SearchParams;
-}) {
-  const [games, setGames] = useState(initGames);
-  const [offset, setOffset] = useState(initGames.length);
+export default function Search() {
+  const searchParam = useSearchParams();
+  const search = searchParam.get("q");
+
+  const [games, setGames] = useState<Game[]>([]);
+  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     setHasMore(true);
-    setGames(initGames);
-    setOffset(initGames.length);
-  }, [searchParams]);
+    setGames([]);
+    setOffset(0);
+  }, [searchParam]);
+
+  useEffect(() => {
+    if (games.length > 0) return;
+    fetchMore();
+  }, [games]);
 
   const fetchMore = async () => {
-    let body = `
-    f name, slug, cover.image_id, aggregated_rating, genres.name;
-    w aggregated_rating != n & aggregated_rating_count > 7;
-    s aggregated_rating desc;
-    l 10;
-    o ${offset};
-  `;
-
-    if (searchParams.q && searchParams.q.length > 1) {
-      body = `search "${searchParams.q}"; f name, aggregated_rating, category, slug, cover.image_id, genres.name, cover.image_id; l 10; o ${offset};`;
-    }
-
-    const nextGames: Game[] = await getGames(body);
-    nextGames.sort((a, b) => (a.category || 0) - (b.category || 0));
+    const fetchLimit = 10;
+    const nextGames = await getSearchGames(search, fetchLimit, offset);
 
     if (nextGames.length <= 0) return setHasMore(false);
 
     setGames((prevGames) => [...prevGames, ...nextGames]);
-    setOffset(games.length + nextGames.length);
+    setOffset((prevOffset) => prevOffset + nextGames.length);
   };
 
   return (
-    <Container component="main" sx={{ my: 11 }}>
-      <Typography variant="h3" sx={h3} mb={2}>
-        {`Search result: ${searchParams.q}`}
+    <Container component="main">
+      <Box mb={2}>
+        <BasicBreadcrumbs />
+      </Box>
+
+      <Typography variant="h3" sx={h3}>
+        {`Search result: ${search}`}
       </Typography>
 
-      {initGames.length > 0 ? (
-        <InfiniteScroll
-          dataLength={games.length} //This is important field to render the next data
-          next={fetchMore}
-          hasMore={hasMore}
-          loader={<Loading />}
-        >
-          <Grid container gap={3}>
-            {games.map((game, i) => (
-              <Grid item key={i} xs={12}>
-                <GameCard game={game} />
-              </Grid>
-            ))}
-          </Grid>
-        </InfiniteScroll>
-      ) : (
-        <Typography variant="h6" component="h2" textAlign="center">
-          Not Found
-        </Typography>
-      )}
+      <InfiniteScroll
+        dataLength={games.length} //This is important field to render the next data
+        next={fetchMore}
+        hasMore={hasMore}
+        loader={<CircularLoading />}
+        endMessage={
+          games.length === 0 ? (
+            <Typography variant="h6" component="h2" textAlign="center">
+              Not Found
+            </Typography>
+          ) : (
+            ""
+          )
+        }
+      >
+        <Box sx={cardGameContainer}>
+          {games.map((game, i) => (
+            <CardGame key={i} game={game} />
+          ))}
+        </Box>
+      </InfiniteScroll>
     </Container>
-  );
-}
-
-function Loading() {
-  return (
-    <Grid
-      overflow="hidden"
-      container
-      py={2}
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Grid item>
-        <CircularProgress />
-      </Grid>
-    </Grid>
   );
 }

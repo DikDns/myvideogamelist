@@ -11,11 +11,11 @@ import { Game } from "@/types/Game";
 
 export default function GameResources({ game }: { game: Game }) {
   return game.websites ? (
-    <Stack gap={1} my={5}>
+    <Stack mt={2}>
       <Typography variant="h3" sx={h3} mb={1}>
         Resources
       </Typography>
-      <Stack gap={1}>
+      <Stack gap={1} sx={{ flexDirection: { md: "row" }, flexWrap: "wrap" }}>
         {game.websites.map((website) => {
           if (!website.category) return;
           const { title, url } = getWebsiteIconUrl(website.category);

@@ -1,7 +1,9 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
-import SessionProvider from "@/components/NextAuth/SessionProvider";
-import SearchAppBar from "@/components/AppBar/SearchAppBar";
+import SearchAppBar from "@/components/Navigation/SearchAppBar";
+import Footer from "@/components/Navigation/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export const metadata = {
   referrer: "origin-when-cross-origin",
@@ -24,15 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <SessionProvider>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
+      <html lang="en">
+        <body>
           <ThemeRegistry>
-            <SearchAppBar />
-            {children}
+            <SearchAppBar>{children}</SearchAppBar>
+            <Footer />
           </ThemeRegistry>
-        </SessionProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

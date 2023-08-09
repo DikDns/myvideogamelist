@@ -1,17 +1,9 @@
-import { SearchParams } from "@/types/SearchParams";
-import getSearchPageData from "@/layouts/Search/server/getSearchPageData";
 import Search from "@/layouts/Search/Search";
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) {
-  const games = await getSearchPageData(searchParams);
-
+export default async function SearchPage() {
   return (
     <div>
-      <Search initGames={games} searchParams={searchParams} />
+      <Search />
     </div>
   );
 }

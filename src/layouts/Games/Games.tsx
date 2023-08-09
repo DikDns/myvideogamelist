@@ -1,32 +1,84 @@
 "use client";
 
-import NextLink from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import { h2 } from "../styles";
+import Box from "@mui/material/Box";
+import { SelectChangeEvent } from "@mui/material/Select";
+import CircularLoading from "@/components/Loading/CircularLoading";
+import { Game } from "@/types/Game";
+import CardGame from "@/components/Game/CardGame";
+import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
+import GamesBracketSelect, { brackets } from "./components/GamesBracketSelect";
+import getGamesBracket from "./Server/getGamesBracket";
+import { cardGameContainer } from "../styles";
+
+function validateBracketParams(param: string | null) {
+  return param === brackets.topRated ||
+    param === brackets.topNewReleases ||
+    param === brackets.topUpcoming ||
+    param === brackets.newReleases
+    ? param
+    : brackets.topNewReleases;
+}
 
 export default function Games() {
+  const searchParams = useSearchParams();
+  const bracketParams = validateBracketParams(searchParams.get("bracket"));
+  const [bracket, setBracket] = useState(bracketParams);
+
+  const [games, setGames] = useState<Game[]>([]);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+
+  useEffect(() => {
+    setOffset(0);
+    setGames([]);
+  }, [bracket]);
+
+  useEffect(() => {
+    if (games.length > 0) return;
+    fetchMore();
+  }, [games]);
+
+  const fetchMore = async () => {
+    const fetchLimit = 10;
+    const nextGames: Game[] = await getGamesBracket(
+      bracket,
+      offset,
+      fetchLimit
+    );
+
+    if (nextGames.length <= 0) return setHasMore(false);
+
+    setGames((prevGames) => [...prevGames, ...nextGames]);
+    setOffset(games.length + nextGames.length);
+  };
+
   return (
-    <Container sx={{ mt: 10 }}>
-      <Typography variant="h2" sx={h2} mb={1}>
-        Category
-      </Typography>
-      <Stack gap={1} direction="row" flexWrap="wrap">
-        <Button LinkComponent={NextLink} href="/games/top-new-releases">
-          Top New Releases
-        </Button>
-        <Button LinkComponent={NextLink} href="/games/top-rated">
-          Top Rated
-        </Button>
-        <Button LinkComponent={NextLink} href="/games/top-upcoming">
-          Top Upcoming
-        </Button>
-        <Button LinkComponent={NextLink} href="/games/new-releases">
-          New Releases
-        </Button>
-      </Stack>
+    <Container>
+      <Box sx={{ mb: { sm: 3, xs: 2 } }}>
+        <BasicBreadcrumbs />
+      </Box>
+      <GamesBracketSelect
+        value={bracket}
+        onChange={(event: SelectChangeEvent) =>
+          setBracket(event.target.value as string)
+        }
+      />
+      <InfiniteScroll
+        dataLength={games.length} //This is important field to render the next data
+        next={fetchMore}
+        hasMore={hasMore}
+        loader={<CircularLoading />}
+      >
+        <Box sx={cardGameContainer}>
+          {games.map((game, i) => (
+            <CardGame key={i} game={game} />
+          ))}
+        </Box>
+      </InfiniteScroll>
     </Container>
   );
 }

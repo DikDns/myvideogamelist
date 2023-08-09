@@ -10,8 +10,8 @@ import { ReactNode } from "react";
 
 export default function GameInformation({ game }: { game: Game }) {
   return (
-    <Stack gap={1} my={5}>
-      <Typography mb={1} variant="h4" sx={h4}>
+    <Stack gap={1} mt={2} ml={4}>
+      <Typography variant="h4" sx={h4}>
         Information
       </Typography>
 

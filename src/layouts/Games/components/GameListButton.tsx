@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@clerk/nextjs";
 import { useState, useTransition } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -10,7 +11,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { User } from "next-auth";
 import { updateList } from "../Server/Actions";
 import { GameListUser } from "../types/GameListUser";
 import { Game } from "@/types/Game";
@@ -19,12 +19,11 @@ import { ListStatus } from "@prisma/client";
 export default function GameListButton({
   gameListUser,
   game,
-  user,
 }: {
   gameListUser: GameListUser | null;
   game: Game;
-  user: User;
 }) {
+  const { userId } = useAuth();
   const [list, setList] = useState({
     status: gameListUser?.status,
     score: gameListUser?.score,
@@ -43,7 +42,9 @@ export default function GameListButton({
   const handleDialogSave = () => {
     setList({ status, score });
     setOpen(false);
-    return startTransition(() => updateList(user.id, game.id, status, score));
+    return startTransition(() =>
+      updateList(userId || "", game.id, status, score)
+    );
   };
 
   return (
@@ -60,6 +61,9 @@ export default function GameListButton({
         onClick={() => {
           setOpen(true);
           setStatus(list?.status ? list.status : ListStatus.PLAYING);
+        }}
+        sx={{
+          width: { md: "200px" },
         }}
       >
         {list?.status ? `${list?.status}` : `Add to List`}

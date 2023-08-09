@@ -9,8 +9,8 @@ import { Game } from "@/types/Game";
 
 export default function GameRecomendation({ game }: { game: Game }) {
   return game.similar_games ? (
-    <Stack gap={1} my={5}>
-      <Typography mb={1} variant="h3" sx={h3}>{`Recommendations`}</Typography>
+    <Stack gap={1} my={4}>
+      <Typography variant="h3" sx={h3}>{`Recommendations`}</Typography>
       <CardCarousel
         slides={game.similar_games.map((similarGame) => (
           <CardSlide key={similarGame.id} type="games" data={similarGame} />
