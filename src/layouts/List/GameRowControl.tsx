@@ -3,22 +3,35 @@
 import NextLink from "next/link";
 import Image from "next/image";
 import { useState, useTransition } from "react";
+import { useUser } from "@clerk/nextjs";
 import Link from "@mui/material/Link";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { getImageUrl } from "@/lib/igdb";
 import { ListStatus } from "@prisma/client";
 import { GameList } from "./List";
+import { updateStatus } from "./listActions";
 
 export default function GameRowControl({ item }: { item: GameList }) {
-  const [status, setStatus] = useState(item.status);
+  const { user } = useUser();
+  const [isPendingStatus, startTransitionStatus] = useTransition();
+  const [status, setStatus] = useState(item.status as ListStatus);
+  const [isPendingScore, startTransitionScore] = useTransition();
   const [score, setScore] = useState(item.score);
 
   console.log(item);
+
+  const handleStatusChange = (event: SelectChangeEvent<ListStatus>) => {
+    const status = event.target.value as ListStatus;
+    setStatus(status);
+    startTransitionStatus(() =>
+      updateStatus(user?.id || "", item.game.id, status)
+    );
+  };
 
   return (
     <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -47,7 +60,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
             id="list-status-select"
             label="Status"
             value={status}
-            onChange={(event) => setStatus(event.target.value as ListStatus)}
+            onChange={handleStatusChange}
           >
             <MenuItem value={ListStatus.PLAYING}>PLAYING</MenuItem>
             <MenuItem value={ListStatus.COMPLETED}>COMPLETED</MenuItem>

@@ -39,6 +39,8 @@ export default async function getList(username: string) {
 
   let games: Game[] = [];
 
+  console.log(userInPrisma);
+
   if (userInPrisma.gameLists.length > 0) {
     games = await getGames(
       `f name, cover.image_id, slug; w id=(${userInPrisma?.gameLists
@@ -84,19 +86,24 @@ async function createCurrentUser(id: string, username: string, image: string) {
 }
 
 function generateGameList(games: Game[], userInPrisma: UserInPrisma) {
+  const userGameList = userInPrisma?.gameLists;
   const temp = [];
 
-  for (let i = 0; i < games.length; i++) {
+  for (let i = 0; i < userGameList.length; i++) {
+    const currentGame = games.find(
+      (game) => game.id === userGameList[i].gameId
+    );
+
     temp.push({
       game: {
-        id: games[i].id || 0,
-        slug: games[i].slug || "",
-        name: games[i].name || "",
-        imageId: games[i].cover?.image_id || "",
+        id: currentGame?.id || 0,
+        slug: currentGame?.slug || "",
+        name: currentGame?.name || "",
+        imageId: currentGame?.cover?.image_id || "",
       },
-      status: userInPrisma?.gameLists[i].status,
-      score: userInPrisma?.gameLists[i].score,
-      isFavorited: userInPrisma?.gameLists[i].isFavorited,
+      status: userGameList[i].status,
+      score: userGameList[i].score,
+      isFavorited: userGameList[i].isFavorited,
     });
   }
 
