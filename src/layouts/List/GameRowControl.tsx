@@ -14,7 +14,7 @@ import TableRow from "@mui/material/TableRow";
 import { getImageUrl } from "@/lib/igdb";
 import { ListStatus } from "@prisma/client";
 import { GameList } from "./List";
-import { updateStatus } from "./listActions";
+import { updateScore, updateStatus } from "./listActions";
 
 export default function GameRowControl({ item }: { item: GameList }) {
   const { user } = useUser();
@@ -23,14 +23,24 @@ export default function GameRowControl({ item }: { item: GameList }) {
   const [isPendingScore, startTransitionScore] = useTransition();
   const [score, setScore] = useState(item.score);
 
-  console.log(item);
-
   const handleStatusChange = (event: SelectChangeEvent<ListStatus>) => {
+    if (!user) return;
+    if (!user.id) return;
+
     const status = event.target.value as ListStatus;
+
     setStatus(status);
-    startTransitionStatus(() =>
-      updateStatus(user?.id || "", item.game.id, status)
-    );
+    startTransitionStatus(() => updateStatus(user.id, item.game.id, status));
+  };
+
+  const handleScoreChange = (event: SelectChangeEvent<number>) => {
+    if (!user) return;
+    if (!user.id) return;
+
+    const score = event.target.value as number;
+
+    setScore(score);
+    startTransitionScore(() => updateScore(user.id, item.game.id, score));
   };
 
   return (
@@ -78,7 +88,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
             id="list-score-select"
             value={score || ""}
             label="Status"
-            onChange={(event) => setScore(event.target.value as number)}
+            onChange={handleScoreChange}
           >
             <MenuItem value={10}>{`10 - MASTERPIECE`}</MenuItem>
             <MenuItem value={9}>{`9 - GREAT`}</MenuItem>
