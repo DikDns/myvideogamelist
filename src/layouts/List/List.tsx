@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -77,7 +78,10 @@ export default function List({
                   align="center"
                   colSpan={user?.username === username ? 5 : 4}
                 >
-                  No Data
+                  <Typography variant="subtitle1">No Data</Typography>
+                  <Button LinkComponent={NextLink} href={`/games`}>
+                    Find your favorite games!
+                  </Button>
                 </TableCell>
               </TableRow>
             )}
