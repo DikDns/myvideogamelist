@@ -79,9 +79,11 @@ export default function List({
                   colSpan={user?.username === username ? 5 : 4}
                 >
                   <Typography variant="subtitle1">No Data</Typography>
-                  <Button LinkComponent={NextLink} href={`/games`}>
-                    Find your favorite games!
-                  </Button>
+                  {user?.username === username && (
+                    <Button LinkComponent={NextLink} href={`/games`}>
+                      Find your favorite games!
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             )}
