@@ -31,6 +31,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
 
   const [isPendingDelete, startTransitionDelete] = useTransition();
   const [open, setOpen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleStatusChange = (event: SelectChangeEvent<ListStatus>) => {
     if (!user) return;
@@ -49,6 +50,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
     const score = event.target.value as number;
 
     setScore(score);
+    setIsDeleted(true);
     startTransitionScore(() => updateScore(user.id, item.game.id, score));
   };
 
@@ -63,7 +65,12 @@ export default function GameRowControl({ item }: { item: GameList }) {
   };
 
   return (
-    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+    <TableRow
+      sx={{
+        display: isDeleted ? "none" : "table-row",
+        "&:last-child td, &:last-child th": { border: 0 },
+      }}
+    >
       <TableCell component="th" scope="row">
         <Image
           src={getImageUrl(item.game.imageId, "cover_small", "2x")}
