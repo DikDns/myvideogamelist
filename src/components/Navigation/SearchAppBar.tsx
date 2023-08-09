@@ -9,6 +9,7 @@ import {
   SignOutButton,
   SignedIn,
   SignedOut,
+  useUser,
 } from "@clerk/nextjs";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -16,6 +17,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -103,30 +105,12 @@ const drawerNavPages = [
   },
 ];
 
-const drawerUserPages = [
-  {
-    src: "/list",
-    name: "My List",
-    icon: FormatListBulletedIcon,
-  },
-  {
-    src: "/profile",
-    name: "My Profile",
-    icon: AccountCircleIcon,
-  },
-  {
-    src: "/account",
-    name: "Account Settings",
-    icon: SettingsIcon,
-  },
-];
-
 export default function SearchAppBar({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // const { data } = useSession();
+  const { user } = useUser();
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -194,20 +178,49 @@ export default function SearchAppBar({
       <Divider />
       <SignedIn>
         <List>
-          {drawerUserPages.map((link, i) => (
-            <ListItem disablePadding key={i}>
-              <ListItemButton
-                selected={pathname.includes(link.src)}
-                href={link.src}
-                onClick={() => setMobileOpen(false)}
-              >
-                <ListItemIcon>
-                  <link.icon />
-                </ListItemIcon>
-                <ListItemText primary={link.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={pathname.includes("/list")}
+              href={"/list"}
+              onClick={() => setMobileOpen(false)}
+            >
+              <ListItemIcon>
+                <FormatListBulletedIcon />
+              </ListItemIcon>
+              <ListItemText primary={"My List"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton
+              selected={pathname.includes("/profile")}
+              href={"/profile"}
+              onClick={() => setMobileOpen(false)}
+            >
+              <ListItemIcon>
+                <Avatar
+                  sx={{ width: 24, height: 24 }}
+                  alt={`${user?.username}`}
+                  src={`${user?.imageUrl}`}
+                />
+              </ListItemIcon>
+              <ListItemText primary={"My Profile"} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton
+              LinkComponent={NextLink}
+              selected={pathname.includes("/account")}
+              href={"/account"}
+              onClick={() => setMobileOpen(false)}
+            >
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Account Settings"} />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
         <List>
