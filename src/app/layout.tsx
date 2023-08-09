@@ -1,6 +1,7 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
 import SearchAppBar from "@/components/Navigation/SearchAppBar";
+import Footer from "@/components/Navigation/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <body>
           <ThemeRegistry>
             <SearchAppBar>{children}</SearchAppBar>
+            <Footer />
           </ThemeRegistry>
         </body>
       </html>
