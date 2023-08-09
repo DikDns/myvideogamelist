@@ -82,7 +82,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
         </Link>
       </TableCell>
       <TableCell>
-        <FormControl fullWidth sx={{ mt: 2 }}>
+        <FormControl fullWidth>
           <InputLabel id="list-status-label">Status</InputLabel>
           <Select
             labelId="list-status-label"
@@ -100,7 +100,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
         </FormControl>
       </TableCell>
       <TableCell>
-        <FormControl fullWidth sx={{ mt: 2 }}>
+        <FormControl fullWidth>
           <InputLabel id="list-score-label">Score</InputLabel>
           <Select
             labelId="list-score-label"
