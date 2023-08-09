@@ -8,7 +8,7 @@ export default function SignInPage() {
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <SignIn redirectUrl="/auth" />
+      <SignIn />
     </Box>
   );
 }

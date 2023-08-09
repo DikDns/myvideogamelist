@@ -8,7 +8,7 @@ export default function SignUpPage() {
     <Box
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
-      <SignUp redirectUrl="/auth" />
+      <SignUp />
     </Box>
   );
 }
