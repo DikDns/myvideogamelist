@@ -13,7 +13,7 @@ A website similar to MyAnimeList, but for tracking video games.
 
 `/search`
 
-- [ ] Fix bug double fetching (?)
+- [x] Fix bug double fetching (?)
 
 `/games`
 
