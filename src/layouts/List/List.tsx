@@ -41,13 +41,13 @@ export default function List({
 }) {
   const { user } = useUser();
 
-  return (
+  return user?.username === username ? (
     <Container>
       <Typography mb={2} variant="h3" sx={h3}>
         <Link color="#fff" component={NextLink} href={`/profile/${username}`}>
           {`${username.toUpperCase()}`}
         </Link>
-        {` Game List`}
+        {` List`}
       </Typography>
       <TableContainer component={Paper}>
         <Table
@@ -61,19 +61,13 @@ export default function List({
               <TableCell>Name</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Score</TableCell>
-              {user?.username === username && (
-                <TableCell align="right">Action</TableCell>
-              )}
+              <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((item, index) =>
-              user?.username === username ? (
-                <GameRowControl key={index} item={item} />
-              ) : (
-                <GameRow key={index} item={item} />
-              )
-            )}
+            {data.map((item, index) => (
+              <GameRowControl key={index} item={item} />
+            ))}
             {data.length === 0 && (
               <TableRow>
                 <TableCell
@@ -81,11 +75,46 @@ export default function List({
                   colSpan={user?.username === username ? 5 : 4}
                 >
                   <Typography variant="subtitle1">No Data</Typography>
-                  {user?.username === username && (
-                    <Button LinkComponent={NextLink} href={`/games`}>
-                      Find your favorite games!
-                    </Button>
-                  )}
+                  <Button LinkComponent={NextLink} href={`/games`}>
+                    Find your favorite games!
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
+  ) : (
+    <Container>
+      <Typography mb={2} variant="h3" sx={h3}>
+        <Link color="#fff" component={NextLink} href={`/profile/${username}`}>
+          {`${username.toUpperCase()}`}
+        </Link>
+        {` List`}
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{ minWidth: 650 }}
+          aria-label="list games table"
+          size="small"
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell>Cover</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Score</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((item, index) => (
+              <GameRow key={index} item={item} />
+            ))}
+            {data.length === 0 && (
+              <TableRow>
+                <TableCell align="center" colSpan={4}>
+                  <Typography variant="subtitle1">No Data</Typography>
                 </TableCell>
               </TableRow>
             )}
