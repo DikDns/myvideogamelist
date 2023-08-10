@@ -1,5 +1,6 @@
 "use client";
 
+import NextLink from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
@@ -7,10 +8,11 @@ import CircularLoading from "@/components/Loading/CircularLoading";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
+import Card from "@mui/material/Card";
+import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import YoutubePlayer from "@/components/VideoPlayer/YoutubePlayer";
-import truncStr from "@/utils/truncStr";
 import { getGameVideos } from "@/lib/igdb";
 import { subtitleSlide, videoSlide } from "../styles";
 import { Video } from "@/types/Video";
@@ -55,7 +57,7 @@ export default function Videos() {
       >
         <Box>
           {videos.map((video) => (
-            <Box key={video.id} sx={videoSlide}>
+            <Card key={video.id} sx={videoSlide} variant="outlined">
               <CardMedia>
                 <YoutubePlayer
                   videoId={video.video_id}
@@ -76,14 +78,16 @@ export default function Videos() {
                 variant="subtitle1"
                 component="p"
               >
-                {truncStr(
-                  `${video.name || ""} for ${
-                    video.game ? video.game.name || "" : ""
-                  }`,
-                  50
-                )}
+                {`${video.name || ""} for `}
+                <Link
+                  color="#fff"
+                  href={`/games/${video.game?.slug}`}
+                  component={NextLink}
+                >
+                  {`${video.game ? video.game.name || "" : ""}`}
+                </Link>
               </Typography>
-            </Box>
+            </Card>
           ))}
         </Box>
       </InfiniteScroll>
