@@ -38,11 +38,6 @@ export default function Games() {
     setHasMore(true);
   }, [bracket]);
 
-  useEffect(() => {
-    if (games.length > 0) return;
-    fetchMore();
-  }, [games]);
-
   const fetchMore = async () => {
     const fetchLimit = 10;
     const nextGames: Game[] = await getGamesBracket(
