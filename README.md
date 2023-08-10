@@ -4,6 +4,10 @@ A website similar to MyAnimeList, but for tracking video games.
 
 ## Todo List
 
+`IMPORTANT`
+
+- [ ] Infinite Scroll on User Game List
+
 `Features`
 
 - [x] Favorite Game Logic
