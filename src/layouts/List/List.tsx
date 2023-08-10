@@ -19,7 +19,9 @@ import GameRowControl from "./GameRowControl";
 import GameRow from "./GameRow";
 
 export type GameList = {
-  game: {
+  userId: string;
+  gameId: number;
+  game?: {
     id: number;
     slug: string;
     name: string;

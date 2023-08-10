@@ -93,8 +93,9 @@ function generateGameList(games: Game[], userInPrisma: UserInPrisma) {
     const currentGame = games.find(
       (game) => game.id === userGameList[i].gameId
     );
-
     temp.push({
+      userId: userGameList[i].userId,
+      gameId: userGameList[i].gameId,
       game: {
         id: currentGame?.id || 0,
         slug: currentGame?.slug || "",
