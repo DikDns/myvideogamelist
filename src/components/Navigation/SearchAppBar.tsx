@@ -327,6 +327,7 @@ export default function SearchAppBar({
       <Box
         component="main"
         sx={{
+          minHeight: "100vh",
           flexGrow: 1,
           pt: 3,
         }}
