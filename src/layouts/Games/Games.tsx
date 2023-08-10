@@ -30,15 +30,24 @@ export default function Games() {
 
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setOffset(0);
     setGames([]);
-    setHasMore(true);
+    setHasMore(false);
+    setIsLoading(false);
   }, [bracket]);
 
+  useEffect(() => {
+    if (isLoading) return;
+    if (games.length > 0) return;
+    fetchMore();
+  }, [games]);
+
   const fetchMore = async () => {
+    setIsLoading(true);
     const fetchLimit = 10;
     const nextGames: Game[] = await getGamesBracket(
       bracket,
@@ -50,6 +59,8 @@ export default function Games() {
 
     setGames((prevGames) => [...prevGames, ...nextGames]);
     setOffset(games.length + nextGames.length);
+    setHasMore(true);
+    setIsLoading(false);
   };
 
   return (
