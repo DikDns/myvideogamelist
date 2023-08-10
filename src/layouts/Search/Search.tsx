@@ -19,7 +19,8 @@ export default function Search() {
 
   const [games, setGames] = useState<Game[]>([]);
   const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setHasMore(true);
@@ -27,7 +28,14 @@ export default function Search() {
     setOffset(0);
   }, [searchParam]);
 
+  useEffect(() => {
+    if (games.length > 1) return;
+    if (isLoading) return;
+    fetchMore();
+  }, [games]);
+
   const fetchMore = async () => {
+    setIsLoading(true);
     const fetchLimit = 10;
     const nextGames = await getSearchGames(search, fetchLimit, offset);
 
@@ -35,6 +43,8 @@ export default function Search() {
 
     setGames((prevGames) => [...prevGames, ...nextGames]);
     setOffset((prevOffset) => prevOffset + nextGames.length);
+    setHasMore(true);
+    setIsLoading(false);
   };
 
   return (
