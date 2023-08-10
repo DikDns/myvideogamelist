@@ -39,14 +39,14 @@ export default async function getList(username: string) {
 
   let games: Game[] = [];
 
-  console.log(userInPrisma);
-
   if (userInPrisma.gameLists.length > 0) {
-    games = await getGames(
-      `f name, cover.image_id, slug; w id=(${userInPrisma?.gameLists
-        .map((game) => game.gameId)
-        .join(",")});`
-    );
+    const body = `
+      f name, cover.image_id, slug; 
+      w id=(${userInPrisma?.gameLists.map((game) => game.gameId).join(",")});
+      l 50;
+    `;
+
+    games = await getGames(body);
   }
 
   return generateGameList(games, userInPrisma);
