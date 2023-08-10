@@ -37,19 +37,7 @@ export default async function getList(username: string) {
 
   if (userInPrisma?.username !== username) return notFound();
 
-  let games: Game[] = [];
-
-  if (userInPrisma.gameLists.length > 0) {
-    const body = `
-      f name, cover.image_id, slug; 
-      w id=(${userInPrisma?.gameLists.map((game) => game.gameId).join(",")});
-      l 50;
-    `;
-
-    games = await getGames(body);
-  }
-
-  return generateGameList(games, userInPrisma);
+  return userInPrisma;
 }
 
 async function findUserByUsername(username: string) {
