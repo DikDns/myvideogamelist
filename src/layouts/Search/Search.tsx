@@ -27,11 +27,6 @@ export default function Search() {
     setOffset(0);
   }, [searchParam]);
 
-  useEffect(() => {
-    if (games.length > 0) return;
-    fetchMore();
-  }, [games]);
-
   const fetchMore = async () => {
     const fetchLimit = 10;
     const nextGames = await getSearchGames(search, fetchLimit, offset);
