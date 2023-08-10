@@ -35,6 +35,7 @@ export default function Games() {
   useEffect(() => {
     setOffset(0);
     setGames([]);
+    setHasMore(true);
   }, [bracket]);
 
   useEffect(() => {
