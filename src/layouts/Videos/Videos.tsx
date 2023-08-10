@@ -14,7 +14,7 @@ import Skeleton from "@mui/material/Skeleton";
 import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
 import YoutubePlayer from "@/components/VideoPlayer/YoutubePlayer";
 import { getGameVideos } from "@/lib/igdb";
-import { subtitleSlide, videoSlide } from "../styles";
+import { h3, subtitleSlide, videoSlide } from "../styles";
 import { Video } from "@/types/Video";
 
 export default function Videos() {
@@ -47,7 +47,13 @@ export default function Videos() {
 
   return (
     <Container>
-      <BasicBreadcrumbs />
+      <Box mt={1} mb={2}>
+        <BasicBreadcrumbs />
+      </Box>
+
+      <Typography mb={4} variant="h3" sx={h3}>
+        Videos
+      </Typography>
 
       <InfiniteScroll
         dataLength={videos.length}
@@ -55,7 +61,20 @@ export default function Videos() {
         hasMore={hasMore}
         loader={<CircularLoading />}
       >
-        <Box>
+        <Box
+          sx={{
+            display: "grid",
+            rowGap: { sm: 4, md: 8 },
+            columnGap: 2,
+            justifyItems: "center",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "1fr 1fr",
+              md: "1fr 1fr 1fr",
+              lg: "1fr 1fr 1fr 1fr",
+            },
+          }}
+        >
           {videos.map((video) => (
             <Card key={video.id} sx={videoSlide} variant="outlined">
               <CardMedia>
