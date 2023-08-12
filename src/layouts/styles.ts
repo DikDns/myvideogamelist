@@ -59,7 +59,7 @@ export const h6: SxProps = {
   fontWeight: "300",
 };
 
-export const slideMargin: SxProps = { mx: "8px" };
+export const slideMargin: SxProps = { mx: { sm: 1, md: 2 } };
 
 export const videoSlide: SxProps = {
   width: "256px",
