@@ -1,8 +1,6 @@
 "use client";
 
 import NextLink from "next/link";
-import { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,14 +11,15 @@ import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { ListStatus, User } from "@prisma/client";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import { h3 } from "../styles";
 import GameRow from "./GameRow";
+import useGameList from "./useGameList";
+import { User } from "./GameList";
 
 export default function List({ user }: { user: User }) {
-  useEffect(() => {
-    console.log(user);
-  }, []);
+  const { gameList, hasMore, isLoading, fetchMore } = useGameList(user);
 
   return (
     <Container>
@@ -49,16 +48,36 @@ export default function List({ user }: { user: User }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* {data.map((item, index) => (
-              <GameRow key={index} item={item} />
+            {gameList.map((list) => (
+              <GameRow key={list.gameId} list={list} />
             ))}
-            {data.length === 0 && (
+            {isLoading && (
+              <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  <CircularProgress />
+                </TableCell>
+              </TableRow>
+            )}
+            {hasMore && (
+              <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  <Button
+                    disabled={isLoading}
+                    onClick={() => fetchMore()}
+                    variant="contained"
+                  >
+                    Load More
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )}
+            {user.gameLists.length === 0 && (
               <TableRow>
                 <TableCell align="center" colSpan={4}>
                   <Typography variant="subtitle1">No Data</Typography>
                 </TableCell>
               </TableRow>
-            )} */}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
