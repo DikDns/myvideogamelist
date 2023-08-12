@@ -44,7 +44,13 @@ async function findUserByUsername(username: string) {
   return await prisma.user.findUnique({
     where: { username },
     include: {
-      gameLists: { orderBy: [{ status: "asc" }, { isFavorited: "desc" }] },
+      gameLists: {
+        orderBy: [
+          { status: "asc" },
+          { isFavorited: "desc" },
+          { score: "desc" },
+        ],
+      },
     },
   });
 }
@@ -53,7 +59,13 @@ async function findUserById(id: string) {
   return await prisma.user.findUnique({
     where: { id: id },
     include: {
-      gameLists: { orderBy: [{ status: "asc" }, { isFavorited: "desc" }] },
+      gameLists: {
+        orderBy: [
+          { status: "asc" },
+          { isFavorited: "desc" },
+          { score: "desc" },
+        ],
+      },
     },
   });
 }
