@@ -6,7 +6,7 @@ A website similar to MyAnimeList, but for tracking video games.
 
 `IMPORTANT`
 
-- [ ] Infinite Scroll on User Game List
+- [x] Load More Button on User Game List
 
 `Features`
 
