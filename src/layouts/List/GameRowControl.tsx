@@ -19,15 +19,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { getImageUrl } from "@/lib/igdb";
 import { ListStatus } from "@prisma/client";
-import { GameList } from "./List";
+import { GameList } from "./GameList";
 import { deleteList, updateScore, updateStatus } from "./listActions";
 
-export default function GameRowControl({ item }: { item: GameList }) {
+export default function GameRowControl({ list }: { list: GameList }) {
   const { user } = useUser();
   const [isPendingStatus, startTransitionStatus] = useTransition();
-  const [status, setStatus] = useState(item.status as ListStatus);
+  const [status, setStatus] = useState(list.status as ListStatus);
   const [isPendingScore, startTransitionScore] = useTransition();
-  const [score, setScore] = useState(item.score);
+  const [score, setScore] = useState(list.score);
 
   const [isPendingDelete, startTransitionDelete] = useTransition();
   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
     const status = event.target.value as ListStatus;
 
     setStatus(status);
-    startTransitionStatus(() => updateStatus(user.id, item.game.id, status));
+    startTransitionStatus(() => updateStatus(user.id, list.gameId, status));
   };
 
   const handleScoreChange = (event: SelectChangeEvent<number>) => {
@@ -50,7 +50,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
     const score = event.target.value as number;
 
     setScore(score);
-    startTransitionScore(() => updateScore(user.id, item.game.id, score));
+    startTransitionScore(() => updateScore(user.id, list.gameId, score));
   };
 
   const handleDelete = () => {
@@ -59,7 +59,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
 
     setIsDeleted(true);
     setOpen(false);
-    startTransitionDelete(() => deleteList(user.id, item.game.id));
+    startTransitionDelete(() => deleteList(user.id, list.gameId));
   };
 
   return (
@@ -71,8 +71,12 @@ export default function GameRowControl({ item }: { item: GameList }) {
     >
       <TableCell component="th" scope="row">
         <Image
-          src={getImageUrl(item.game.imageId, "cover_small", "2x")}
-          alt={`${item.game.name} Cover`}
+          src={getImageUrl(
+            list.game?.cover?.image_id || "",
+            "cover_small",
+            "2x"
+          )}
+          alt={`${list.game?.name} Cover`}
           width={45}
           height={68}
         />
@@ -81,9 +85,9 @@ export default function GameRowControl({ item }: { item: GameList }) {
         <Link
           color="#fff"
           component={NextLink}
-          href={`/games/${item.game.slug}`}
+          href={`/games/${list.game?.slug}`}
         >
-          {`${item.game.name}`}
+          {`${list.game?.name}`}
         </Link>
       </TableCell>
       <TableCell>
@@ -146,7 +150,7 @@ export default function GameRowControl({ item }: { item: GameList }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {`Remove ${item.game.name} from ${user?.username} list?`}
+          {`Remove ${list.game?.name} from ${user?.username} list?`}
         </DialogTitle>
         <DialogActions>
           <Button color="inherit" onClick={() => setOpen(false)}>
