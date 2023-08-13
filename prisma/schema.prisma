@@ -9,13 +9,13 @@ datasource db {
 }
 
 model Follows {
-  followerUser    User   @relation("follower", fields: [followerUserId], references: [id], onDelete: Cascade)
-  followerUserId  String @map("follower_user_id")
+  followersUser   User   @relation("followers", fields: [followersUserId], references: [id], onDelete: Cascade)
+  followersUserId String @map("followers_user_id")
   followingUser   User   @relation("following", fields: [followingUserId], references: [id], onDelete: Cascade)
   followingUserId String @map("following_user_id")
 
-  @@id([followerUserId, followingUserId])
-  @@index([followerUserId])
+  @@id([followersUserId, followingUserId])
+  @@index([followersUserId])
   @@index([followingUserId])
   @@map("follows")
 }
@@ -24,8 +24,8 @@ model User {
   id            String          @id
   username      String?         @unique
   image         String?
-  followers     Follows[]       @relation("following")
-  following     Follows[]       @relation("follower")
+  followers     Follows[]       @relation("followers")
+  following     Follows[]       @relation("following")
   gameLists     GameList[]
   seriesList    SeriesList[]
   franchiseList FranchiseList[]
