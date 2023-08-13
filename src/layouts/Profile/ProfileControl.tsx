@@ -18,8 +18,8 @@ export default function ProfileControl({ user }: { user: User }) {
         <Image
           src={user.image || ""}
           alt={`${user.username} picture`}
-          width={128}
-          height={128}
+          width={64}
+          height={64}
         />
       </Stack>
       <Typography>{`Profile Control: ${user.username}`}</Typography>
