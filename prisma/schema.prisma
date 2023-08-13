@@ -9,14 +9,14 @@ datasource db {
 }
 
 model Follows {
-  follower    User   @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
-  followerId  String @map("follower_id")
-  following   User   @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
-  followingId String @map("following_id")
+  followerUser    User   @relation("follower", fields: [followerUserId], references: [id], onDelete: Cascade)
+  followerUserId  String @map("follower_user_id")
+  followingUser   User   @relation("following", fields: [followingUserId], references: [id], onDelete: Cascade)
+  followingUserId String @map("following_user_id")
 
-  @@id([followerId, followingId])
-  @@index([followerId])
-  @@index([followingId])
+  @@id([followerUserId, followingUserId])
+  @@index([followerUserId])
+  @@index([followingUserId])
   @@map("follows")
 }
 
