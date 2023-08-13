@@ -1,7 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { prisma } from "@/lib/db";
-import { getGames } from "@/lib/igdb";
 import { Game } from "@/types/Game";
 import { User, GameList } from "@prisma/client";
 
