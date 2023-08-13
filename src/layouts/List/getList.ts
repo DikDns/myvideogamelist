@@ -21,17 +21,20 @@ export default async function getList(username: string) {
 
     userInPrisma = await createCurrentUser(id, usernameInClerk, imageUrl);
   }
-
   if (
     userInPrisma?.id === userInClerk?.id &&
-    userInPrisma?.username !== userInClerk?.username
+    (userInPrisma?.username !== userInClerk?.username ||
+      userInPrisma?.image !== userInClerk?.imageUrl)
   ) {
-    userInPrisma = await updateCurrentUsername(
-      userInClerk?.id || "",
-      userInClerk?.username || ""
-    );
+    if (!(userInClerk?.id && userInClerk.username && userInClerk.imageUrl)) {
+      return notFound();
+    }
 
-    return redirect("/list/" + userInClerk?.username?.toLowerCase());
+    const { id, username: usernameInClerk, imageUrl } = userInClerk;
+
+    userInPrisma = await updateCurrentUser(id, usernameInClerk, imageUrl);
+
+    return redirect("/list/" + usernameInClerk.toLowerCase());
   }
 
   if (userInPrisma?.username !== username) return notFound();
@@ -69,10 +72,10 @@ async function findUserById(id: string) {
   });
 }
 
-async function updateCurrentUsername(id: string, username: string) {
+async function updateCurrentUser(id: string, username: string, image: string) {
   return await prisma.user.update({
     where: { id: id },
-    data: { username: username },
+    data: { username, image },
     include: { gameLists: true },
   });
 }
