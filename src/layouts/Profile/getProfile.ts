@@ -28,12 +28,16 @@ export default async function getProfile(username: string) {
 
   if (
     userInPrisma?.id === userInClerk?.id &&
-    userInPrisma?.username !== userInClerk?.username
+    (userInPrisma?.username !== userInClerk?.username ||
+      userInPrisma?.image !== userInClerk?.imageUrl)
   ) {
-    userInPrisma = await updateCurrentUsername(
-      userInClerk?.id || "",
-      userInClerk?.username || ""
-    );
+    if (!(userInClerk?.id && userInClerk.username && userInClerk.imageUrl)) {
+      return notFound();
+    }
+
+    const { id, username: usernameInClerk, imageUrl } = userInClerk;
+
+    userInPrisma = await updateCurrentUser(id, usernameInClerk, imageUrl);
 
     return redirect("/profile/" + userInClerk?.username?.toLowerCase());
   }
@@ -57,10 +61,10 @@ async function findUserById(id: string) {
   });
 }
 
-async function updateCurrentUsername(id: string, username: string) {
+async function updateCurrentUser(id: string, username: string, image: string) {
   return await prisma.user.update({
     where: { id: id },
-    data: { username: username },
+    data: { username, image },
     include,
   });
 }
