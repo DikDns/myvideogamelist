@@ -7,6 +7,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "img.clerk.com",
+        port: "",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "www.igdb.com",
         port: "",
         pathname: "**",
