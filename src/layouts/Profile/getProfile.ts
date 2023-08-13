@@ -39,7 +39,7 @@ export default async function getProfile(username: string) {
 
     userInPrisma = await updateCurrentUser(id, usernameInClerk, imageUrl);
 
-    return redirect("/profile/" + userInClerk?.username?.toLowerCase());
+    return redirect("/profile/" + usernameInClerk.toLowerCase());
   }
 
   if (userInPrisma?.username !== username) return notFound();
