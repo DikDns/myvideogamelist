@@ -17,63 +17,57 @@ export default function ProfileControl({ user }: { user: User }) {
 
   return (
     <Container>
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        gap={2}
-        mb={2}
-      >
-        <Image
-          src={user.image || ""}
-          alt={`${user.username} picture`}
-          width={64}
-          height={64}
-        />
-        <Stack direction="row" gap={2}>
-          <Stack alignItems="center">
-            <Typography variant="body1">{`${user.gameLists.length}`}</Typography>
-            <Typography variant="body2">
-              <Link
-                component={NextLink}
-                href={`/list/${user.username}`}
-                color="#fff"
-              >
-                {`Games`}
-              </Link>
-            </Typography>
-          </Stack>
-          <Stack alignItems="center">
-            <Typography variant="body1">{`${user.followers.length}`}</Typography>
-            <Typography variant="body2">
-              <Link
-                component={NextLink}
-                href={`/profile/${user.username}/followers`}
-                color="#fff"
-              >
-                {`Followers`}
-              </Link>
-            </Typography>
-          </Stack>
-          <Stack alignItems="center">
-            <Typography variant="body1">{`${user.following.length}`}</Typography>
-            <Typography variant="body2">
-              <Link
-                component={NextLink}
-                href={`/profile/${user.username}/following`}
-                color="#fff"
-              >
-                {`Following`}
-              </Link>
-            </Typography>
-          </Stack>
+      <Stack gap={2}>
+        <Stack direction="row" alignItems="center" gap={2}>
+          <Image
+            src={user.image || ""}
+            alt={`${user.username} picture`}
+            width={64}
+            height={64}
+          />
+
+          <Typography
+            variant="h2"
+            sx={h2}
+          >{`${user.username?.toUpperCase()}`}</Typography>
+        </Stack>
+
+        <Stack direction="row" gap={2} justifyContent="space-evenly">
+          <Link
+            component={NextLink}
+            color="#fff"
+            underline="none"
+            href={`/list/${user.username}`}
+          >
+            <Stack alignItems="center">
+              <Typography variant="body1">{`${user.gameLists.length}`}</Typography>
+              <Typography variant="body2">{`Games`}</Typography>
+            </Stack>
+          </Link>
+          <Link
+            component={NextLink}
+            color="#fff"
+            underline="none"
+            href={`/profile/${user.username}/followers`}
+          >
+            <Stack alignItems="center">
+              <Typography variant="body1">{`${user.followers.length}`}</Typography>
+              <Typography variant="body2">{`Followers`}</Typography>
+            </Stack>
+          </Link>
+          <Link
+            component={NextLink}
+            color="#fff"
+            underline="none"
+            href={`/profile/${user.username}/following`}
+          >
+            <Stack alignItems="center">
+              <Typography variant="body1">{`${user.following.length}`}</Typography>
+              <Typography variant="body2">{`Following`}</Typography>
+            </Stack>
+          </Link>
         </Stack>
       </Stack>
-
-      <Typography
-        variant="h2"
-        sx={h2}
-      >{`${user.username?.toUpperCase()}`}</Typography>
     </Container>
   );
 }
