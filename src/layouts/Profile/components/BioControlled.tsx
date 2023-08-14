@@ -6,6 +6,7 @@ import {
   SetStateAction,
   ChangeEvent,
   MouseEvent,
+  useTransition,
 } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -16,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
 import { User } from "../User";
+import { updateBio } from "../profileActions";
 
 const bioMaxLength = 190;
 const defaultBio = "A gamer who hasn't set their bio yet.";
@@ -27,7 +29,14 @@ export default function BioControlled({ user }: { user: User }) {
   return (
     <Box>
       {!onEdit && <BioDisplay bio={bio} setOnEdit={setOnEdit} />}
-      {onEdit && <BioInput bio={bio} setBio={setBio} setOnEdit={setOnEdit} />}
+      {onEdit && (
+        <BioInput
+          userId={user.id}
+          bio={bio}
+          setBio={setBio}
+          setOnEdit={setOnEdit}
+        />
+      )}
     </Box>
   );
 }
@@ -56,14 +65,18 @@ function BioDisplay({
 }
 
 function BioInput({
+  userId,
   bio,
   setBio,
   setOnEdit,
 }: {
+  userId: string;
   bio: string;
   setBio: Dispatch<SetStateAction<string>>;
   setOnEdit: Dispatch<SetStateAction<boolean>>;
 }) {
+  const [isPending, startTransition] = useTransition();
+
   const handleBioChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.value.length > bioMaxLength) return;
     if (bio.length > bioMaxLength) {
@@ -73,6 +86,7 @@ function BioInput({
   };
 
   const handleBioSave = (event: MouseEvent<HTMLButtonElement>) => {
+    startTransition(() => updateBio(userId, bio));
     setOnEdit(false);
   };
 
