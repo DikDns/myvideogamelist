@@ -64,7 +64,7 @@ export default function Videos() {
         <Box
           sx={{
             display: "grid",
-            rowGap: { sm: 4, md: 8 },
+            rowGap: { xs: 4, md: 8 },
             columnGap: 2,
             justifyItems: "center",
             gridTemplateColumns: {
