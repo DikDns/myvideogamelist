@@ -12,6 +12,7 @@ export default function useGameList(user: User) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (user.gameLists.length === 0) return;
     fetchMore();
   }, []);
 
