@@ -24,6 +24,7 @@ model User {
   id            String          @id
   username      String?         @unique
   image         String?
+  bio           String?
   followers     Follows[]       @relation("followers")
   following     Follows[]       @relation("following")
   gameLists     GameList[]
