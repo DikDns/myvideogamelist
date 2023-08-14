@@ -9,10 +9,11 @@ datasource db {
 }
 
 model Follows {
-  followersUser   User   @relation("followers", fields: [followersUserId], references: [id], onDelete: Cascade)
-  followersUserId String @map("followers_user_id")
-  followingUser   User   @relation("following", fields: [followingUserId], references: [id], onDelete: Cascade)
-  followingUserId String @map("following_user_id")
+  followersUser   User     @relation("followers", fields: [followersUserId], references: [id], onDelete: Cascade)
+  followersUserId String   @map("followers_user_id")
+  followingUser   User     @relation("following", fields: [followingUserId], references: [id], onDelete: Cascade)
+  followingUserId String   @map("following_user_id")
+  updatedAt       DateTime @updatedAt
 
   @@id([followersUserId, followingUserId])
   @@index([followersUserId])
@@ -30,6 +31,7 @@ model User {
   gameLists     GameList[]
   seriesList    SeriesList[]
   franchiseList FranchiseList[]
+  updatedAt     DateTime        @updatedAt
 
   @@map("users")
 }
@@ -49,6 +51,7 @@ model GameList {
   status      ListStatus?
   user        User        @relation(fields: [userId], references: [id])
   userId      String      @map("user_id")
+  updatedAt   DateTime    @updatedAt
 
   @@id([gameId, userId])
   @@index([userId])
@@ -60,6 +63,7 @@ model SeriesList {
   isFavorited Boolean? @map("is_favorited")
   user        User     @relation(fields: [userId], references: [id])
   userId      String   @map("user_id")
+  updatedAt   DateTime @updatedAt
 
   @@id([seriesId, userId])
   @@index([userId])
@@ -71,6 +75,7 @@ model FranchiseList {
   isFavorited Boolean? @map("is_favorited")
   user        User     @relation(fields: [userId], references: [id])
   userId      String   @map("user_id")
+  updatedAt   DateTime @updatedAt
 
   @@id([franchiseId, userId])
   @@index([userId])
@@ -80,6 +85,7 @@ model FranchiseList {
 model IGDBToken {
   accessToken String   @id @unique @map("access_token")
   expiredAt   DateTime @map("expires_at")
+  updatedAt   DateTime @updatedAt
 
   @@map("igdb_token")
 }
