@@ -13,8 +13,8 @@ model Follows {
   followersUserId String   @map("followers_user_id")
   followingUser   User     @relation("following", fields: [followingUserId], references: [id], onDelete: Cascade)
   followingUserId String   @map("following_user_id")
-  updatedAt       DateTime @updatedAt
-  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  createdAt       DateTime @default(now()) @map("created_at")
 
   @@id([followersUserId, followingUserId])
   @@index([followersUserId])
@@ -22,18 +22,30 @@ model Follows {
   @@map("follows")
 }
 
+model GameSocialNetwork {
+  userId        String   @id @map("user_id")
+  user          User     @relation(fields: [userId], references: [id])
+  steamUsername String?  @map("steam_username")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("game_social_network")
+}
+
 model User {
-  id            String          @id
-  username      String?         @unique
-  image         String?
-  bio           String?
-  followers     Follows[]       @relation("followers")
-  following     Follows[]       @relation("following")
-  gameLists     GameList[]
-  seriesList    SeriesList[]
-  franchiseList FranchiseList[]
-  updatedAt     DateTime        @updatedAt
-  createdAt     DateTime        @default(now())
+  id                String              @id
+  username          String?             @unique
+  image             String?
+  bio               String?
+  updatedAt         DateTime            @updatedAt @map("updated_at")
+  createdAt         DateTime            @default(now()) @map("created_at")
+  followers         Follows[]           @relation("followers")
+  following         Follows[]           @relation("following")
+  gameLists         GameList[]
+  seriesList        SeriesList[]
+  franchiseList     FranchiseList[]
+  GameSocialNetwork GameSocialNetwork[]
 
   @@map("users")
 }
@@ -53,8 +65,8 @@ model GameList {
   status      ListStatus?
   user        User        @relation(fields: [userId], references: [id])
   userId      String      @map("user_id")
-  updatedAt   DateTime    @updatedAt
-  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  createdAt   DateTime    @default(now()) @map("created_at")
 
   @@id([gameId, userId])
   @@index([userId])
@@ -66,8 +78,8 @@ model SeriesList {
   isFavorited Boolean? @map("is_favorited")
   user        User     @relation(fields: [userId], references: [id])
   userId      String   @map("user_id")
-  updatedAt   DateTime @updatedAt
-  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@id([seriesId, userId])
   @@index([userId])
@@ -79,8 +91,8 @@ model FranchiseList {
   isFavorited Boolean? @map("is_favorited")
   user        User     @relation(fields: [userId], references: [id])
   userId      String   @map("user_id")
-  updatedAt   DateTime @updatedAt
-  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@id([franchiseId, userId])
   @@index([userId])
@@ -90,8 +102,8 @@ model FranchiseList {
 model IGDBToken {
   accessToken String   @id @unique @map("access_token")
   expiredAt   DateTime @map("expires_at")
-  updatedAt   DateTime @updatedAt
-  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@map("igdb_token")
 }
