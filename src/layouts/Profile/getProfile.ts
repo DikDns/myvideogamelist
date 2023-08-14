@@ -3,8 +3,8 @@ import { currentUser } from "@clerk/nextjs";
 import { prisma } from "@/lib/db";
 
 const include = {
-  followers: { include: { followersUser: true } },
-  following: { include: { followingUser: true } },
+  followers: true,
+  following: true,
   gameLists: true,
 };
 
