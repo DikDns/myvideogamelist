@@ -45,7 +45,7 @@ model User {
   gameLists         GameList[]
   seriesList        SeriesList[]
   franchiseList     FranchiseList[]
-  GameSocialNetwork GameSocialNetwork[]
+  gameSocialNetwork GameSocialNetwork[]
 
   @@map("users")
 }
