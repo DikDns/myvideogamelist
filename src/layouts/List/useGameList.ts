@@ -12,12 +12,12 @@ export default function useGameList(user: User) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (user.gameLists.length === 0) return;
+    if (user.gameList.length === 0) return;
     fetchMore();
   }, []);
 
   useEffect(() => {
-    if (gameList.length === user.gameLists.length) {
+    if (gameList.length === user.gameList.length) {
       setIsLoading(false);
       setHasMore(false);
       return;
@@ -31,8 +31,8 @@ export default function useGameList(user: User) {
     let currentGameList: prismaGameList[] = [];
 
     for (let i = gameList.length; i < gameList.length + fetchLimit; i++) {
-      if (user.gameLists[i]) {
-        currentGameList.push(user.gameLists[i]);
+      if (user.gameList[i]) {
+        currentGameList.push(user.gameList[i]);
       }
     }
 

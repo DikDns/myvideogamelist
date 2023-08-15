@@ -16,7 +16,7 @@ export default function StackLink({ user }: { user: User }) {
         href={`/list/${user.username}`}
       >
         <Stack alignItems="center">
-          <Typography variant="body1">{`${user.gameLists.length}`}</Typography>
+          <Typography variant="body1">{`${user.gameList.length}`}</Typography>
           <Typography variant="body2" color="darkgrey">{`Games`}</Typography>
         </Stack>
       </Link>

@@ -5,7 +5,8 @@ import { prisma } from "@/lib/db";
 const include = {
   followers: true,
   following: true,
-  gameLists: true,
+  gameList: true,
+  gameSocialNetwork: true,
 };
 
 export default async function getProfile(username: string) {

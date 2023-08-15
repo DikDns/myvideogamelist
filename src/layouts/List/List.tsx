@@ -71,7 +71,7 @@ export default function List({ user }: { user: User }) {
                 </TableCell>
               </TableRow>
             )}
-            {user.gameLists.length === 0 && (
+            {user.gameList.length === 0 && (
               <TableRow>
                 <TableCell align="center" colSpan={4}>
                   <Typography variant="subtitle1">No Data</Typography>

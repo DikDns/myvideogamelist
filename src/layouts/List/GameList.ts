@@ -14,4 +14,4 @@ export type GameList = {
   isFavorited: boolean | null | undefined;
 };
 
-export type User = prismaUser & { gameLists: prismaGameList[] };
+export type User = prismaUser & { gameList: prismaGameList[] };
