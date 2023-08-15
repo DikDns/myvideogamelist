@@ -95,9 +95,11 @@ function BioInput({
   const handleSteamUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.value.length > bioMaxLength) return;
     if (bio.length > bioMaxLength) {
-      return setSteamUsername(event.target.value.substring(0, bioMaxLength));
+      return setSteamUsername(
+        event.target.value.substring(0, bioMaxLength).toLowerCase()
+      );
     }
-    setSteamUsername(event.target.value);
+    setSteamUsername(event.target.value.toLowerCase());
   };
 
   const handleBioChange = (event: ChangeEvent<HTMLInputElement>) => {
