@@ -8,6 +8,7 @@ import {
   ChangeEvent,
   MouseEvent,
   useTransition,
+  useContext,
 } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -18,16 +19,17 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
-import { User } from "../User";
+import { UserProfileContext } from "../context";
 import { updateProfile } from "../profileActions";
 
 const bioMaxLength = 190;
 const defaultBio = "A gamer who hasn't set their bio yet.";
 
-export default function BioControlled({ user }: { user: User }) {
-  const [bio, setBio] = useState(user.bio || defaultBio);
+export default function BioControlled() {
+  const user = useContext(UserProfileContext);
+  const [bio, setBio] = useState(user?.bio || defaultBio);
   const [steamUsername, setSteamUsername] = useState(
-    user.gameSocialNetwork?.steamUsername || ""
+    user?.gameSocialNetwork?.steamUsername || ""
   );
   const [onEdit, setOnEdit] = useState(false);
 
@@ -64,7 +66,7 @@ export default function BioControlled({ user }: { user: User }) {
       )}
       {onEdit && (
         <BioInput
-          userId={user.id}
+          userId={user?.id || ""}
           bio={bio}
           setBio={setBio}
           steamUsername={steamUsername}
