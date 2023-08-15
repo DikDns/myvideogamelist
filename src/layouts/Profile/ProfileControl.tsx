@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import BioControlled from "./components/BioControlled";
 import StackLink from "./components/StackLink";
-import { h2 } from "../styles";
+import Playing from "./components/Playing";
+import { h2, h3 } from "../styles";
 import { User } from "./User";
 import { UserProfileContext } from "./context";
 
@@ -44,6 +45,10 @@ export default function ProfileControl({ user }: { user: User }) {
           </Box>
 
           <StackLink />
+
+          <Stack gap={2} mt={2}>
+            <Playing />
+          </Stack>
         </Stack>
       </Container>
     </UserProfileContext.Provider>
