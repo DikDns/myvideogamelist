@@ -12,5 +12,5 @@ export type User = PrismaUser & {
   followers: Followers[];
   following: Following[];
 } & { gameList: PrismaGameList[] } & {
-  gameSocialNetwork: PrismaGameSocialNetwork[];
+  gameSocialNetwork: PrismaGameSocialNetwork;
 };
