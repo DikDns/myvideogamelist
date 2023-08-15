@@ -23,7 +23,8 @@ model Follows {
 }
 
 model GameSocialNetwork {
-  userId        String   @id @map("user_id")
+  id            String   @id @default(cuid())
+  userId        String   @unique @map("user_id")
   user          User     @relation(fields: [userId], references: [id])
   steamUsername String?  @map("steam_username")
   updatedAt     DateTime @updatedAt @map("updated_at")
@@ -34,18 +35,18 @@ model GameSocialNetwork {
 }
 
 model User {
-  id                String              @id
-  username          String?             @unique
+  id                String             @id
+  username          String?            @unique
   image             String?
   bio               String?
-  updatedAt         DateTime            @updatedAt @map("updated_at")
-  createdAt         DateTime            @default(now()) @map("created_at")
-  followers         Follows[]           @relation("followers")
-  following         Follows[]           @relation("following")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+  createdAt         DateTime           @default(now()) @map("created_at")
+  followers         Follows[]          @relation("followers")
+  following         Follows[]          @relation("following")
   gameList          GameList[]
   seriesList        SeriesList[]
   franchiseList     FranchiseList[]
-  gameSocialNetwork GameSocialNetwork[]
+  gameSocialNetwork GameSocialNetwork?
 
   @@map("users")
 }
