@@ -43,6 +43,7 @@ export default function BioControlled({ user }: { user: User }) {
                 component={NextLink}
                 href={`https://steamcommunity.com/id/${steamUsername}`}
                 color="#fff"
+                target="_blank"
               >
                 {`steamcommunity.com/id/${steamUsername}`}
               </Link>
