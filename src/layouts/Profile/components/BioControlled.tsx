@@ -19,7 +19,7 @@ import Link from "@mui/material/Link";
 import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
 import { User } from "../User";
-import { updateBio } from "../profileActions";
+import { updateProfile } from "../profileActions";
 
 const bioMaxLength = 190;
 const defaultBio = "A gamer who hasn't set their bio yet.";
@@ -109,7 +109,7 @@ function BioInput({
   };
 
   const handleBioSave = (event: MouseEvent<HTMLButtonElement>) => {
-    startTransition(() => updateBio(userId, bio));
+    startTransition(() => updateProfile(userId, bio, steamUsername));
     setOnEdit(false);
   };
 
