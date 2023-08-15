@@ -42,7 +42,7 @@ model User {
   createdAt         DateTime            @default(now()) @map("created_at")
   followers         Follows[]           @relation("followers")
   following         Follows[]           @relation("following")
-  gameLists         GameList[]
+  gameList          GameList[]
   seriesList        SeriesList[]
   franchiseList     FranchiseList[]
   gameSocialNetwork GameSocialNetwork[]
