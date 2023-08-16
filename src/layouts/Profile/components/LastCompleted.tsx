@@ -10,14 +10,14 @@ import ProfileCarousel from "./ProfileCarousel";
 import useProfileGames from "./useProfileGames";
 import { UserProfileContext } from "../context";
 
-export default function Playing() {
+export default function LastCompleted() {
   const user = useContext(UserProfileContext);
-  const { games, isLoading } = useProfileGames(user, "PLAYING");
+  const { games, isLoading } = useProfileGames(user, "COMPLETED");
 
   return (
     <Stack gap={1}>
       <Typography variant="h3" sx={h3}>
-        {"Currently Playing"}
+        {"Last Completed"}
       </Typography>
       {!isLoading ? (
         games.length > 0 ? (

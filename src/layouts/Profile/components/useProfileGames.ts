@@ -3,20 +3,21 @@
 import { useEffect, useState } from "react";
 import { getGames } from "@/lib/igdb";
 import { User } from "../User";
+import { ListStatus } from "@prisma/client";
 
-export default function usePlayingGames(user: User | null) {
-  const [playingGames, setPlayingGames] = useState(
+export default function useProfileGames(user: User | null, status: ListStatus) {
+  const [gameList, _] = useState(
     user?.gameList
       ? user.gameList
-          .filter((game) => game.status === "PLAYING")
-          .sort((a, b) => (a.updatedAt > b.updatedAt ? 1 : 0))
+          .filter((game) => game.status === status)
+          .sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1))
       : []
   );
   const [games, setGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (playingGames.length === 0) return;
+    if (gameList.length === 0) return;
     fetchGames();
   }, []);
 
@@ -26,8 +27,8 @@ export default function usePlayingGames(user: User | null) {
     const filteredPlayingGames = [];
 
     for (let i = 0; i < fetchLimit; i++) {
-      if (playingGames[i]) {
-        filteredPlayingGames.push(playingGames[i]);
+      if (gameList[i]) {
+        filteredPlayingGames.push(gameList[i]);
       }
     }
 

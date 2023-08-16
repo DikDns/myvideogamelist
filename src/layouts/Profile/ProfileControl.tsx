@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import BioControlled from "./components/BioControlled";
 import StackLink from "./components/StackLink";
 import Playing from "./components/Playing";
+import LastCompleted from "./components/LastCompleted";
 import { h2, h3 } from "../styles";
 import { User } from "./User";
 import { UserProfileContext } from "./context";
@@ -48,6 +49,8 @@ export default function ProfileControl({ user }: { user: User }) {
 
           <Stack gap={2} mt={2}>
             <Playing />
+
+            <LastCompleted />
           </Stack>
         </Stack>
       </Container>
