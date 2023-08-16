@@ -7,10 +7,13 @@ import { User } from "../User";
 export default function usePlayingGames(user: User | null) {
   const [playingGames, setPlayingGames] = useState(
     user?.gameList
-      .filter((game) => game.status === "PLAYING")
-      .sort((a, b) => (a.updatedAt > b.updatedAt ? 1 : 0)) || []
+      ? user.gameList
+          .filter((game) => game.status === "PLAYING")
+          .sort((a, b) => (a.updatedAt > b.updatedAt ? 1 : 0))
+      : []
   );
   const [games, setGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (playingGames.length === 0) return;
@@ -18,6 +21,7 @@ export default function usePlayingGames(user: User | null) {
   }, []);
 
   const fetchGames = async () => {
+    setIsLoading(true);
     const fetchLimit = 10;
     const filteredPlayingGames = [];
 
@@ -27,14 +31,17 @@ export default function usePlayingGames(user: User | null) {
       }
     }
 
-    const body = `f name, slug, cover.image_id;
-    l ${fetchLimit};
-    w id=(${filteredPlayingGames.map((game) => game.gameId).join(",")});`;
+    const body = `
+      f name, slug, cover.image_id;
+      l ${fetchLimit};
+      w id=(${filteredPlayingGames.map((game) => game.gameId).join(",")});
+    `;
 
     const nextGames = await getGames(body);
 
     setGames(nextGames);
+    setIsLoading(false);
   };
 
-  return games;
+  return { games, isLoading };
 }
