@@ -4,6 +4,8 @@ import ProfileControl from "@/layouts/Profile/ProfileControl";
 
 type ListPageProps = PageProps<{ username: string }>;
 
+export const revalidate = 0;
+
 export default async function ListUsernamePage({
   params: { username },
 }: ListPageProps) {
