@@ -13,7 +13,7 @@ export default function usePlayingGames(user: User | null) {
       : []
   );
   const [games, setGames] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (playingGames.length === 0) return;
