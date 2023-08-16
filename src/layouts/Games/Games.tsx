@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
@@ -24,6 +24,7 @@ function validateBracketParams(param: string | null) {
 }
 
 export default function Games() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const bracketParams = validateBracketParams(searchParams.get("bracket"));
   const [bracket, setBracket] = useState(bracketParams);
@@ -38,6 +39,7 @@ export default function Games() {
     setGames([]);
     setHasMore(false);
     setIsLoading(false);
+    router.push(`/games?bracket=${bracket}`);
   }, [bracket]);
 
   useEffect(() => {
