@@ -10,6 +10,7 @@ import BioControlled from "./components/BioControlled";
 import StackLink from "./components/StackLink";
 import Playing from "./components/Playing";
 import LastCompleted from "./components/LastCompleted";
+import Favorite from "./components/Favorite";
 import { h2 } from "../styles";
 import { User } from "./User";
 import { UserProfileContext } from "./context";
@@ -50,6 +51,8 @@ export default function ProfileControl({ user }: { user: User }) {
             <Playing />
 
             <LastCompleted />
+
+            <Favorite />
           </Stack>
         </Stack>
       </Container>
