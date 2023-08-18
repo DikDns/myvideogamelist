@@ -17,7 +17,10 @@ export default function useProfileGames(user: User | null, status: ListStatus) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (gameList.length === 0) return;
+    if (gameList.length === 0) {
+      setIsLoading(false);
+      return;
+    }
     fetchGames();
   }, []);
 
