@@ -16,7 +16,10 @@ export default function useFavoriteGames(user: User | null) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (gameList.length === 0) return;
+    if (gameList.length === 0) {
+      setIsLoading(false);
+      return;
+    }
     fetchGames();
   }, []);
 
