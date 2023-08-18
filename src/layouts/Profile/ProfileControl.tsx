@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import NextLink from "next/link";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -11,7 +10,7 @@ import BioControlled from "./components/BioControlled";
 import StackLink from "./components/StackLink";
 import Playing from "./components/Playing";
 import LastCompleted from "./components/LastCompleted";
-import { h2, h3 } from "../styles";
+import { h2 } from "../styles";
 import { User } from "./User";
 import { UserProfileContext } from "./context";
 
