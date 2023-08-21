@@ -11,17 +11,17 @@ export default function BasicBreadcrumbs() {
   const pathname = usePathname();
   return (
     <Breadcrumbs aria-label="breadcrumb" sx={{ textTransform: "capitalize" }}>
-      {pathname.split("/").map((path, i) => {
+      {pathname.split("/").map((path) => {
         const href =
           pathname.substring(0, pathname.indexOf(path) + path.length) || "/";
 
         return href === pathname ? (
-          <Typography key={i} color="text.primary">
+          <Typography key={path} color="text.primary">
             {path}
           </Typography>
         ) : (
           <Link
-            key={i}
+            key={path}
             href={href}
             component={NextLink}
             underline="hover"
