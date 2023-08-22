@@ -29,13 +29,13 @@ export default function CardCarouselFAB({
   isHovered: boolean;
   emblaApi: EmblaCarouselType | undefined;
 }) {
-  if (!emblaApi || isMobile) return;
-
   const scrollPrev = useCallback(() => {
+    if (!emblaApi || isMobile) return;
     emblaApi.scrollPrev();
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
+    if (!emblaApi || isMobile) return;
     emblaApi.scrollNext();
   }, [emblaApi]);
 

@@ -84,7 +84,7 @@ export default function CardSlide({
           component="p"
           sx={cardSlideSubtitleStyle}
         >
-          {truncStr(data.name || "", 20)}
+          {truncStr(data.name ?? "", 20)}
         </Typography>
       </Link>
     </Box>

@@ -19,7 +19,7 @@ export type Carousel = {
 function setCarouselSlides(slides: ReactNode[], sx?: SxProps) {
   return slides.map((slide, i) => (
     <Card
-      key={i}
+      key={slide?.toString()}
       variant="outlined"
       sx={{
         flex: "0 0 auto",
