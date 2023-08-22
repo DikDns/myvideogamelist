@@ -1,11 +1,12 @@
 "use client";
 
+import * as React from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { useEffect } from "react";
 
-export default function Error({
+export default function ErrorPage({
   error,
   reset,
 }: {

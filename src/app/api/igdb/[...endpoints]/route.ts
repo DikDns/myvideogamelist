@@ -8,7 +8,7 @@ import updateIGDBToken from "@/db/updateIGDBToken";
 
 interface Context {
   params: {
-    endpoints: String[];
+    endpoints: string[];
   };
 }
 
