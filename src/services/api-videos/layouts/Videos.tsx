@@ -15,7 +15,7 @@ import { SxProps } from "@mui/material/styles";
 import Breadcrumbs from "@/services/api-videos/components/Breadcrumbs";
 import YoutubePlayer from "@/services/api-videos/components/YoutubePlayer";
 import getGameVideos from "@/services/api-videos/lib/getGameVideos";
-import { Video } from "@/types/Video";
+import Video from "@/services/api-videos/types/Video";
 
 export const h3: SxProps = {
   fontSize: {
