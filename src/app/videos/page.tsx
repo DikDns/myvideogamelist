@@ -1,9 +1,3 @@
-import Videos from "@/layouts/Videos/Videos";
+import VideosPage from "@/services/api-videos/pages/page";
 
-export default async function VideosPage() {
-  return (
-    <div>
-      <Videos />
-    </div>
-  );
-}
+export default VideosPage;
