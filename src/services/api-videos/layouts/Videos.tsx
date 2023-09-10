@@ -13,7 +13,7 @@ import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import { SxProps } from "@mui/material/styles";
 import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
-import YoutubePlayer from "@/components/VideoPlayer/YoutubePlayer";
+import YoutubePlayer from "@/services/api-videos/components/YoutubePlayer";
 import { getGameVideos } from "@/lib/igdb";
 import { Video } from "@/types/Video";
 
