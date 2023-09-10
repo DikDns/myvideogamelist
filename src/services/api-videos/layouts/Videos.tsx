@@ -1,7 +1,6 @@
 "use client";
 
 import NextLink from "next/link";
-import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Container from "@mui/material/Container";
 import CircularLoading from "@/components/Loading/CircularLoading";
@@ -14,8 +13,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { SxProps } from "@mui/material/styles";
 import Breadcrumbs from "@/services/api-videos/components/Breadcrumbs";
 import YoutubePlayer from "@/services/api-videos/components/YoutubePlayer";
-import getGameVideos from "@/services/api-videos/lib/getGameVideos";
-import Video from "@/services/api-videos/types/Video";
+import useVideos from "@/services/api-videos/hooks/useVideos";
 
 export const h3: SxProps = {
   fontSize: {
@@ -60,32 +58,7 @@ export const subtitleSlide: SxProps = {
 };
 
 export default function Videos() {
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
-
-  useEffect(() => {
-    if (videos.length > 0) return;
-    fetchMore();
-  }, []);
-
-  const fetchMore = async () => {
-    const fetchLimit = 10;
-    const body = `
-      f name, video_id, game.name, game.slug;
-      w name != n & game != n & video_id != n;
-      s id desc;
-      l ${fetchLimit};
-      o ${offset};
-    `;
-    const nextVideos: Video[] = await getGameVideos(body);
-
-    if (nextVideos.length <= 0) return setHasMore(false);
-
-    setVideos((prevVideos) => [...prevVideos, ...nextVideos]);
-    setOffset(videos.length + nextVideos.length);
-    setHasMore(true);
-  };
+  const { videos, hasMore, fetchMore } = useVideos();
 
   return (
     <Container>
