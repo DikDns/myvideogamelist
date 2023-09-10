@@ -1,4 +1,4 @@
-import Videos from "@/layouts/Videos/Videos";
+import Videos from "@/services/api-videos/layouts/Videos";
 
 export default function Page() {
   return (
