@@ -54,7 +54,7 @@ export async function fetchIGDBToken() {
   };
 }
 
-async function get(path: string, body: string) {
+export default async function get(path: string, body: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const url = `${baseUrl}/api/igdb/v4/${path}`;
   const data = await textFetch(url, { method: "POST", body });

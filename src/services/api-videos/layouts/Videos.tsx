@@ -14,7 +14,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { SxProps } from "@mui/material/styles";
 import Breadcrumbs from "@/services/api-videos/components/Breadcrumbs";
 import YoutubePlayer from "@/services/api-videos/components/YoutubePlayer";
-import { getGameVideos } from "@/lib/igdb";
+import getGameVideos from "@/services/api-videos/lib/getGameVideos";
 import { Video } from "@/types/Video";
 
 export const h3: SxProps = {
