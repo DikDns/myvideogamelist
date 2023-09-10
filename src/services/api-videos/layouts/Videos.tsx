@@ -12,7 +12,7 @@ import Card from "@mui/material/Card";
 import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import { SxProps } from "@mui/material/styles";
-import BasicBreadcrumbs from "@/components/Navigation/BasicBreadcrumbs";
+import Breadcrumbs from "@/services/api-videos/components/Breadcrumbs";
 import YoutubePlayer from "@/services/api-videos/components/YoutubePlayer";
 import { getGameVideos } from "@/lib/igdb";
 import { Video } from "@/types/Video";
@@ -90,7 +90,7 @@ export default function Videos() {
   return (
     <Container>
       <Box mt={1} mb={2}>
-        <BasicBreadcrumbs />
+        <Breadcrumbs />
       </Box>
 
       <Typography mb={4} variant="h3" sx={h3}>
