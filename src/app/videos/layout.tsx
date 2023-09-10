@@ -1,8 +1,6 @@
-export const metadata = {
-  title: "Videos",
-  description:
-    "Welcome to MVGL Videos Section! The place where you can find your favorite games videos!",
-};
+import VideosMetadata from "@/services/api-videos/pages/metadata";
+
+export const metadata = VideosMetadata;
 
 export default function VideosLayout({
   children,
