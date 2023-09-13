@@ -2,7 +2,7 @@ export const metadata = {
   title: "Account",
 };
 
-export default function SeriesLayout({
+export default function AccountLayout({
   children,
 }: {
   children: React.ReactNode;
