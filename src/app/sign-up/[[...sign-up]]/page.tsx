@@ -1,14 +1,5 @@
 "use client";
 
-import { SignUp } from "@clerk/nextjs";
-import Box from "@mui/material/Box";
+import SignUp from "@/services/clerk-auth/pages/SignUp";
 
-export default function SignUpPage() {
-  return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
-      <SignUp />
-    </Box>
-  );
-}
+export default SignUp;

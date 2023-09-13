@@ -1,14 +1,5 @@
 "use client";
 
-import { SignIn } from "@clerk/nextjs";
-import Box from "@mui/material/Box";
+import SignIn from "@/services/clerk-auth/pages/SignIn";
 
-export default function SignInPage() {
-  return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
-      <SignIn />
-    </Box>
-  );
-}
+export default SignIn;
