@@ -1,3 +1,3 @@
-import VideosPage from "@/services/api-videos/pages/page";
+import Videos from "@/services/api-videos/pages/Videos";
 
-export default VideosPage;
+export default Videos;

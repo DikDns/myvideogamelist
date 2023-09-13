@@ -1,6 +1,13 @@
-import VideosMetadata from "@/services/api-videos/pages/metadata";
-import VideosLayout from "@/services/api-videos/pages/layout";
+export const metadata = {
+  title: "Videos",
+  description:
+    "Welcome to MVGL Videos Section! The place where you can find your favorite games videos!",
+};
 
-export const metadata = VideosMetadata;
-
-export default VideosLayout;
+export default function VideosLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
+}
