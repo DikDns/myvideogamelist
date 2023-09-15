@@ -4,7 +4,7 @@ export const metadata = {
     "Welcome to MVGL Videos Section! The place where you can find your favorite games videos!",
 };
 
-export default function VideosLayout({
+export default function NextVideosLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 "use client";
 
-import Typography from "@mui/material/Typography";
+import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
 
 export const h3: SxProps = {
@@ -13,10 +13,10 @@ export const h3: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function Header() {
+export default function VideosHeader() {
   return (
-    <Typography mb={4} variant="h3" sx={h3}>
+    <MUITypography mb={4} variant="h3" sx={h3}>
       Videos
-    </Typography>
+    </MUITypography>
   );
 }

@@ -1,3 +1,5 @@
-import Videos from "@/services/api-videos/pages/Videos";
+import VideosLayout from "@/features/videos/components/VideosLayout";
 
-export default Videos;
+export default function NextVideosPage() {
+  return <VideosLayout />;
+}

@@ -1,17 +1,17 @@
 "use client";
 
-import NextLink from "next/link";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Box from "@mui/material/Box";
-import CardMedia from "@mui/material/CardMedia";
-import Card from "@mui/material/Card";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import Skeleton from "@mui/material/Skeleton";
+import NextLink from "next/link";
+import MUIBox from "@mui/material/Box";
+import MUICardMedia from "@mui/material/CardMedia";
+import MUICard from "@mui/material/Card";
+import MUILink from "@mui/material/Link";
+import MUITypography from "@mui/material/Typography";
+import MUISkeleton from "@mui/material/Skeleton";
 import { SxProps } from "@mui/material/styles";
-import CircularLoading from "@/components/Loading/CircularLoading";
-import useVideos from "@/services/api-videos/hooks/useVideos";
-import YoutubePlayer from "./YoutubePlayer";
+import YoutubePlayer from "@/services/YoutubePlayer";
+import CircularLoading from "@/layouts/CircularLoading";
+import useVideos from "@/features/videos/hooks/useVideos";
 
 export const videoSlide: SxProps = {
   width: "256px",
@@ -45,7 +45,7 @@ export const subtitleSlide: SxProps = {
   transition: "all 250ms ease-in-out",
 };
 
-export default function InfiniteVideos() {
+export default function VideosInfiniteLoad() {
   const { videos, hasMore, fetchMore } = useVideos();
 
   return (
@@ -55,7 +55,7 @@ export default function InfiniteVideos() {
       hasMore={hasMore}
       loader={<CircularLoading />}
     >
-      <Box
+      <MUIBox
         sx={{
           display: "grid",
           rowGap: { xs: 4, md: 8 },
@@ -70,35 +70,39 @@ export default function InfiniteVideos() {
         }}
       >
         {videos.map((video) => (
-          <Card key={video.id} sx={videoSlide} variant="outlined">
-            <CardMedia>
+          <MUICard key={video.id} sx={videoSlide} variant="outlined">
+            <MUICardMedia>
               <YoutubePlayer
                 videoId={video.video_id}
                 width="100%"
                 height="144px"
                 fallback={
-                  <Skeleton variant="rectangular" width="100%" height="100%" />
+                  <MUISkeleton
+                    variant="rectangular"
+                    width="100%"
+                    height="100%"
+                  />
                 }
               />
-            </CardMedia>
-            <Typography
+            </MUICardMedia>
+            <MUITypography
               className="name"
               sx={subtitleSlide}
               variant="subtitle1"
               component="p"
             >
               {`${video.name ?? ""} for `}
-              <Link
+              <MUILink
                 color="#fff"
                 href={`/games/${video.game?.slug}`}
                 component={NextLink}
               >
                 {`${video.game ? video.game.name ?? "" : ""}`}
-              </Link>
-            </Typography>
-          </Card>
+              </MUILink>
+            </MUITypography>
+          </MUICard>
         ))}
-      </Box>
+      </MUIBox>
     </InfiniteScroll>
   );
 }

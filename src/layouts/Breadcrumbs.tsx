@@ -2,26 +2,29 @@
 
 import { usePathname } from "next/navigation";
 import NextLink from "next/link";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
+import MUIBox from "@mui/material/Box";
+import MUITypography from "@mui/material/Typography";
+import MUIBreadcrumbs from "@mui/material/Breadcrumbs";
+import MUILink from "@mui/material/Link";
 
-export default function BasicBreadcrumbs() {
+export default function Breadcrumbs() {
   const pathname = usePathname();
   return (
-    <Box mt={1} mb={2}>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ textTransform: "capitalize" }}>
+    <MUIBox mt={1} mb={2}>
+      <MUIBreadcrumbs
+        aria-label="breadcrumb"
+        sx={{ textTransform: "capitalize" }}
+      >
         {pathname.split("/").map((path) => {
           const href =
             pathname.substring(0, pathname.indexOf(path) + path.length) || "/";
 
           return href === pathname ? (
-            <Typography key={path} color="text.primary">
+            <MUITypography key={path} color="text.primary">
               {path}
-            </Typography>
+            </MUITypography>
           ) : (
-            <Link
+            <MUILink
               key={path}
               href={href}
               component={NextLink}
@@ -29,10 +32,10 @@ export default function BasicBreadcrumbs() {
               color="inherit"
             >
               {path ?? "MVGL"}
-            </Link>
+            </MUILink>
           );
         })}
-      </Breadcrumbs>
-    </Box>
+      </MUIBreadcrumbs>
+    </MUIBox>
   );
 }

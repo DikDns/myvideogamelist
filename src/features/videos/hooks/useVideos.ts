@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import getGameVideos from "@/services/api-videos/lib/getGameVideos";
-import Video from "@/services/api-videos/types/Video";
+import Video from "@/features/videos/types/Video";
+import igdb from "@/lib/igdb";
 
 export default function useVideos() {
   const [videos, setVideos] = useState<Video[]>([]);
@@ -21,7 +21,7 @@ export default function useVideos() {
       l ${fetchLimit};
       o ${offset};
     `;
-    const nextVideos: Video[] = await getGameVideos(body);
+    const nextVideos: Video[] = await igdb("game_videos", body);
 
     if (nextVideos.length <= 0) return setHasMore(false);
 
