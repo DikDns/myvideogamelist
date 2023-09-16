@@ -1,5 +1,5 @@
 "use client";
 
-import SignUp from "@/services/clerk-auth/pages/SignUp";
+import SignUp from "@/features/authentication/components/SignUp";
 
 export default SignUp;

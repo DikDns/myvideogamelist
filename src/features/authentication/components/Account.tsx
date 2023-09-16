@@ -1,7 +1,7 @@
 "use client";
 
 import { UserProfile } from "@clerk/nextjs";
-import Box from "@mui/material/Box";
+import MUIBox from "@mui/material/Box";
 import { SxProps } from "@mui/material/styles";
 
 const box: SxProps = {
@@ -12,8 +12,8 @@ const box: SxProps = {
 
 export default async function Account() {
   return (
-    <Box sx={box}>
+    <MUIBox sx={box}>
       <UserProfile />
-    </Box>
+    </MUIBox>
   );
 }

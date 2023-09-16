@@ -2,7 +2,7 @@ import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
 import SearchAppBar from "@/components/Navigation/SearchAppBar";
 import Footer from "@/components/Navigation/Footer";
-import ClerkAuthProvider from "@/services/clerk-auth/components/ClerkAuthProvider";
+import ClerkAuth from "@/features/authentication/providers/ClerkAuth";
 
 export const metadata = {
   referrer: "origin-when-cross-origin",
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkAuthProvider>
+    <ClerkAuth>
       <html lang="en">
         <body>
           <ThemeRegistry>
@@ -34,6 +34,6 @@ export default function RootLayout({
           </ThemeRegistry>
         </body>
       </html>
-    </ClerkAuthProvider>
+    </ClerkAuth>
   );
 }

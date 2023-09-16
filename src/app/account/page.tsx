@@ -1,3 +1,3 @@
-import Account from "@/services/clerk-auth/pages/Account";
+import Account from "@/features/authentication/components/Account";
 
 export default Account;
