@@ -1,17 +1,11 @@
 import { PageProps } from "@/types/PageProps";
-import getSeries from "@/layouts/Series/getSeries";
-import Serie from "@/layouts/Series/Serie";
+import fetchSeriesDetail from "@/features/series/lib/fetchSeriesDetail";
+import SeriesDetailLayout from "@/features/series/components/SeriesDetailLayout";
 
-type SeriesPageProps = PageProps<{ slug: string }>;
-
-export default async function SeriesPage({
+export default async function NextSeriesDetailPage({
   params: { slug },
-}: SeriesPageProps) {
-  const series = await getSeries(slug);
+}: PageProps<{ slug: string }>) {
+  const series = await fetchSeriesDetail(slug);
 
-  return (
-    <div>
-      <Serie data={series} />
-    </div>
-  );
+  return <SeriesDetailLayout data={series} />;
 }

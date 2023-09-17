@@ -4,7 +4,7 @@ export const metadata = {
     "Welcome to MVGL Series Section! The place where you can search your favorite Series!",
 };
 
-export default function SeriesLayout({
+export default function NextSeriesLayout({
   children,
 }: {
   children: React.ReactNode;

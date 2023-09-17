@@ -1,9 +1,5 @@
-import Series from "@/layouts/Series/Series";
+import SeriesLayout from "@/features/series/components/SeriesLayout";
 
-export default async function SeriesPage() {
-  return (
-    <div>
-      <Series />
-    </div>
-  );
+export default async function NextSeriesPage() {
+  return <SeriesLayout />;
 }

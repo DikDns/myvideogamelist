@@ -1,4 +1,4 @@
-export default function FranchiseLayout({
+export default function NextSeriesDetailLayout({
   children,
 }: {
   children: React.ReactNode;
