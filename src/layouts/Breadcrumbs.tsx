@@ -31,7 +31,7 @@ export default function Breadcrumbs() {
               underline="hover"
               color="inherit"
             >
-              {path ?? "MVGL"}
+              {path || "MVGL"}
             </MUILink>
           );
         })}
