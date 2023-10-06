@@ -2,13 +2,17 @@
 
 import { prisma } from "@/lib/db";
 import { ListStatus } from "@prisma/client";
+import { auth } from "@clerk/nextjs";
 
 export async function updateList(
-  userId: string,
   gameId: number,
   status: ListStatus | null | undefined,
   score: number | null | undefined
 ) {
+  const { userId } = auth();
+
+  if (!userId) throw new Error("User is not logged in");
+
   await prisma.gameList.upsert({
     where: {
       gameId_userId: {
