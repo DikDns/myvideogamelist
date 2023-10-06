@@ -1,10 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
-import Carousel, { CarouselOptions } from "@/components/Carousel/Carousel";
-import { slideMargin } from "@/layouts/styles";
+import Carousel, { CarouselOptions } from "./Carousel";
+import slideMargin from "./slideMargin";
 
-const mediaCarouselOptions: CarouselOptions = {
+const carouselMediaOptions: CarouselOptions = {
   loop: true,
   align: "start",
   slidesToScroll: 1,
@@ -17,10 +17,10 @@ const mediaCarouselOptions: CarouselOptions = {
   },
 };
 
-export default function MediaCarousel({ slides }: { slides: ReactNode[] }) {
+export default function CarouselMedia({ slides }: { slides: ReactNode[] }) {
   return (
     <Carousel
-      options={mediaCarouselOptions}
+      options={carouselMediaOptions}
       slides={slides}
       sxSlide={slideMargin}
     />
