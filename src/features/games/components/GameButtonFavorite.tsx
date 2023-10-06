@@ -3,7 +3,7 @@
 import { experimental_useOptimistic as useOptimistic } from "react";
 import MUIButton from "@mui/material/Button";
 import IMFavorite from "@mui/icons-material/Favorite";
-import { updateIsFavorited } from "../lib/nextServerFavoriteButton";
+import { updateIsFavorited } from "../lib/nextServerButtonFavorite";
 import Game from "../types/Game";
 
 export default function GameButtonFavorite({
