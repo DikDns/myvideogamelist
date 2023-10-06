@@ -1,8 +1,8 @@
-import { AgeRating } from "@/types/AgeRating";
+import AgeRating from "./AgeRating";
+import Image from "./Image";
+import Video from "./Video";
 import { GenreTheme } from "@/types/GenreTheme";
 import { Platform } from "@/types/Platform";
-import { Image } from "@/types/Image";
-import { Video } from "@/types/Video";
 import { Franchise } from "@/types/Franchise";
 import { Website } from "@/types/Website";
 import { AlternativeName } from "@/types/AlternativeName";
