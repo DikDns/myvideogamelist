@@ -5,7 +5,7 @@ import MUITypography from "@mui/material/Typography";
 import MUILink from "@mui/material/Link";
 import MUIStack from "@mui/material/Stack";
 import { SxProps } from "@mui/material/styles";
-import BoxGrid from "./GameRelatedContentBoxGrid";
+import BoxGrid from "./BoxGrid";
 import Game from "../types/Game";
 
 type Data =
