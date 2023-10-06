@@ -20,7 +20,7 @@ type GameListUser = {
   score: number | null;
 };
 
-export default function GameListButton({
+export default function GameButtonList({
   gameListUser,
   game,
 }: {
