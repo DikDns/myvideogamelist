@@ -1,12 +1,12 @@
 "use client";
 
-import MediaCarousel from "./Carousel/MediaCarousel";
+import CarouselMedia from "./Carousel/CarouselMedia";
 import GameSlideImage from "./GameSlideImage";
 import GameSlideVideo from "./GameSlideVideo";
 import Game from "../types/Game";
 
 export default function GameMedia({ game }: { game: Game }) {
-  return <MediaCarousel slides={setMediaSlides(game)} />;
+  return <CarouselMedia slides={setMediaSlides(game)} />;
 }
 
 function setMediaSlides(game: Game) {
