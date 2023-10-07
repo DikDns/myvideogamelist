@@ -12,6 +12,7 @@ import GameInformation from "./GameInformation";
 import GameRecommendation from "./GameRecommendation";
 import GameButtons from "./GameButtons";
 import { ListStatus } from "@prisma/client";
+import { createContext } from "react";
 import Game from "../types/Game";
 
 type GameListUser = {
@@ -19,6 +20,8 @@ type GameListUser = {
   status: ListStatus | null;
   score: number | null;
 };
+
+export const GameContext = createContext<Game | null>(null);
 
 export default function Game({
   game,
@@ -28,7 +31,7 @@ export default function Game({
   userGameList: GameListUser | null;
 }) {
   return (
-    <>
+    <GameContext.Provider value={game}>
       {/* Heading: Game Cover and Name */}
       {/*// TODO add aggregated rating display */}
       <GameHeading game={game} />
@@ -55,6 +58,6 @@ export default function Game({
         </MUIBox>
         <GameRecommendation game={game} />
       </MUIContainer>
-    </>
+    </GameContext.Provider>
   );
 }
