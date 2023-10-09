@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -10,6 +11,7 @@ import { SxProps } from "@mui/material/styles";
 import IMStar from "@mui/icons-material/Star";
 import { getImageUrl } from "@/lib/igdb";
 import formatUnix from "@/utils/formatUnix";
+import { GameContext } from "./GameLayout";
 import Game from "../types/Game";
 
 const h2: SxProps = {
@@ -32,8 +34,9 @@ const h3: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function GameHeading({ game }: { game: Game }) {
+export default function GameHeading() {
   const matches = useMediaQuery("(min-width:600px)");
+  const game = useContext(GameContext) as Game;
 
   const isScreenshotImage = game.screenshots
     ? game.screenshots[0].image_id || ""
