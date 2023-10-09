@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useContext } from "react";
 import MUIButton from "@mui/material/Button";
 import MUIDialog from "@mui/material/Dialog";
 import MUIDialogActions from "@mui/material/DialogActions";
@@ -11,22 +11,14 @@ import MUIMenuItem from "@mui/material/MenuItem";
 import MUIFormControl from "@mui/material/FormControl";
 import MUISelect from "@mui/material/Select";
 import { ListStatus } from "@prisma/client";
+import { GameContext, GameListUserContext } from "../GameLayout";
 import Game from "../../types/Game";
 import { updateList } from "../../lib/nextServerButtonList";
 
-type GameListUser = {
-  isFavorited: boolean | null;
-  status: ListStatus | null;
-  score: number | null;
-};
+export default function GameButtonList() {
+  const game = useContext(GameContext) as Game;
+  const gameListUser = useContext(GameListUserContext);
 
-export default function GameButtonList({
-  gameListUser,
-  game,
-}: {
-  gameListUser: GameListUser | null;
-  game: Game;
-}) {
   const [list, setList] = useState({
     status: gameListUser?.status,
     score: gameListUser?.score,
