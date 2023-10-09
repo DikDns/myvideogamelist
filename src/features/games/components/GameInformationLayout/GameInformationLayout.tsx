@@ -6,8 +6,8 @@ import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
 import GameCompanies from "./GameCompanies";
 import GameAgeRatings from "./GameAgeRatings";
-import Game from "../types/Game";
-import { GameContext } from "./GameLayout";
+import Game from "../../types/Game";
+import { GameContext } from "../GameLayout";
 
 const h4: SxProps = {
   fontSize: {
@@ -19,7 +19,7 @@ const h4: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function GameInformation() {
+export default function GameInformationLayout() {
   const game = useContext(GameContext) as Game;
 
   return (

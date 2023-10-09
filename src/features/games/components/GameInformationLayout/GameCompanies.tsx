@@ -2,7 +2,7 @@
 
 import MUIStack from "@mui/material/Stack";
 import MUITypography from "@mui/material/Typography";
-import InvolvedCompany from "../types/InvolvedCompany";
+import InvolvedCompany from "../../types/InvolvedCompany";
 
 export default function GameCompanies({
   type,

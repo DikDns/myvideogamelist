@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import igdbAgeRating from "../lib/igdbAgeRating";
-import AgeRating from "../types/AgeRating";
+import igdbAgeRating from "../../lib/igdbAgeRating";
+import AgeRating from "../../types/AgeRating";
 
 function AgeRatingImage({ url, title }: { url: string; title: string }) {
   return <Image src={url} alt={title} width={48} height={48} />;

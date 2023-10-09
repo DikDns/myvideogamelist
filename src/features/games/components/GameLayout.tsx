@@ -2,9 +2,9 @@
 
 import MUIContainer from "@mui/material/Container";
 import MUIBox from "@mui/material/Box";
-import GameMainLayout from "./GameMainLayout/GameMainLayout";
 import GameHeading from "./GameHeading";
-import GameInformation from "./GameInformation";
+import GameMainLayout from "./GameMainLayout/GameMainLayout";
+import GameInformationLayout from "./GameInformationLayout/GameInformationLayout";
 import GameRecommendation from "./GameRecommendation";
 import { ListStatus } from "@prisma/client";
 import { createContext } from "react";
@@ -71,7 +71,7 @@ export default function Game({
 function GameAsideLayout() {
   return (
     <MUIBox component="aside">
-      <GameInformation />
+      <GameInformationLayout />
     </MUIBox>
   );
 }
