@@ -1,21 +1,18 @@
 "use client";
 
-import { experimental_useOptimistic as useOptimistic } from "react";
+import { useContext, experimental_useOptimistic as useOptimistic } from "react";
 import MUIButton from "@mui/material/Button";
 import IMFavorite from "@mui/icons-material/Favorite";
 import { updateIsFavorited } from "../../lib/nextServerButtonFavorite";
-import Game from "../../types/Game";
+import { GameContext, GameListUserContext } from "../GameLayout";
 
-export default function GameButtonFavorite({
-  isFavorited,
-  game,
-}: {
-  isFavorited: boolean | null;
-  game: Game;
-}) {
+export default function GameButtonFavorite() {
+  const game = useContext(GameContext);
+  const gameListUser = useContext(GameListUserContext);
+
   const [favoriteOptimistic, addFavoriteOptimistic] = useOptimistic(
     {
-      isFavorited: isFavorited,
+      isFavorited: gameListUser?.isFavorited,
       sending: false,
     },
     (state, newState: boolean) => ({
@@ -26,6 +23,8 @@ export default function GameButtonFavorite({
   );
 
   const handleFavorite = async () => {
+    if (!game?.id) return;
+
     addFavoriteOptimistic(!favoriteOptimistic.isFavorited);
     await updateIsFavorited(game.id, !favoriteOptimistic.isFavorited);
   };
