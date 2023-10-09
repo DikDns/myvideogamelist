@@ -1,26 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import MUIStack from "@mui/material/Stack";
 import MUITypography from "@mui/material/Typography";
 import MUILink from "@mui/material/Link";
 import truncStr from "@/utils/truncStr";
 import BoxGrid from "../BoxGrid";
-import Game from "../../types/Game";
+import { GameContext } from "../GameLayout";
 
-export default function GameSummary({ game }: { game: Game }) {
+export default function GameSummary() {
+  const game = useContext(GameContext);
+
   return (
     <MUIStack my={1} mb={2}>
       <BoxGrid sx={{ gridTemplateColumns: "90px auto" }} label={"Genre"}>
-        {game.genres?.map((genre) => genre.name).join(", ")}
+        {game?.genres?.map((genre) => genre.name).join(", ")}
       </BoxGrid>
 
       <BoxGrid sx={{ gridTemplateColumns: "90px auto" }} label={"Platforms"}>
-        {game.platforms?.map((platform) => platform.abbreviation).join(", ")}
+        {game?.platforms?.map((platform) => platform.abbreviation).join(", ")}
       </BoxGrid>
 
       <MUITypography variant="body1">
-        {game.summary ? <ReadMore summary={game.summary} /> : "No Summary"}
+        {game?.summary ? <ReadMore summary={game.summary} /> : "No Summary"}
       </MUITypography>
     </MUIStack>
   );
