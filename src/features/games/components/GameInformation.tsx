@@ -1,12 +1,13 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
 import MUIStack from "@mui/material/Stack";
 import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
 import GameCompanies from "./GameCompanies";
 import GameAgeRatings from "./GameAgeRatings";
 import Game from "../types/Game";
+import { GameContext } from "./GameLayout";
 
 const h4: SxProps = {
   fontSize: {
@@ -18,7 +19,9 @@ const h4: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function GameInformation({ game }: { game: Game }) {
+export default function GameInformation() {
+  const game = useContext(GameContext) as Game;
+
   return (
     <MUIStack gap={1} mt={2} ml={4}>
       <MUITypography variant="h4" sx={h4}>
