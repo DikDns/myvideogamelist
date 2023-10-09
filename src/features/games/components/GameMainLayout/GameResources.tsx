@@ -2,12 +2,13 @@
 
 import NextImage from "next/image";
 import NextLink from "next/link";
+import { useContext } from "react";
 import MUITypography from "@mui/material/Typography";
 import MUIStack from "@mui/material/Stack";
 import MUILink from "@mui/material/Link";
 import { getWebsiteIconUrl } from "@/lib/igdb";
 import { SxProps } from "@mui/material/styles";
-import Game from "../../types/Game";
+import { GameContext } from "../GameLayout";
 
 export const h3: SxProps = {
   fontSize: {
@@ -19,8 +20,10 @@ export const h3: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function GameResources({ game }: { game: Game }) {
-  return game.websites ? (
+export default function GameResources() {
+  const game = useContext(GameContext);
+
+  return game?.websites ? (
     <MUIStack mt={2}>
       <MUITypography variant="h3" sx={h3} mb={1}>
         Resources
