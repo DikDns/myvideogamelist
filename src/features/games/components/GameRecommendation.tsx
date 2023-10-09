@@ -1,11 +1,12 @@
 "use client";
 
+import { useContext } from "react";
 import MUIStack from "@mui/material/Stack";
 import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
 import CarouselCard from "./Carousel/CarouselCard";
 import SlideCard from "./Carousel/SlideCard";
-import Game from "../types/Game";
+import { GameContext } from "./GameLayout";
 
 const h3: SxProps = {
   fontSize: {
@@ -17,8 +18,10 @@ const h3: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function GameRecommendation({ game }: { game: Game }) {
-  return game.similar_games ? (
+export default function GameRecommendation() {
+  const game = useContext(GameContext);
+
+  return game?.similar_games ? (
     <MUIStack gap={1} my={4}>
       <MUITypography variant="h3" sx={h3}>
         {"Recommendations"}
