@@ -1,11 +1,15 @@
 "use client";
 
+import { useContext } from "react";
 import CarouselMedia from "../Carousel/CarouselMedia";
 import GameSlideImage from "../GameSlideImage";
 import GameSlideVideo from "../GameSlideVideo";
+import { GameContext } from "../GameLayout";
 import Game from "../../types/Game";
 
-export default function GameMedia({ game }: { game: Game }) {
+export default function GameMedia() {
+  const game = useContext(GameContext) as Game;
+
   return <CarouselMedia slides={setMediaSlides(game)} />;
 }
 
