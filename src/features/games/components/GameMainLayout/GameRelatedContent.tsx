@@ -1,11 +1,13 @@
 "use client";
 
 import NextLink from "next/link";
+import { useContext } from "react";
 import MUITypography from "@mui/material/Typography";
 import MUILink from "@mui/material/Link";
 import MUIStack from "@mui/material/Stack";
 import { SxProps } from "@mui/material/styles";
 import BoxGrid from "../BoxGrid";
+import { GameContext } from "../GameLayout";
 import Game from "../../types/Game";
 
 type Data =
@@ -28,7 +30,9 @@ const h3: SxProps = {
   letterSpacing: "0.5px",
 };
 
-export default function GameRelatedContent({ game }: { game: Game }) {
+export default function GameRelatedContent() {
+  const game = useContext(GameContext) as Game;
+
   return (
     <MUIStack mt={2}>
       <MUITypography mb={1} variant="h3" sx={h3}>
@@ -138,8 +142,8 @@ function NotRelated({ game }: { game: Game }) {
     !game.standalone_expansions &&
     !game.expansions &&
     !game.expanded_games ? (
-    <MUITypography variant="body2">{"No Content Related"}</MUITypography>
-  ) : (
-    ""
-  );
+      <MUITypography variant="body2">{"No Content Related"}</MUITypography>
+    ) : (
+      ""
+    );
 }
