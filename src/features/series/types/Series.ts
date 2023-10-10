@@ -1,4 +1,4 @@
-import { Game } from "@/types/Game";
+import Game from "@/features/games/types/Game";
 
 type Series = {
   id: number;
