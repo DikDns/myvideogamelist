@@ -21,7 +21,7 @@ const cardGameContainer = {
   },
 };
 
-export default function Games() {
+export default function GamesLayout() {
   const { games, hasMore, fetchMore, bracket, setBracket } = useGamesBracket();
 
   return (

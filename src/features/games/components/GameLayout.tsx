@@ -34,7 +34,7 @@ export const GameListUserContext = createContext<GameListUser | null>(null);
  * @param game - The game to display.
  * @param userGameList - The user's game list.
  */
-export default function Game({
+export default function GameLayout({
   game,
   userGameList,
 }: {
