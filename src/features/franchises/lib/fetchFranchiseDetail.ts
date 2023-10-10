@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import igdb from "@/lib/igdb";
-import Franchises from "../types/Franchises";
+import Franchise from "../types/Franchise";
 
 export default async function fetchFranchiseDetail(slug: string) {
   const body = `
@@ -9,7 +9,7 @@ export default async function fetchFranchiseDetail(slug: string) {
     games.first_release_date, games.aggregated_rating;
     w slug="${slug}";
   `;
-  const franchises: Franchises[] = await igdb("franchises", body);
+  const franchises: Franchise[] = await igdb("franchises", body);
 
   if (franchises.length < 1) return notFound();
 

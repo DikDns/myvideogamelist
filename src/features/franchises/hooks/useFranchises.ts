@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import igdb from "@/lib/igdb";
-import Franchises from "../types/Franchises";
+import Franchise from "../types/Franchise";
 
 export default function useFranchises() {
-  const [franchises, setFranchises] = useState<Franchises[]>([]);
+  const [franchises, setFranchises] = useState<Franchise[]>([]);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
@@ -21,7 +21,7 @@ export default function useFranchises() {
       l ${fetchLimit};
       o ${offset};
     `;
-    const nextFranchises: Franchises[] = await igdb("franchises", body);
+    const nextFranchises: Franchise[] = await igdb("franchises", body);
 
     if (nextFranchises.length <= 0) return setHasMore(false);
 
