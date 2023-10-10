@@ -1,9 +1,9 @@
-import Games from "@/layouts/Games/Games";
+import GamesLayout from "@/features/games/components/GamesLayout";
 
 export default async function GamesPage() {
   return (
     <div>
-      <Games />
+      <GamesLayout />
     </div>
   );
 }

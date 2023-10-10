@@ -1,15 +1,15 @@
 import { PageProps } from "@/types/PageProps";
-import getGamePageData from "@/layouts/Games/Server/getGamePageData";
-import Game from "@/layouts/Games/Game";
+import { getGameLayoutData } from "@/features/games/lib/nextServerGameLayout";
+import GameLayout from "@/features/games/components/GameLayout";
 
 type GamePageProps = PageProps<{ slug: string }>;
 
 export default async function GamePage({ params: { slug } }: GamePageProps) {
-  const { games, userGameList } = await getGamePageData(slug);
+  const { game, userGameList } = await getGameLayoutData(slug);
 
   return (
     <div>
-      <Game game={games[0]} userGameList={userGameList} />
+      <GameLayout game={game} userGameList={userGameList} />
     </div>
   );
 }

@@ -1,10 +1,12 @@
+"use server";
+
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs";
-import { getGames } from "@/lib/igdb";
 import { prisma } from "@/lib/db";
-import { Game } from "@/types/Game";
+import igdb from "@/lib/igdb";
+import Game from "../types/Game";
 
-export default async function getGamePageData(slug: string) {
+export async function getGameLayoutData(slug: string) {
   const authPromises = auth();
   const body = `
     f slug, name, summary, first_release_date,
@@ -30,7 +32,7 @@ export default async function getGamePageData(slug: string) {
     cover.image_id;
     w slug="${slug}";
   `;
-  const gamesPromise: Promise<Game[]> = getGames(body);
+  const gamesPromise: Promise<Game[]> = igdb("games", body);
 
   const [{ userId }, games] = await Promise.all([authPromises, gamesPromise]);
 
@@ -41,5 +43,5 @@ export default async function getGamePageData(slug: string) {
     where: { gameId: games[0].id, userId: userId || "" },
   });
 
-  return { userGameList, games };
+  return { userGameList, game: games[0] };
 }
