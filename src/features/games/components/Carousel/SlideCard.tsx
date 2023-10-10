@@ -5,15 +5,8 @@ import MUIBox from "@mui/material/Box";
 import MUICardMedia from "@mui/material/CardMedia";
 import MUITypography from "@mui/material/Typography";
 import truncStr from "@/utils/truncStr";
-import Game from "@/features/games/types/Game";
+import Game, { Franchise, Series } from "@/features/games/types/Game";
 import { getImageUrl } from "@/lib/igdb";
-
-type Franchise = {
-  id: number;
-  name?: string;
-  slug?: string;
-  games?: Game[];
-};
 
 export interface CardSlide<TData> {
   type: "franchises" | "series" | "games";
@@ -54,7 +47,10 @@ const cardSlideSubtitleStyle = {
   transition: "all 250ms ease-in-out",
 };
 
-export default function CardSlide({ type, data }: CardSlide<Franchise | Game>) {
+export default function CardSlide({
+  type,
+  data,
+}: CardSlide<Franchise | Game | Series>) {
   return (
     <MUIBox sx={cardSlideStyle}>
       <NextLink

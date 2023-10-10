@@ -1,15 +1,15 @@
 import AgeRating from "./AgeRating";
 import Image from "./Image";
 import Video from "./Video";
+import Franchise from "@/features/franchises/types/Franchises";
+import Series from "@/features/series/types/Series";
 import { GenreTheme } from "@/types/GenreTheme";
 import { Platform } from "@/types/Platform";
-import { Franchise } from "@/types/Franchise";
 import { Website } from "@/types/Website";
 import { AlternativeName } from "@/types/AlternativeName";
 import { InvolvedCompany } from "@/types/InvolvedCompany";
 import { GameMode } from "@/types/GameMode";
 import { PlayerPerspective } from "@/types/PlayerPerspective";
-import Series from "@/features/series/types/Series";
 
 type Game = {
   id: number;
@@ -45,3 +45,5 @@ type Game = {
 };
 
 export default Game;
+
+export type { Franchise, Series };
