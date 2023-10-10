@@ -1,9 +1,5 @@
-import Franchises from "@/layouts/Franchises/Franchises";
+import FranchisesLayout from "@/features/franchises/components/FranchisesLayout";
 
 export default async function FranchisesPage() {
-  return (
-    <div>
-      <Franchises />
-    </div>
-  );
+  return <FranchisesLayout />;
 }

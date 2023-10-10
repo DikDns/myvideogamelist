@@ -1,17 +1,13 @@
 import { PageProps } from "@/types/PageProps";
-import getFranchise from "@/layouts/Franchises/getFranchise";
-import Franchise from "@/layouts/Franchises/Franchise";
+import FranchiseDetailLayout from "@/features/franchises/components/FranchiseDetailLayout";
+import fetchFranchiseDetail from "@/features/franchises/lib/fetchFranchiseDetail";
 
 type FranchisePageProps = PageProps<{ slug: string }>;
 
 export default async function FranchisePage({
   params: { slug },
 }: FranchisePageProps) {
-  const franchise = await getFranchise(slug);
+  const franchise = await fetchFranchiseDetail(slug);
 
-  return (
-    <div>
-      <Franchise data={franchise} />
-    </div>
-  );
+  return <FranchiseDetailLayout data={franchise} />;
 }
