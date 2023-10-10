@@ -21,7 +21,7 @@ export default function useSeries() {
       l ${fetchLimit};
       o ${offset};
     `;
-    const nextSeries: Series[] = await igdb("collection", body);
+    const nextSeries: Series[] = await igdb("collections", body);
 
     if (nextSeries.length <= 0) return setHasMore(false);
 

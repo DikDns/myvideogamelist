@@ -5,7 +5,7 @@ import Series from "../types/Series";
 export default async function fetchSeriesDetail(slug: string) {
   const body = `
     f name, slug, 
-    games.name, games.slug, games.cover.image_id
+    games.name, games.slug, games.cover.image_id,
     games.first_release_date, games.aggregated_rating;
     w slug="${slug}";
   `;
