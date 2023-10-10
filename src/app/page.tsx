@@ -1,11 +1,8 @@
-import getHomeData from "@/layouts/Home/server/getHomeData";
-import Home from "@/layouts/Home/Home";
+import { getHomeLayoutData } from "@/features/home/lib/nextServerHomeLayout";
+import HomeLayout from "@/features/home/components/HomeLayout";
 
-export default async function IndexPage() {
-  const data = await getHomeData();
-  return (
-    <div>
-      <Home data={data} />
-    </div>
-  );
+export default async function HomePage() {
+  const data = await getHomeLayoutData();
+
+  return <HomeLayout data={data} />;
 }
