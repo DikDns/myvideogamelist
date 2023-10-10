@@ -1,10 +1,10 @@
 import Game from "@/features/games/types/Game";
 
-type Franchises = {
+type Franchise = {
   id: number;
   name?: string;
   slug?: string;
   games?: Game[];
 };
 
-export default Franchises;
+export default Franchise;

@@ -1,7 +1,7 @@
 import AgeRating from "./AgeRating";
 import Image from "./Image";
 import Video from "./Video";
-import Franchise from "@/features/franchises/types/Franchises";
+import Franchise from "@/features/franchises/types/Franchise";
 import Series from "@/features/series/types/Series";
 import { GenreTheme } from "@/types/GenreTheme";
 import { Platform } from "@/types/Platform";
