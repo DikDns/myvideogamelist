@@ -14,3 +14,5 @@ type HomeData = {
 };
 
 export default HomeData;
+
+export type { Video, Game, Franchise, Series };
