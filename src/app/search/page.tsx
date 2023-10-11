@@ -1,9 +1,5 @@
-import Search from "@/layouts/Search/Search";
+import SearchLayout from "@/features/search/components/SearchLayout";
 
 export default async function SearchPage() {
-  return (
-    <div>
-      <Search />
-    </div>
-  );
+  return <SearchLayout />;
 }
