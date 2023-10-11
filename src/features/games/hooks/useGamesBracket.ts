@@ -5,7 +5,7 @@ import {
   getTopRatedGames,
   getPopularUpcomingGames,
   getNewReleaseGames,
-} from "@/lib/igdb";
+} from "../lib/igdbGamesApi";
 import { brackets } from "../components/GamesBracketSelect";
 import Game from "../types/Game";
 
