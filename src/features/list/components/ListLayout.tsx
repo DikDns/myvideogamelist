@@ -4,6 +4,7 @@ import { currentUser as clerkCurrentUser } from "@clerk/nextjs";
 import { currentUserList } from "@/features/list/lib/nextServerListLayout";
 import List from "./List";
 import ListControl from "./ListControl";
+import UserProvider from "./UserProvider";
 import { PageProps } from "@/types/PageProps";
 
 type ListLayoutProps = PageProps<{ username: string }>;
@@ -20,8 +21,16 @@ export default async function ListLayout({
   ]);
 
   if (currentUser?.username !== username) {
-    return <List user={user} />;
+    return (
+      <UserProvider user={user}>
+        <List />
+      </UserProvider>
+    );
   }
 
-  return <ListControl user={user} />;
+  return (
+    <UserProvider user={user}>
+      <ListControl />
+    </UserProvider>
+  );
 }
