@@ -8,8 +8,6 @@ import { PageProps } from "@/types/PageProps";
 
 type ListLayoutProps = PageProps<{ username: string }>;
 
-export const revalidate = 0;
-
 export default async function ListLayout({
   params: { username },
 }: ListLayoutProps) {
