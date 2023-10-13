@@ -1,5 +1,6 @@
 "use client";
 
+import NextLink from "next/link";
 import { useContext } from "react";
 import MUITable from "@mui/material/Table";
 import MUITableBody from "@mui/material/TableBody";
@@ -12,7 +13,8 @@ import MUIButton from "@mui/material/Button";
 import MUICircularProgress from "@mui/material/CircularProgress";
 import MUITypography from "@mui/material/Typography";
 import { UserContext } from "./UserProvider";
-import GameRow from "./GameRow";
+import ListTableRowView from "./ListTableRowView";
+import ListTableRowControl from "./ListTableRowControl";
 import useGameList from "../hooks/useGameList";
 
 export default function ListTable() {
@@ -32,13 +34,21 @@ export default function ListTable() {
             <MUITableCell>Name</MUITableCell>
             <MUITableCell>Status</MUITableCell>
             <MUITableCell>Score</MUITableCell>
+            {user?.isCurrentUserList && (
+              <MUITableCell align="right">Action</MUITableCell>
+            )}
           </MUITableRow>
         </MUITableHead>
         <MUITableBody>
           {gameList.map((list, index) => {
             const key = `${list.gameId}_${index}`;
-            return <GameRow key={key} list={list} />;
+            return user?.isCurrentUserList ? (
+              <ListTableRowControl key={key} list={list} />
+            ) : (
+              <ListTableRowView key={key} list={list} />
+            );
           })}
+
           {isLoading && (
             <MUITableRow>
               <MUITableCell align="center" colSpan={5}>
@@ -46,6 +56,7 @@ export default function ListTable() {
               </MUITableCell>
             </MUITableRow>
           )}
+
           {hasMore && (
             <MUITableRow>
               <MUITableCell align="center" colSpan={5}>
@@ -59,10 +70,17 @@ export default function ListTable() {
               </MUITableCell>
             </MUITableRow>
           )}
+
           {user?.gameList.length === 0 && (
             <MUITableRow>
               <MUITableCell align="center" colSpan={4}>
                 <MUITypography variant="subtitle1">No Data</MUITypography>
+
+                {user?.isCurrentUserList && (
+                  <MUIButton LinkComponent={NextLink} href={"/games"}>
+                    Find your favorite games!
+                  </MUIButton>
+                )}
               </MUITableCell>
             </MUITableRow>
           )}
