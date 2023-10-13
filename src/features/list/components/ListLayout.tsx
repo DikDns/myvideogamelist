@@ -2,8 +2,7 @@
 
 import { currentUser as clerkCurrentUser } from "@clerk/nextjs";
 import { currentUserList } from "@/features/list/lib/nextServerListLayout";
-import List from "./List";
-import ListControl from "./ListControl";
+import ListUserLayout from "./ListUserLayout";
 import UserProvider from "./UserProvider";
 import { PageProps } from "@/types/PageProps";
 
@@ -22,15 +21,15 @@ export default async function ListLayout({
 
   if (currentUser?.username !== username) {
     return (
-      <UserProvider user={user}>
-        <List />
+      <UserProvider user={user} isCurrentUserList={false}>
+        <ListUserLayout />
       </UserProvider>
     );
   }
 
   return (
-    <UserProvider user={user}>
-      <ListControl />
+    <UserProvider user={user} isCurrentUserList={true}>
+      <ListUserLayout />
     </UserProvider>
   );
 }
