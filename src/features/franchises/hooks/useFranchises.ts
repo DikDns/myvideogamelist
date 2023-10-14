@@ -9,7 +9,9 @@ export default function useFranchises() {
 
   useEffect(() => {
     if (franchises.length > 0) return;
-    fetchMore();
+    return () => {
+      fetchMore();
+    };
   }, [franchises]);
 
   const fetchMore = async () => {
