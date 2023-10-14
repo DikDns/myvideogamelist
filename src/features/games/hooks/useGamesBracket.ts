@@ -31,7 +31,10 @@ export default function useGamesBracket() {
   useEffect(() => {
     if (isLoading) return;
     if (games.length > 0) return;
-    fetchMore();
+
+    return () => {
+      fetchMore();
+    };
   }, [games]);
 
   const fetchMore = async () => {
