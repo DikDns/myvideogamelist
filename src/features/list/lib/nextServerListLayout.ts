@@ -13,11 +13,17 @@ import { prisma } from "@/lib/db";
  * @returns The user's list if found, otherwise a not found response.
  */
 export async function currentUserList(username: string) {
-  const userInClerk = await currentUser();
-  let userInPrisma = await findUserByUsername(username);
+  const userInClerkPromise = currentUser();
+  const userInPrismaPromise = findUserByUsername(username);
+
+  // eslint-disable-next-line prefer-const
+  let [userInClerk, userInPrisma] = await Promise.all([
+    userInClerkPromise,
+    userInPrismaPromise,
+  ]);
 
   if (!userInPrisma && userInClerk?.id) {
-    userInPrisma = await findUserById(userInClerk?.id);
+    userInPrisma = await findUserById(userInClerk.id);
   }
 
   if (!userInPrisma && userInClerk?.id && userInClerk.username) {
@@ -25,6 +31,7 @@ export async function currentUserList(username: string) {
 
     userInPrisma = await createCurrentUser(id, usernameInClerk, imageUrl);
   }
+
   if (
     userInPrisma?.id === userInClerk?.id &&
     (userInPrisma?.username !== userInClerk?.username ||
@@ -43,7 +50,7 @@ export async function currentUserList(username: string) {
 
   if (userInPrisma?.username !== username) return notFound();
 
-  return userInPrisma;
+  return { currentUser: userInClerk, user: userInPrisma };
 }
 
 async function findUserByUsername(username: string) {
