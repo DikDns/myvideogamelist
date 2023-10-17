@@ -1,7 +1,7 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/Theme/ThemeRegistry";
 import SearchAppBar from "@/components/Navigation/SearchAppBar";
-import Footer from "@/components/Navigation/Footer";
+import Footer from "@/layouts/Footer";
 import ClerkAuth from "@/features/authentication/providers/ClerkAuth";
 
 export const metadata = {
