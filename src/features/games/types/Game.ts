@@ -1,15 +1,15 @@
 import AgeRating from "./AgeRating";
 import Image from "./Image";
 import Video from "./Video";
+import AlternativeName from "./AlternativeName";
+import GameMode from "./GameMode";
+import GenreTheme from "./GenreTheme";
+import InvolvedCompany from "./InvolvedCompany";
+import Platform from "./Platform";
+import Website from "./Website";
+import PlayerPerspective from "./PlayerPerspective";
 import Franchise from "@/features/franchises/types/Franchise";
 import Series from "@/features/series/types/Series";
-import { GenreTheme } from "@/types/GenreTheme";
-import { Platform } from "@/types/Platform";
-import { Website } from "@/types/Website";
-import { AlternativeName } from "@/types/AlternativeName";
-import { InvolvedCompany } from "@/types/InvolvedCompany";
-import { GameMode } from "@/types/GameMode";
-import { PlayerPerspective } from "@/types/PlayerPerspective";
 
 type Game = {
   id: number;
