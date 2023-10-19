@@ -10,7 +10,7 @@ import Star from "@mui/icons-material/Star";
 import Link from "@mui/material/Link";
 import { getImageUrl } from "@/lib/igdb";
 import truncStr from "@/utils/truncStr";
-import { Game } from "@/types/Game";
+import Game from "../types/Game";
 import formatUnix from "@/utils/formatUnix";
 
 export default function CardGame({ game }: { game: Game }) {
