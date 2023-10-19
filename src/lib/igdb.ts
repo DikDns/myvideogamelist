@@ -99,11 +99,11 @@ export function getImageUrl(
 ) {
   if (imageId === "") {
     return `https://images.igdb.com/igdb/image/upload/t_${imageType}${
-      imageSize ? `_${imageSize}` : ``
+      imageSize ? `_${imageSize}` : ""
     }/undefined.jpg`;
   }
   return `https://images.igdb.com/igdb/image/upload/t_${imageType}${
-    imageSize ? `_${imageSize}` : ``
+    imageSize ? `_${imageSize}` : ""
   }/${imageId}.jpg`;
 }
 
