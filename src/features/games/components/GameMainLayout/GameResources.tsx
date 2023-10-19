@@ -34,11 +34,11 @@ export default function GameResources() {
           const { title, url } = getWebsiteIconUrl(website.category);
           return (
             <MUILink
+              href={website.url || ""}
               key={website.id}
-              target="_blank"
-              href={website.url}
-              component={NextLink}
               width="fit-content"
+              target="_blank"
+              component={NextLink}
             >
               <MUIStack direction="row" alignItems="center" gap={1}>
                 <NextImage
