@@ -23,8 +23,7 @@ export default function SeriesCard({ data }: { data: Series }) {
         component="img"
         className="cover"
         image={getImageUrl(
-          // @ts-ignore
-          data.games[0].cover?.image_id ?? "",
+          data?.games?.[0]?.cover?.image_id || "",
           "cover_small",
           "2x"
         )}
