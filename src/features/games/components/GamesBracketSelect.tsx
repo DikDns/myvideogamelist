@@ -4,7 +4,7 @@ import MUIBox from "@mui/material/Box";
 import MUIInputLabel from "@mui/material/InputLabel";
 import MUIMenuItem from "@mui/material/MenuItem";
 import MUIFormControl from "@mui/material/FormControl";
-import MUISelect from "@mui/material/Select";
+import MUISelect, { SelectProps } from "@mui/material/Select";
 
 export const brackets = {
   topRated: "top-rated",
@@ -18,7 +18,7 @@ export default function GamesBracketSelect({
   onChange,
 }: {
   value: string;
-  onChange: any;
+  onChange: SelectProps<string>["onChange"];
 }) {
   return (
     <MUIBox sx={{ minWidth: 120 }}>
