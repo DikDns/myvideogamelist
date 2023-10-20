@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getGames } from "@/lib/igdb";
 import GameList, { User } from "../types/GameList";
-import { Game } from "@/types/Game";
+import Game from "@/features/games/types/Game";
 import { GameList as prismaGameList } from "@prisma/client";
 
 export default function useGameList(user: User | null) {
