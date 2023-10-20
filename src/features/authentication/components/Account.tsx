@@ -10,7 +10,7 @@ const box: SxProps = {
   alignItems: "center",
 };
 
-export default async function Account() {
+export default function Account() {
   return (
     <MUIBox sx={box}>
       <UserProfile />
