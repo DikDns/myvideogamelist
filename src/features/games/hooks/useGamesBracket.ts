@@ -32,9 +32,7 @@ export default function useGamesBracket() {
     if (isLoading) return;
     if (games.length > 0) return;
 
-    return () => {
-      fetchMore();
-    };
+    fetchMore();
   }, [games]);
 
   const fetchMore = async () => {

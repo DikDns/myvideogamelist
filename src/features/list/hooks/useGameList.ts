@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getGames } from "@/lib/igdb";
 import GameList, { User } from "../types/GameList";
-import { Game } from "@/types/Game";
+import Game from "@/features/games/types/Game";
 import { GameList as prismaGameList } from "@prisma/client";
 
 export default function useGameList(user: User | null) {
@@ -13,12 +13,14 @@ export default function useGameList(user: User | null) {
 
   useEffect(() => {
     if (user?.gameList.length === 0) return;
-    return () => {
-      fetchMore();
-    };
+
+    const fetchData = () => fetchMore();
+
+    fetchData();
   }, []);
 
   useEffect(() => {
+    console.log(gameList);
     if (gameList.length === user?.gameList.length) {
       setIsLoading(false);
       setHasMore(false);
@@ -37,6 +39,8 @@ export default function useGameList(user: User | null) {
         currentGameList.push(user?.gameList[i]);
       }
     }
+
+    if (currentGameList.length === 0) return;
 
     const body = `
       f name, slug, cover.image_id;

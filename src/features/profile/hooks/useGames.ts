@@ -17,9 +17,7 @@ export default function useGames(status: ListStatus) {
       return;
     }
 
-    return () => {
-      fetchGames();
-    };
+    fetchGames();
   }, []);
 
   const fetchGames = async () => {

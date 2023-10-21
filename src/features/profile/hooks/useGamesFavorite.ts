@@ -16,9 +16,7 @@ export default function useFavoriteGames() {
       return;
     }
 
-    return () => {
-      fetchGames();
-    };
+    fetchGames();
   }, []);
 
   const fetchGames = async () => {

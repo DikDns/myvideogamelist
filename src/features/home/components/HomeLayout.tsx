@@ -2,12 +2,12 @@
 
 import { createContext } from "react";
 import MUIContainer from "@mui/material/Container";
-import { HomeData } from "@/types/HomeData";
 import GamesTopNewRelease from "./GamesTopNewRelease";
 import SeriesTop from "./SeriesTop";
 import FranchisesTop from "./FranchisesTop";
 import VideosNew from "./VideosNew";
 import GamesGrid from "./GamesGrid";
+import HomeData from "../types/HomeData";
 
 export const HomeDataContext = createContext<HomeData>(null!);
 
