@@ -46,7 +46,11 @@ export async function fetchIGDBToken() {
 }
 
 export default async function get(path: string, body: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl =
+    process.env.VERCEL_ENV === "production"
+      ? "https://myvideogamelist.vercel.app"
+      : process.env.NEXT_PUBLIC_BASE_URL;
+
   const url = `${baseUrl}/api/igdb/v4/${path}`;
   const data = await textFetch(url, { method: "POST", body });
   return data;
