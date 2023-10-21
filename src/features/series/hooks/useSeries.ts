@@ -9,9 +9,8 @@ export default function useSeries() {
 
   useEffect(() => {
     if (series.length > 0) return;
-    return () => {
-      fetchMore();
-    };
+
+    fetchMore();
   }, [series]);
 
   const fetchMore = async () => {
