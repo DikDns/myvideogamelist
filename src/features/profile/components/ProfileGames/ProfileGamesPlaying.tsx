@@ -3,8 +3,8 @@
 import MUIStack from "@mui/material/Stack";
 import MUITypography from "@mui/material/Typography";
 import MUICircularProgress from "@mui/material/CircularProgress";
-import SlideCard from "../Carousel/SlideCard";
-import CarouselProfile from "../Carousel/CarouselProfile";
+import SlideCard from "@/layouts/Carousel/SlideCard";
+import CarouselProfile from "./CarouselProfile";
 import useGames from "../../hooks/useGames";
 
 const h3 = {

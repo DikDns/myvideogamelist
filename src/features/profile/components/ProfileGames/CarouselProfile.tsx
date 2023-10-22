@@ -1,8 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
-import Carousel, { CarouselOptions } from "./Carousel";
-import slideMargin from "./slideMargin";
+import Carousel, {
+  CarouselOptions,
+} from "../../../../layouts/Carousel/Carousel";
+import slideMargin from "../../../../layouts/Carousel/slideMargin";
 
 const profileCarouselOptions: CarouselOptions = {
   loop: false,
