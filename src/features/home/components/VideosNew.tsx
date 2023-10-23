@@ -6,8 +6,8 @@ import MUIBox from "@mui/material/Box";
 import MUILink from "@mui/material/Link";
 import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
-import SlideVideo from "./Carousel/SlideVideo";
-import CarouselMedia from "./Carousel/CarouselMedia";
+import SlideVideo from "@/layouts/Carousel/SlideVideo";
+import CarouselMedia from "@/layouts/Carousel/CarouselMedia";
 import { HomeDataContext } from "./HomeLayout";
 
 const h3: SxProps = {

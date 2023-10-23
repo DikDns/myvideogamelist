@@ -7,7 +7,7 @@ import MUILink from "@mui/material/Link";
 import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
 import SlideHeadline from "./Carousel/SlideHeadline";
-import CarouselCard from "./Carousel/CarouselCard";
+import CarouselCard from "@/layouts/Carousel/CarouselCard";
 import { HomeDataContext } from "./HomeLayout";
 
 const h1: SxProps = {
