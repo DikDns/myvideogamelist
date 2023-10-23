@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import CarouselMedia from "../../Carousel/CarouselMedia";
+import CarouselMedia from "@/layouts/Carousel/CarouselMedia";
 import { GameContext } from "../../GameLayout";
 import Game from "../../../types/Game";
 import GameSlideImage from "./GameSlideImage";

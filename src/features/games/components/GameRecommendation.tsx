@@ -4,8 +4,8 @@ import { useContext } from "react";
 import MUIStack from "@mui/material/Stack";
 import MUITypography from "@mui/material/Typography";
 import { SxProps } from "@mui/material/styles";
-import CarouselCard from "./Carousel/CarouselCard";
-import SlideCard from "./Carousel/SlideCard";
+import CarouselCard from "@/layouts/Carousel/CarouselCard";
+import SlideCard from "@/layouts/Carousel/SlideCard";
 import { GameContext } from "./GameLayout";
 
 const h3: SxProps = {
