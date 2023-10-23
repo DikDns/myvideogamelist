@@ -45,7 +45,7 @@ export default function Carousel({ slides, options, sxSlide }: Carousel) {
     <MUIBox
       sx={{ position: "relative" }}
       onMouseEnter={() => (!isMobile ? setIsHovered(true) : false)}
-      onMouseLeave={() => (!isMobile ? setIsHovered(false) : false)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div style={{ overflow: "hidden" }} ref={emblaRef}>
         <MUIBox sx={{ display: "flex" }}>

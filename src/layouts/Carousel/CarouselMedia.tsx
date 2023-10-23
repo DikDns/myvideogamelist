@@ -10,7 +10,7 @@ const carouselMediaOptions: CarouselOptions = {
   slidesToScroll: 1,
   breakpoints: {
     "(min-width: 600px)": {
-      align: "center",
+      loop: false,
       dragFree: true,
       slidesToScroll: 2,
     },
