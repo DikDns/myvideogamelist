@@ -73,7 +73,7 @@ export default function ListTable() {
 
           {user?.gameList.length === 0 && (
             <MUITableRow>
-              <MUITableCell align="center" colSpan={4}>
+              <MUITableCell align="center" colSpan={5}>
                 <MUITypography variant="subtitle1">No Data</MUITypography>
 
                 {user?.isCurrentUserList && (
